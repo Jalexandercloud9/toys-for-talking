@@ -46,13 +46,12 @@ function renderAbout() {
           <div style="margin-bottom:1.5rem;">
             <h4 style="margin-bottom:0.75rem;color:var(--text);">Credentials &amp; Training</h4>
             <div class="tag-strip">
-              <span class="credential-tag"><i class="bi bi-patch-check"></i> M.A., CCC-SLP · Pediatric Speech-Language Pathologist</span>
-              <span class="credential-tag"><i class="bi bi-mortarboard"></i> M.A. Speech-Language Pathology</span>
-              <span class="credential-tag"><i class="bi bi-patch-check"></i> ASHA Certified (CCC-SLP)</span>
-              <span class="credential-tag"><i class="bi bi-file-earmark-text"></i> State Licensed SLP</span>
-              <span class="credential-tag"><i class="bi bi-person-heart"></i> Pediatric Specialist</span>
-              <span class="credential-tag"><i class="bi bi-controller"></i> Play-Based Therapy</span>
-              <span class="credential-tag"><i class="bi bi-people"></i> Parent Coaching</span>
+              <span class="credential-tag">M.A., CCC-SLP · Pediatric Speech-Language Pathologist</span>
+              <span class="credential-tag">ASHA Certified (CCC-SLP)</span>
+              <span class="credential-tag">State Licensed SLP</span>
+              <span class="credential-tag">Pediatric Specialist</span>
+              <span class="credential-tag">Play-Based Therapy</span>
+              <span class="credential-tag">Parent Coaching</span>
             </div>
           </div>
 
