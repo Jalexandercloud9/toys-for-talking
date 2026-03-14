@@ -51,7 +51,7 @@ function renderConfirmation() {
 
   return `
     <div class="confirmation-center">
-      <div class="check-circle">✓</div>
+      <div class="check-circle"><i class="bi bi-check2"></i></div>
 
       <h1 style="color:var(--success);font-size:1.75rem;margin-bottom:0.5rem;">
         You're All Set!
@@ -104,7 +104,7 @@ function renderConfirmation() {
         ` : `
           <div class="summary-row">
             <span class="summary-label">Service</span>
-            <span class="summary-value">Speech & Language Evaluation</span>
+            <span class="summary-value">Speech &amp; Language Evaluation</span>
           </div>
           <div class="summary-row">
             <span class="summary-label">Date</span>
@@ -130,7 +130,7 @@ function renderConfirmation() {
       </div>
 
       <!-- Calendar Buttons -->
-      <h3 style="margin-top:2rem;margin-bottom:0.5rem;">📅 Add to Your Calendar</h3>
+      <h3 style="margin-top:2rem;margin-bottom:0.5rem;"><i class="bi bi-calendar3"></i> Add to Your Calendar</h3>
       <p class="text-muted text-sm" style="margin-bottom:1rem;">Don't miss it — add this event to your calendar now.</p>
 
       <div class="calendar-buttons">
@@ -145,12 +145,12 @@ function renderConfirmation() {
         </a>
 
         <button class="cal-btn apple" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${typeof eventStartDate === 'string' && eventStartDate.includes('T') ? eventStartDate : eventStartDate}', '${typeof eventEndDate === 'string' ? eventEndDate : eventStartDate}', '${eventLocation}', ${isCamp})">
-          <span class="cal-icon">🍎</span>
+          <span class="cal-icon"><i class="bi bi-apple"></i></span>
           Add to Apple Calendar (iCal)
         </button>
 
         <button class="cal-btn outlook" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${typeof eventStartDate === 'string' && eventStartDate.includes('T') ? eventStartDate : eventStartDate}', '${typeof eventEndDate === 'string' ? eventEndDate : eventStartDate}', '${eventLocation}', ${isCamp})">
-          <span class="cal-icon">📧</span>
+          <span class="cal-icon"><i class="bi bi-envelope"></i></span>
           Add to Outlook Calendar
         </button>
       </div>

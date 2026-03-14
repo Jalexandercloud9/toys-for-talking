@@ -27,7 +27,7 @@ function renderPayment() {
 
   return `
     <div class="page-header">
-      <h1>💳 Secure Payment</h1>
+      <h1><i class="bi bi-credit-card"></i> Secure Payment</h1>
       <p>${isCamp ? 'Complete your camp registration' : 'Confirm your evaluation booking'}</p>
     </div>
 
@@ -72,11 +72,11 @@ function renderPayment() {
               </div>
 
               <div class="secure-badge">
-                🔒 Payments secured by <strong style="margin-left:4px;">Stripe</strong>
+                <i class="bi bi-lock"></i> Payments secured by <strong style="margin-left:4px;">Stripe</strong>
               </div>
             ` : `
               <div class="alert alert-success">
-                🎉 <strong>Your initial evaluation is complimentary!</strong><br>
+                <i class="bi bi-gift"></i> <strong>Your initial evaluation is complimentary!</strong><br>
                 No payment is required today. Jasmine will meet with you and your child,
                 then discuss any recommended next steps and associated fees.
               </div>
@@ -87,8 +87,8 @@ function renderPayment() {
             <button class="btn btn-blue btn-lg" style="width:100%;justify-content:center;margin-top:1.5rem;"
               id="pay-btn" onclick="submitPayment()">
               ${isCamp && campPrice > 0
-                ? `🔒 Pay $${campPrice.toLocaleString()} Securely`
-                : '✅ Confirm My Evaluation'}
+                ? `<i class="bi bi-lock"></i> Pay $${campPrice.toLocaleString()} Securely`
+                : '<i class="bi bi-check-circle"></i> Confirm My Evaluation'}
             </button>
 
             <p class="text-center text-muted text-sm mt-2">
@@ -105,7 +105,7 @@ function renderPayment() {
 
           ${isCamp && state.selectedCamp ? `
             <div style="display:flex;gap:0.75rem;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--border);margin-bottom:1rem;">
-              <span style="font-size:2rem;">${state.selectedCamp.icon}</span>
+              <span style="font-size:1.5rem;"><i class="bi ${state.selectedCamp.icon}"></i></span>
               <div>
                 <div style="font-weight:700;font-size:0.9rem;">${state.selectedCamp.name}</div>
                 <div style="font-size:0.8rem;color:var(--text-muted);">${state.selectedCamp.dates}</div>
@@ -113,7 +113,7 @@ function renderPayment() {
             </div>
             ${state.children.map((c, i) => `
               <div class="order-row">
-                <span>👦 ${c.firstName || `Child ${i+1}`}, age ${c.age}</span>
+                <span><i class="bi bi-person"></i> ${c.firstName || `Child ${i+1}`}, age ${c.age}</span>
                 <span>$${state.selectedCamp.price}</span>
               </div>
             `).join('')}
@@ -123,14 +123,14 @@ function renderPayment() {
             </div>
           ` : `
             <div style="padding-bottom:1rem;border-bottom:1px solid var(--border);margin-bottom:1rem;">
-              <div style="font-weight:700;font-size:0.9rem;">📋 Speech & Language Evaluation</div>
+              <div style="font-weight:700;font-size:0.9rem;"><i class="bi bi-clipboard-check"></i> Speech &amp; Language Evaluation</div>
               <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem;">
                 ${state.selectedDate ? formatDisplayDate(state.selectedDate) : '—'} at ${state.selectedTime || '—'}
               </div>
             </div>
             ${state.children.map(c => `
               <div class="order-row">
-                <span>👦 ${c.firstName || 'Child'}, age ${c.age}</span>
+                <span><i class="bi bi-person"></i> ${c.firstName || 'Child'}, age ${c.age}</span>
                 <span style="color:var(--success);font-weight:600;">Complimentary</span>
               </div>
             `).join('')}
@@ -144,18 +144,18 @@ function renderPayment() {
 
           <div style="display:flex;flex-direction:column;gap:0.6rem;">
             <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
-              <span>✓</span> Confirmation email sent immediately
+              <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Confirmation email sent immediately
             </div>
             <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
-              <span>✓</span> Add to calendar on next screen
+              <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Add to calendar on next screen
             </div>
             ${isCamp ? `
               <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
-                <span>✓</span> Full refund if cancelled 7+ days before
+                <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Full refund if cancelled 7+ days before
               </div>
             ` : `
               <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
-                <span>✓</span> Reschedule up to 48 hours before
+                <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Reschedule up to 48 hours before
               </div>
             `}
           </div>
@@ -163,7 +163,7 @@ function renderPayment() {
           <div class="divider"></div>
 
           <div class="alert alert-info" style="font-size:0.8rem;padding:0.75rem;">
-            📞 Questions? Call us at <strong>(555) 555-5555</strong> or email
+            <i class="bi bi-telephone"></i> Questions? Call us at <strong>(555) 555-5555</strong> or email
             <strong>info@toysfortalking.com</strong>
           </div>
         </div>
@@ -179,7 +179,7 @@ function initStripe() {
     if (cardEl) {
       cardEl.innerHTML = `
         <div class="stripe-placeholder">
-          <div class="stripe-logo">💳</div>
+          <div class="stripe-logo"><i class="bi bi-credit-card" style="font-size:1.75rem;color:var(--primary);"></i></div>
           <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
             Stripe payment form will appear here.<br>
             <small>Add your Stripe publishable key to enable live payments.</small>
@@ -230,7 +230,7 @@ async function submitPayment() {
 
   if (!firstName || !lastName || !email) {
     errorEl.style.display = 'flex';
-    errorEl.textContent = '⚠️ Please fill in your billing information.';
+    errorEl.textContent = 'Please fill in your billing information.';
     return;
   }
 
@@ -266,7 +266,7 @@ async function submitPayment() {
       const cardErrorEl = document.getElementById('stripe-card-error');
       if (cardErrorEl) { cardErrorEl.textContent = error.message; cardErrorEl.style.display = 'block'; }
       payBtn.disabled = false;
-      payBtn.innerHTML = `🔒 Pay $${(state.selectedCamp.price * state.children.length).toLocaleString()} Securely`;
+      payBtn.innerHTML = `<i class="bi bi-lock"></i> Pay $${(state.selectedCamp.price * state.children.length).toLocaleString()} Securely`;
       paymentProcessing = false;
       return;
     }
@@ -274,9 +274,9 @@ async function submitPayment() {
     confirmBooking();
   } catch (e) {
     errorEl.style.display = 'flex';
-    errorEl.textContent = '⚠️ An error occurred. Please try again or contact us.';
+    errorEl.textContent = 'An error occurred. Please try again or contact us.';
     payBtn.disabled = false;
-    payBtn.innerHTML = '🔒 Pay Securely';
+    payBtn.innerHTML = '<i class="bi bi-lock"></i> Pay Securely';
     paymentProcessing = false;
   }
 }
