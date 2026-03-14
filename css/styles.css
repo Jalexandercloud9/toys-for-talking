@@ -500,37 +500,48 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
 .feature-card p { font-size: 0.9rem; }
 
 /* ===================== ABOUT PAGE ===================== */
-.about-hero { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center; }
-@media (max-width: 768px) { .about-hero { grid-template-columns: 1fr; text-align: center; } }
-.about-photo-wrapper {
-  position: relative;
+.about-bio-section { max-width: 780px; margin: 0 auto; }
+.about-photo-float {
+  float: left;
+  margin: 0.25rem 2rem 1.5rem 0;
+  width: 140px;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .about-photo-float {
+    float: none;
+    margin: 0 auto 1.5rem;
+    display: block;
+  }
 }
 .about-photo {
-  width: 100%;
-  aspect-ratio: 4/5;
-  border-radius: var(--radius-lg);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--border);
-  box-shadow: var(--shadow-lg);
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow-md);
+  display: block;
 }
 .about-photo-placeholder {
-  width: 100%;
-  aspect-ratio: 4/5;
-  border-radius: var(--radius-lg);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
   background: linear-gradient(135deg, #D6E4F0 0%, #B8D0E8 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 4px solid var(--border);
-  box-shadow: var(--shadow-lg);
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow-md);
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   text-align: center;
-  gap: 0.75rem;
+  gap: 0.25rem;
   font-weight: 500;
+  padding: 0.5rem;
 }
-.about-photo-placeholder .photo-icon { font-size: 3.5rem; }
+.about-photo-placeholder .photo-icon { font-size: 2.5rem; }
 .credential-tag {
   display: inline-flex;
   align-items: center;
@@ -747,6 +758,14 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
   display: inline-block;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===================== ICONS ===================== */
+.bi { line-height: 1; vertical-align: -0.125em; }
+.icon-lg { font-size: 1.75rem; }
+.icon-xl { font-size: 2.5rem; }
+.card-icon .bi { font-size: 1.5rem; color: var(--primary); }
+.cal-btn .bi { font-size: 1.1rem; }
+.check-circle .bi { font-size: 2.5rem; color: white; }
 
 /* Loading screen */
 .loading { display: flex; align-items: center; justify-content: center; min-height: 300px; }

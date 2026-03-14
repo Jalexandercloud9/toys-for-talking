@@ -7,62 +7,58 @@ function renderAbout() {
 
     <section class="section">
       <div class="container">
-        <div class="about-hero">
-          <!-- Photo -->
-          <div class="about-photo-wrapper">
+        <div class="about-bio-section">
+          <span class="badge badge-blue mb-2" style="display:inline-block;margin-bottom:0.75rem;">M.S., CCC-SLP · Pediatric Speech-Language Pathologist</span>
+          <h2 style="margin-bottom:1.25rem;">Hi, I'm Jasmine!</h2>
+
+          <!-- Photo floated left -->
+          <div class="about-photo-float">
             <div class="about-photo-placeholder" id="about-photo-container">
-              <div class="photo-icon"><i class="bi bi-person-circle" style="font-size:3.5rem;color:var(--text-muted);"></i></div>
-              <span>Jasmine Alexander, M.S., CCC-SLP</span>
-              <span style="font-size:0.75rem;margin-top:0.25rem;opacity:0.6;">(Photo coming soon)</span>
+              <div class="photo-icon"><i class="bi bi-person-circle"></i></div>
+              <span>Photo coming soon</span>
             </div>
           </div>
 
-          <!-- Bio -->
-          <div>
-            <span class="badge badge-blue mb-2" style="display:inline-block;">M.S., CCC-SLP · Pediatric Speech-Language Pathologist</span>
-            <h2 style="margin-bottom:1rem;">Hi, I'm Jasmine!</h2>
+          <p style="margin-bottom:1rem;font-size:1.05rem;line-height:1.8;">
+            I'm a passionate Pediatric Speech-Language Pathologist and encourager of parents,
+            committed to helping families and little ones grow communication skills through
+            joyful, intentional play.
+          </p>
+          <p style="margin-bottom:1rem;line-height:1.8;">
+            I understand the challenges parents face when they realize their child may be struggling
+            to communicate. You want to help your child express their wants, share their thoughts,
+            and connect with the world around them. You try your best to talk, read, and play —
+            yet you may still wonder if you are doing enough. The uncertainty can lead to worry,
+            frustration, and the feeling that you are missing something important.
+          </p>
+          <p style="margin-bottom:1rem;line-height:1.8;">
+            I understand because I have walked alongside many families on this journey. I have
+            worked closely with children and their caregivers to support language development in
+            ways that are practical and meaningful. I have seen how powerful everyday interactions
+            can be when parents are given the right tools, guidance, and encouragement.
+          </p>
+          <p style="margin-bottom:1.5rem;line-height:1.8;clear:left;">
+            My work has led me to create resources and learning experiences — including
+            <strong>Toys for Talking</strong> and <strong>Little Lamps Speech Camp</strong> —
+            where families learn simple strategies they can apply immediately with their children.
+          </p>
 
-            <p style="margin-bottom:1rem;font-size:1.05rem;line-height:1.8;">
-              I'm a passionate Pediatric Speech-Language Pathologist and encourager of parents,
-              committed to helping families and little ones grow communication skills through
-              joyful, intentional play.
-            </p>
-            <p style="margin-bottom:1rem;line-height:1.8;">
-              I understand the challenges parents face when they realize their child may be struggling
-              to communicate. You want to help your child express their wants, share their thoughts,
-              and connect with the world around them. You try your best to talk, read, and play —
-              yet you may still wonder if you are doing enough. The uncertainty can lead to worry,
-              frustration, and the feeling that you are missing something important.
-            </p>
-            <p style="margin-bottom:1rem;line-height:1.8;">
-              I understand because I have walked alongside many families on this journey. I have
-              worked closely with children and their caregivers to support language development in
-              ways that are practical and meaningful. I have seen how powerful everyday interactions
-              can be when parents are given the right tools, guidance, and encouragement.
-            </p>
-            <p style="margin-bottom:1.5rem;line-height:1.8;">
-              My work has led me to create resources and learning experiences — including
-              <strong>Toys for Talking</strong> and <strong>Little Lamps Speech Camp</strong> —
-              where families learn simple strategies they can apply immediately with their children.
-            </p>
-
-            <!-- Credentials -->
-            <div style="margin-bottom:1.5rem;">
-              <h4 style="margin-bottom:0.75rem;color:var(--text);">Credentials &amp; Training</h4>
-              <div class="tag-strip">
-                <span class="credential-tag"><i class="bi bi-mortarboard"></i> M.S. Speech-Language Pathology</span>
-                <span class="credential-tag"><i class="bi bi-patch-check"></i> ASHA Certified (CCC-SLP)</span>
-                <span class="credential-tag"><i class="bi bi-file-earmark-text"></i> State Licensed SLP</span>
-                <span class="credential-tag"><i class="bi bi-person-heart"></i> Pediatric Specialist</span>
-                <span class="credential-tag"><i class="bi bi-controller"></i> Play-Based Therapy</span>
-                <span class="credential-tag"><i class="bi bi-people"></i> Parent Coaching</span>
-              </div>
+          <!-- Credentials -->
+          <div style="margin-bottom:1.5rem;">
+            <h4 style="margin-bottom:0.75rem;color:var(--text);">Credentials &amp; Training</h4>
+            <div class="tag-strip">
+              <span class="credential-tag"><i class="bi bi-mortarboard"></i> M.S. Speech-Language Pathology</span>
+              <span class="credential-tag"><i class="bi bi-patch-check"></i> ASHA Certified (CCC-SLP)</span>
+              <span class="credential-tag"><i class="bi bi-file-earmark-text"></i> State Licensed SLP</span>
+              <span class="credential-tag"><i class="bi bi-person-heart"></i> Pediatric Specialist</span>
+              <span class="credential-tag"><i class="bi bi-controller"></i> Play-Based Therapy</span>
+              <span class="credential-tag"><i class="bi bi-people"></i> Parent Coaching</span>
             </div>
+          </div>
 
-            <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-              <a href="#/book-evaluation" class="btn btn-blue">Book an Evaluation</a>
-              <a href="#/book-camp" class="btn btn-ghost">View Summer Camps</a>
-            </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <a href="#/book-evaluation" class="btn btn-blue">Book an Evaluation</a>
+            <a href="#/book-camp" class="btn btn-ghost">View Summer Camps</a>
           </div>
         </div>
       </div>
