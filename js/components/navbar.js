@@ -10,7 +10,7 @@ function renderNavbar() {
     <nav class="navbar">
       <div class="navbar-inner">
         <a href="#/" class="navbar-brand">
-          <div class="navbar-logo" id="navbar-logo-img">T</div>
+          <img src="assets/images/logo.png" alt="Toys for Talking" class="navbar-logo" id="navbar-logo-img" />
           <div class="navbar-brand-text">
             <span class="navbar-brand-name">Toys for Talking</span>
             <span class="navbar-brand-tagline">Speech Therapy Services</span>

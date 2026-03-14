@@ -84,15 +84,10 @@ a:hover { color: var(--primary); }
 .navbar-logo {
   width: 44px;
   height: 44px;
-  border-radius: 10px;
+  border-radius: 50%;
   object-fit: contain;
-  background: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 800;
-  font-size: 1.1rem;
+  background: white;
+  display: block;
 }
 .navbar-brand-text {
   display: flex;

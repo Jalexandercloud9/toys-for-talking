@@ -78,31 +78,6 @@ function renderAbout() {
       </div>
     </section>
 
-    <!-- Three Pillars -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">How Jasmine Helps Families</h2>
-        <p class="section-subtitle">Three principles that guide her work with every child and family.</p>
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-icon"><i class="bi bi-chat-dots"></i></div>
-            <h3>Encourage Communication</h3>
-            <p>Learn how simple everyday moments — play, routines, and shared attention — can powerfully support your child's language growth.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon"><i class="bi bi-shield-check"></i></div>
-            <h3>Build Confidence</h3>
-            <p>Understand how small changes in the way you respond, model language, and create opportunities for communication can make a meaningful difference.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon"><i class="bi bi-lightbulb"></i></div>
-            <h3>Take Intentional Action</h3>
-            <p>Use practical strategies that can be repeated at home so communication practice becomes a natural part of your daily life.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Ways to Get Started -->
     <section class="section-sm" style="background:var(--bg-card);">
       <div class="container">
