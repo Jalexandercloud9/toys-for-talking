@@ -2,7 +2,7 @@ function renderAbout() {
   return `
     <div class="page-header">
       <h1>About Jasmine Alexander</h1>
-      <p>Speech-Language Pathologist & Founder of Toys for Talking</p>
+      <p>Pediatric Speech-Language Pathologist &amp; Founder of Toys for Talking</p>
     </div>
 
     <section class="section">
@@ -11,7 +11,7 @@ function renderAbout() {
           <!-- Photo -->
           <div class="about-photo-wrapper">
             <div class="about-photo-placeholder" id="about-photo-container">
-              <div class="photo-icon">👩🏽‍⚕️</div>
+              <div class="photo-icon"><i class="bi bi-person-circle" style="font-size:3.5rem;color:var(--text-muted);"></i></div>
               <span>Jasmine Alexander, M.S., CCC-SLP</span>
               <span style="font-size:0.75rem;margin-top:0.25rem;opacity:0.6;">(Photo coming soon)</span>
             </div>
@@ -19,35 +19,43 @@ function renderAbout() {
 
           <!-- Bio -->
           <div>
-            <span class="badge badge-blue mb-2" style="display:inline-block;">M.S., CCC-SLP · Licensed Speech-Language Pathologist</span>
+            <span class="badge badge-blue mb-2" style="display:inline-block;">M.S., CCC-SLP · Pediatric Speech-Language Pathologist</span>
             <h2 style="margin-bottom:1rem;">Hi, I'm Jasmine!</h2>
 
-            <!-- TODO: Replace this placeholder bio with Jasmine's real bio -->
             <p style="margin-bottom:1rem;font-size:1.05rem;line-height:1.8;">
-              [<em>Jasmine's bio will go here. Share your story — how you got into speech-language pathology,
-              what drives your passion for working with children, and what makes your approach unique.
-              This is your chance to connect with families personally.</em>]
+              I'm a passionate Pediatric Speech-Language Pathologist and encourager of parents,
+              committed to helping families and little ones grow communication skills through
+              joyful, intentional play.
             </p>
             <p style="margin-bottom:1rem;line-height:1.8;">
-              [<em>Tell families about your education, clinical training, and any specializations — such as
-              early language delays, articulation disorders, fluency, AAC, or autism spectrum. What age
-              groups do you work with most? What does a typical session look like?</em>]
+              I understand the challenges parents face when they realize their child may be struggling
+              to communicate. You want to help your child express their wants, share their thoughts,
+              and connect with the world around them. You try your best to talk, read, and play —
+              yet you may still wonder if you are doing enough. The uncertainty can lead to worry,
+              frustration, and the feeling that you are missing something important.
+            </p>
+            <p style="margin-bottom:1rem;line-height:1.8;">
+              I understand because I have walked alongside many families on this journey. I have
+              worked closely with children and their caregivers to support language development in
+              ways that are practical and meaningful. I have seen how powerful everyday interactions
+              can be when parents are given the right tools, guidance, and encouragement.
             </p>
             <p style="margin-bottom:1.5rem;line-height:1.8;">
-              [<em>End with something personal — what you love about your work, a moment that inspired you,
-              or a simple statement of your mission. Let families know you genuinely care about their child's success.</em>]
+              My work has led me to create resources and learning experiences — including
+              <strong>Toys for Talking</strong> and <strong>Little Lamps Speech Camp</strong> —
+              where families learn simple strategies they can apply immediately with their children.
             </p>
 
             <!-- Credentials -->
             <div style="margin-bottom:1.5rem;">
-              <h4 style="margin-bottom:0.75rem;color:var(--text);">Credentials & Training</h4>
+              <h4 style="margin-bottom:0.75rem;color:var(--text);">Credentials &amp; Training</h4>
               <div class="tag-strip">
-                <span class="credential-tag">🎓 M.S. Speech-Language Pathology</span>
-                <span class="credential-tag">✅ ASHA Certified (CCC-SLP)</span>
-                <span class="credential-tag">📜 State Licensed SLP</span>
-                <span class="credential-tag">🧠 Early Childhood Specialist</span>
-                <span class="credential-tag">🗣️ Articulation & Phonology</span>
-                <span class="credential-tag">👶 0–8 Years Focus</span>
+                <span class="credential-tag"><i class="bi bi-mortarboard"></i> M.S. Speech-Language Pathology</span>
+                <span class="credential-tag"><i class="bi bi-patch-check"></i> ASHA Certified (CCC-SLP)</span>
+                <span class="credential-tag"><i class="bi bi-file-earmark-text"></i> State Licensed SLP</span>
+                <span class="credential-tag"><i class="bi bi-person-heart"></i> Pediatric Specialist</span>
+                <span class="credential-tag"><i class="bi bi-controller"></i> Play-Based Therapy</span>
+                <span class="credential-tag"><i class="bi bi-people"></i> Parent Coaching</span>
               </div>
             </div>
 
@@ -64,37 +72,63 @@ function renderAbout() {
     <section class="section-sm" style="background:var(--bg-card);">
       <div class="container">
         <div class="mission-box">
-          <h2>Our Mission</h2>
+          <h2>My Mission</h2>
           <p>
-            <!-- TODO: Replace with Jasmine's mission statement -->
-            [<em>Your mission statement goes here. Example: "At Toys for Talking, we believe every child
-            has a voice waiting to be heard. Through joy, play, and evidence-based practice, we help
-            children communicate with confidence — one word at a time."</em>]
+            My intention is to help parents move from feeling unsure or overwhelmed to feeling
+            confident and equipped to support their child's communication development.
+            Every child deserves the opportunity to be heard — and every parent deserves the
+            support and tools to help their child's voice shine.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Approach -->
+    <!-- Three Pillars -->
     <section class="section">
       <div class="container">
-        <h2 class="section-title">The Toys for Talking Approach</h2>
-        <p class="section-subtitle">Three pillars that guide every session, every child, every day.</p>
+        <h2 class="section-title">How I Help Families</h2>
+        <p class="section-subtitle">Three principles that guide my work with every child and family.</p>
         <div class="grid-3">
           <div class="card">
-            <div class="card-icon">🔬</div>
-            <h3>Evidence-Based</h3>
-            <p>Every technique I use is backed by current research in speech-language pathology. I continuously study and train to bring you the best available methods.</p>
+            <div class="card-icon"><i class="bi bi-chat-dots"></i></div>
+            <h3>Encourage Communication</h3>
+            <p>Learn how simple everyday moments — play, routines, and shared attention — can powerfully support your child's language growth.</p>
           </div>
           <div class="card">
-            <div class="card-icon">🎮</div>
-            <h3>Play-Powered</h3>
-            <p>Children don't know they're in "therapy" — they think they're playing. That's the magic. Toys, games, and imaginative activities are our primary tools.</p>
+            <div class="card-icon"><i class="bi bi-shield-check"></i></div>
+            <h3>Build Confidence</h3>
+            <p>Understand how small changes in the way you respond, model language, and create opportunities for communication can make a meaningful difference.</p>
           </div>
           <div class="card">
-            <div class="card-icon">🤝</div>
-            <h3>Family-Partnered</h3>
-            <p>Parents are the most important people in a child's language environment. I coach caregivers with real strategies to support development every single day.</p>
+            <div class="card-icon"><i class="bi bi-lightbulb"></i></div>
+            <h3>Take Intentional Action</h3>
+            <p>Use practical strategies that can be repeated at home so communication practice becomes a natural part of your daily life.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ways to Get Started -->
+    <section class="section-sm" style="background:var(--bg-card);">
+      <div class="container">
+        <h2 class="section-title">Ways to Get Started</h2>
+        <p class="section-subtitle">Join me in creating everyday moments that help children grow, connect, and communicate.</p>
+        <div class="grid-3" style="margin-top:2rem;">
+          <div class="card" style="text-align:center;">
+            <div class="card-icon" style="justify-content:center;"><i class="bi bi-play-circle"></i></div>
+            <h4>YouTube Channel</h4>
+            <p style="font-size:0.9rem;">Subscribe for practical speech and language strategies you can try right away with your child.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div class="card-icon" style="justify-content:center;"><i class="bi bi-journal-bookmark"></i></div>
+            <h4>Parent Resources</h4>
+            <p style="font-size:0.9rem;">Explore resources designed to help parents turn everyday play into communication opportunities.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div class="card-icon" style="justify-content:center;"><i class="bi bi-tent"></i></div>
+            <h4>Little Lamps Speech Camp</h4>
+            <p style="font-size:0.9rem;">Available in person in the Dallas area and virtually for families who want guided support.</p>
+            <a href="#/book-camp" class="btn btn-blue" style="margin-top:0.75rem;font-size:0.85rem;">View Camps</a>
           </div>
         </div>
       </div>
