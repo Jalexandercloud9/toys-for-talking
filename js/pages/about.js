@@ -7,8 +7,6 @@ function renderAbout() {
     <section class="section" style="padding-top:2rem;">
       <div class="container">
         <div class="about-bio-section">
-          <h2 style="margin-bottom:1.25rem;text-align:center;">About our Founder</h2>
-
           <!-- Photo floated left -->
           <div class="about-photo-float">
             <div class="about-photo-placeholder" id="about-photo-container">
