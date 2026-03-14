@@ -8,7 +8,7 @@ function renderFooter() {
             Helping children find their voice through play-based, evidence-driven speech and language therapy.
           </p>
           <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
-            <span style="font-size:0.75rem;color:rgba(255,255,255,0.5);">📍 Available in-person &amp; virtually</span>
+            <span style="font-size:0.75rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.35rem;"><i class="bi bi-geo-alt"></i> Available in-person &amp; virtually</span>
           </div>
         </div>
         <div>

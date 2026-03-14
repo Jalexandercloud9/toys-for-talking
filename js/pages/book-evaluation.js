@@ -5,7 +5,7 @@ const TOTAL_EVAL_STEPS = 3;
 function renderBookEvaluation() {
   return `
     <div class="page-header">
-      <h1>📋 Book a Speech Evaluation</h1>
+      <h1>Book a Speech Evaluation</h1>
       <p>Understand exactly where your child is in their speech development — and what to do next.</p>
     </div>
     <div class="booking-container" id="eval-booking-root">
@@ -75,8 +75,12 @@ function renderEvalChildForm() {
       <div id="eval-child-error" class="alert alert-error" style="display:none;"></div>
 
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem;">
-        <button class="btn btn-ghost" onclick="evalGoBack()">← Back</button>
-        <button class="btn btn-blue" onclick="saveEvalChild()">Next: Schedule →</button>
+        <button class="btn btn-ghost" onclick="evalGoBack()">
+          <i class="bi bi-arrow-left"></i> Back
+        </button>
+        <button class="btn btn-blue" onclick="saveEvalChild()">
+          Next: Schedule <i class="bi bi-arrow-right"></i>
+        </button>
       </div>
     </div>
   `;
@@ -94,7 +98,7 @@ function renderSchedulePicker() {
 
   return `
     <div class="card">
-      <h3 style="margin-bottom:0.25rem;">Choose a Date & Time</h3>
+      <h3 style="margin-bottom:0.25rem;">Choose a Date &amp; Time</h3>
       <p style="font-size:0.875rem;margin-bottom:1.5rem;">
         Evaluations are approximately 60–90 minutes. All times are in your local time zone.
       </p>
@@ -132,21 +136,28 @@ function renderSchedulePicker() {
           </div>
         </div>
       ` : `
-        <div class="alert alert-info">📅 Please select a date above to see available times.</div>
+        <div class="alert alert-info">
+          <i class="bi bi-calendar3"></i> Please select a date above to see available times.
+        </div>
       `}
 
       <div class="divider"></div>
 
       <div class="alert alert-info" style="font-size:0.85rem;">
-        🎉 <strong>Your first evaluation is complimentary!</strong> No payment required until after
+        <i class="bi bi-gift"></i>
+        <strong>Your first evaluation is complimentary!</strong> No payment required until after
         Jasmine meets with your child and recommends next steps.
       </div>
 
       <div id="schedule-error" class="alert alert-error" style="display:none;margin-top:0.5rem;"></div>
 
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem;">
-        <button class="btn btn-ghost" onclick="evalGoBack()">← Back</button>
-        <button class="btn btn-blue" onclick="proceedFromEval()">Review & Confirm →</button>
+        <button class="btn btn-ghost" onclick="evalGoBack()">
+          <i class="bi bi-arrow-left"></i> Back
+        </button>
+        <button class="btn btn-blue" onclick="proceedFromEval()">
+          Review &amp; Confirm <i class="bi bi-arrow-right"></i>
+        </button>
       </div>
     </div>
   `;
@@ -164,7 +175,7 @@ function saveEvalChild() {
   const errorEl = document.getElementById('eval-child-error');
   if (!name || !age || !reason) {
     errorEl.style.display = 'flex';
-    errorEl.textContent = '⚠️ Please fill in your child\'s name, age, and primary concerns.';
+    errorEl.textContent = "Please fill in your child's name, age, and primary concerns.";
     return;
   }
   errorEl.style.display = 'none';
@@ -202,7 +213,7 @@ function proceedFromEval() {
   const errorEl = document.getElementById('schedule-error');
   if (!window.AppState.selectedDate || !window.AppState.selectedTime) {
     errorEl.style.display = 'flex';
-    errorEl.textContent = '⚠️ Please select a date and time for your evaluation.';
+    errorEl.textContent = 'Please select a date and time for your evaluation.';
     return;
   }
   errorEl.style.display = 'none';

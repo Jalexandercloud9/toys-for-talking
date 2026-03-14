@@ -2,7 +2,7 @@ function renderHome() {
   return `
     <section class="hero">
       <div class="hero-content">
-        <div class="hero-badge">✨ Summer 2025 Camps Now Open</div>
+        <div class="hero-badge">Summer 2025 Camps Now Open</div>
         <h1>Every Child Deserves to Be Heard</h1>
         <p>
           Jasmine Alexander, Speech-Language Pathologist, uses play-based therapy
@@ -10,8 +10,12 @@ function renderHome() {
           communication potential.
         </p>
         <div class="hero-buttons">
-          <a href="#/book-camp" class="btn btn-primary btn-lg">🏕️ Book a Summer Camp</a>
-          <a href="#/book-evaluation" class="btn btn-outline btn-lg">📋 Schedule an Evaluation</a>
+          <a href="#/book-camp" class="btn btn-primary btn-lg">
+            <i class="bi bi-tent"></i> Book a Summer Camp
+          </a>
+          <a href="#/book-evaluation" class="btn btn-outline btn-lg">
+            <i class="bi bi-clipboard-check"></i> Schedule an Evaluation
+          </a>
         </div>
       </div>
     </section>
@@ -26,33 +30,33 @@ function renderHome() {
         </p>
         <div class="grid-3">
           <div class="card feature-card">
-            <div class="card-icon">🎯</div>
+            <div class="card-icon"><i class="bi bi-patch-check"></i></div>
             <h3>Evidence-Based Practice</h3>
             <p>Every session is grounded in the latest speech-language pathology research and tailored to your child's unique needs.</p>
           </div>
           <div class="card feature-card">
-            <div class="card-icon">🧸</div>
+            <div class="card-icon"><i class="bi bi-joystick"></i></div>
             <h3>Play-Based Learning</h3>
             <p>Children learn best when they're having fun. Our toy-driven approach makes therapy feel like playtime — not work.</p>
           </div>
           <div class="card feature-card">
-            <div class="card-icon">👨‍👩‍👧</div>
+            <div class="card-icon"><i class="bi bi-people"></i></div>
             <h3>Family-Centered Care</h3>
             <p>We partner with families every step of the way, providing coaching and strategies you can use at home every day.</p>
           </div>
           <div class="card feature-card">
-            <div class="card-icon">📈</div>
+            <div class="card-icon"><i class="bi bi-graph-up-arrow"></i></div>
             <h3>Measurable Progress</h3>
             <p>Clear goals, regular updates, and data-driven tracking so you always know exactly how your child is growing.</p>
           </div>
           <div class="card feature-card">
-            <div class="card-icon">🏅</div>
-            <h3>Licensed & Certified SLP</h3>
+            <div class="card-icon"><i class="bi bi-award"></i></div>
+            <h3>Licensed &amp; Certified SLP</h3>
             <p>Jasmine holds full ASHA certification and state licensure, with specialized training in early childhood language development.</p>
           </div>
           <div class="card feature-card">
-            <div class="card-icon">💻</div>
-            <h3>In-Person & Virtual</h3>
+            <div class="card-icon"><i class="bi bi-laptop"></i></div>
+            <h3>In-Person &amp; Virtual</h3>
             <p>Flexible service delivery — meet us at our center or connect online. Same quality, your schedule.</p>
           </div>
         </div>
@@ -67,11 +71,11 @@ function renderHome() {
         <div class="grid-3">
           ${window.CAMPS.map(camp => `
             <div class="card camp-card" style="cursor:default;" onclick="navigate('#/book-camp')">
-              <div style="font-size:2rem;margin-bottom:0.75rem;">${camp.icon}</div>
+              <div class="card-icon"><i class="bi ${camp.icon}"></i></div>
               <h3>${camp.name}</h3>
               <p style="font-size:0.8rem;color:var(--secondary);font-weight:600;margin-bottom:0.5rem;">${camp.subtitle}</p>
               <p style="font-size:0.875rem;margin-bottom:1rem;">${camp.description.substring(0, 100)}…</p>
-              <span class="camp-dates">📅 ${camp.dates}</span>
+              <span class="camp-dates"><i class="bi bi-calendar3"></i> ${camp.dates}</span>
               <div class="divider"></div>
               <div style="display:flex;justify-content:space-between;align-items:center;">
                 <span class="camp-price">$${camp.price}</span>
@@ -81,7 +85,7 @@ function renderHome() {
           `).join('')}
         </div>
         <div class="text-center mt-4">
-          <a href="#/book-camp" class="btn btn-blue btn-lg">View All Camps & Register</a>
+          <a href="#/book-camp" class="btn btn-blue btn-lg">View All Camps &amp; Register</a>
         </div>
       </div>
     </section>
@@ -101,7 +105,7 @@ function renderHome() {
           </div>
           <div class="testimonial">
             <p>"Jasmine has a gift for connecting with kids. My shy son was relaxed and engaged from day one. We can't recommend her enough."</p>
-            <div class="testimonial-author">— Kevin & Tanya M., Parents</div>
+            <div class="testimonial-author">— Kevin &amp; Tanya M., Parents</div>
           </div>
         </div>
       </div>

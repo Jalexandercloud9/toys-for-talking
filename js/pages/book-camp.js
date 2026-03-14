@@ -5,7 +5,7 @@ const TOTAL_CAMP_STEPS = 3;
 function renderBookCamp() {
   return `
     <div class="page-header">
-      <h1>🏕️ Book a Summer Camp</h1>
+      <h1>Book a Summer Camp</h1>
       <p>Register your child for one of our small-group speech and language camps.</p>
     </div>
     <div class="booking-container" id="camp-booking-root">
@@ -35,7 +35,7 @@ function renderStepIndicator(current, total, labels) {
       <div class="step-item">
         <div class="step-wrapper">
           <div class="step-circle ${isDone ? 'done' : isActive ? 'active' : ''}">
-            ${isDone ? '✓' : i}
+            ${isDone ? '<i class="bi bi-check2"></i>' : i}
           </div>
           <div class="step-label ${isDone ? 'done' : isActive ? 'active' : ''}">${labels[i-1]}</div>
         </div>
@@ -117,7 +117,7 @@ function renderGuardianForm(context) {
 
       <div style="display:flex;justify-content:flex-end;margin-top:1.5rem;">
         <button class="btn btn-blue" onclick="saveGuardianAndNext('camp')">
-          Next: Child Information →
+          Next: Child Information <i class="bi bi-arrow-right"></i>
         </button>
       </div>
     </div>
@@ -138,14 +138,18 @@ function renderChildrenForm() {
 
       <button class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:0.5rem;"
         onclick="addChild()">
-        ➕ Add Another Child
+        <i class="bi bi-plus-circle"></i> Add Another Child
       </button>
 
       <div id="children-error" class="alert alert-error" style="display:none;margin-top:1rem;"></div>
 
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem;">
-        <button class="btn btn-ghost" onclick="campGoBack()">← Back</button>
-        <button class="btn btn-blue" onclick="saveChildrenAndNext()">Next: Select Camp →</button>
+        <button class="btn btn-ghost" onclick="campGoBack()">
+          <i class="bi bi-arrow-left"></i> Back
+        </button>
+        <button class="btn btn-blue" onclick="saveChildrenAndNext()">
+          Next: Select Camp <i class="bi bi-arrow-right"></i>
+        </button>
       </div>
     </div>
   `;
@@ -156,7 +160,7 @@ function renderChildBlock(child, index) {
     <div class="child-block" id="child-block-${index}">
       <div class="child-block-header">
         <div class="child-block-title">Child ${index + 1}</div>
-        ${index > 0 ? `<button class="btn-remove-child" onclick="removeChild(${index})">✕ Remove</button>` : ''}
+        ${index > 0 ? `<button class="btn-remove-child" onclick="removeChild(${index})"><i class="bi bi-x-lg"></i> Remove</button>` : ''}
       </div>
       <div class="form-row">
         <div class="form-group">
@@ -188,7 +192,8 @@ function renderCampSelector() {
   return `
     <div>
       <div class="alert alert-info" style="margin-bottom:1.5rem;">
-        ℹ️ Registering <strong>${numKids} child${numKids > 1 ? 'ren' : ''}</strong>:
+        <i class="bi bi-info-circle"></i>
+        Registering <strong>${numKids} child${numKids > 1 ? 'ren' : ''}</strong>:
         ${children.map(c => `<strong>${c.firstName}</strong>`).join(', ')}
       </div>
 
@@ -196,9 +201,9 @@ function renderCampSelector() {
         ${window.CAMPS.map(camp => `
           <div class="card camp-card ${selected && selected.id === camp.id ? 'selected' : ''}"
                onclick="selectCamp('${camp.id}')">
-            <div class="selected-badge">✓ Selected</div>
+            <div class="selected-badge"><i class="bi bi-check2"></i> Selected</div>
             <div style="display:flex;align-items:flex-start;gap:1.25rem;">
-              <div style="font-size:2.5rem;flex-shrink:0;">${camp.icon}</div>
+              <div class="card-icon" style="flex-shrink:0;margin-bottom:0;"><i class="bi ${camp.icon}"></i></div>
               <div style="flex:1;">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;">
                   <div>
@@ -210,21 +215,23 @@ function renderCampSelector() {
                     <div style="font-size:0.75rem;color:var(--text-muted);">per child</div>
                   </div>
                 </div>
-                <span class="camp-dates">📅 ${camp.dates}</span>
-                <span style="font-size:0.8rem;color:var(--text-muted);margin-left:0.5rem;">⏰ ${camp.time}</span>
+                <span class="camp-dates"><i class="bi bi-calendar3"></i> ${camp.dates}</span>
+                <span style="font-size:0.8rem;color:var(--text-muted);margin-left:0.5rem;">
+                  <i class="bi bi-clock"></i> ${camp.time}
+                </span>
                 <p style="font-size:0.875rem;margin:0.75rem 0;">${camp.description}</p>
                 <div class="tag-strip" style="margin-bottom:0.75rem;">
                   ${camp.tags.map(t => `<span class="badge badge-blue">${t}</span>`).join('')}
                 </div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;">
                   ${camp.highlights.map(h => `
-                    <li style="font-size:0.8rem;color:var(--text-light);display:flex;gap:0.4rem;">
-                      <span style="color:var(--success);">✓</span> ${h}
+                    <li style="font-size:0.8rem;color:var(--text-light);display:flex;gap:0.4rem;align-items:flex-start;">
+                      <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;margin-top:2px;"></i> ${h}
                     </li>
                   `).join('')}
                 </ul>
                 <div style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">
-                  📍 ${camp.location} &nbsp;·&nbsp;
+                  <i class="bi bi-geo-alt"></i> ${camp.location} &nbsp;&middot;&nbsp;
                   <span style="color:${camp.spotsLeft <= 3 ? 'var(--accent-dark)' : 'var(--text-muted)'};">
                     ${camp.spotsLeft} spots remaining
                   </span>
@@ -240,7 +247,7 @@ function renderCampSelector() {
           <h4 style="margin-bottom:0.75rem;">Order Summary</h4>
           <div class="order-row">
             <span>${selected.name}</span>
-            <span>$${selected.price} × ${numKids} = <strong>$${selected.price * numKids}</strong></span>
+            <span>$${selected.price} &times; ${numKids} = <strong>$${selected.price * numKids}</strong></span>
           </div>
           <div class="order-row order-total">
             <span>Total Due</span>
@@ -248,15 +255,19 @@ function renderCampSelector() {
           </div>
         </div>
       ` : `
-        <div class="alert alert-info">👆 Please select a camp above to continue.</div>
+        <div class="alert alert-info">
+          <i class="bi bi-hand-index-thumb"></i> Please select a camp above to continue.
+        </div>
       `}
 
       <div id="camp-select-error" class="alert alert-error" style="display:none;margin-top:1rem;"></div>
 
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem;">
-        <button class="btn btn-ghost" onclick="campGoBack()">← Back</button>
+        <button class="btn btn-ghost" onclick="campGoBack()">
+          <i class="bi bi-arrow-left"></i> Back
+        </button>
         <button class="btn btn-blue" onclick="proceedToPayment('camp')" ${!selected ? 'disabled' : ''}>
-          Proceed to Payment →
+          Proceed to Payment <i class="bi bi-arrow-right"></i>
         </button>
       </div>
     </div>
@@ -281,12 +292,12 @@ function saveGuardianAndNext(context) {
   const errorEl = document.getElementById('guardian-error');
   if (!fields.firstName || !fields.lastName || !fields.email || !fields.phone || !fields.relationship) {
     errorEl.style.display = 'flex';
-    errorEl.textContent = '⚠️ Please fill in all required fields (marked with *).';
+    errorEl.textContent = 'Please fill in all required fields (marked with *).';
     return;
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
     errorEl.style.display = 'flex';
-    errorEl.textContent = '⚠️ Please enter a valid email address.';
+    errorEl.textContent = 'Please enter a valid email address.';
     return;
   }
   errorEl.style.display = 'none';
@@ -330,7 +341,7 @@ function saveChildrenAndNext() {
     const c = window.AppState.children[i];
     if (!c.firstName || !c.age || !c.reason) {
       errorEl.style.display = 'flex';
-      errorEl.textContent = `⚠️ Please complete all fields for Child ${i + 1}.`;
+      errorEl.textContent = `Please complete all fields for Child ${i + 1}.`;
       return;
     }
   }

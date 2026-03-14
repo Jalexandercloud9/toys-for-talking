@@ -17,7 +17,7 @@ const CAMPS = [
     price: 450,
     spots: 8,
     spotsLeft: 3,
-    icon: '🌟',
+    icon: 'bi-stars',
     tags: ['Ages 3–6', 'Beginner', 'Play-Based'],
     highlights: [
       'Small group sessions (max 8 kids)',
@@ -39,7 +39,7 @@ const CAMPS = [
     price: 650,
     spots: 10,
     spotsLeft: 5,
-    icon: '📚',
+    icon: 'bi-book',
     tags: ['Ages 5–9', 'Intermediate', 'Conversational'],
     highlights: [
       'Evidence-based language strategies',
@@ -61,7 +61,7 @@ const CAMPS = [
     price: 595,
     spots: 12,
     spotsLeft: 7,
-    icon: '🎯',
+    icon: 'bi-bullseye',
     tags: ['Ages 6–12', 'Articulation', 'All Levels'],
     highlights: [
       'Individualized target sounds plan',
@@ -77,15 +77,13 @@ const EVALUATION_SLOTS = generateSlots();
 function generateSlots() {
   const slots = {};
   const today = new Date();
-  // Generate next 20 weekdays
   let count = 0;
   let d = new Date(today);
-  d.setDate(d.getDate() + 1); // start tomorrow
+  d.setDate(d.getDate() + 1);
   while (count < 20) {
     if (d.getDay() !== 0 && d.getDay() !== 6) {
       const key = d.toISOString().split('T')[0];
       const times = ['9:00 AM', '9:45 AM', '10:30 AM', '11:15 AM', '1:00 PM', '1:45 PM', '2:30 PM', '3:15 PM'];
-      // Random availability
       slots[key] = times.map(t => ({
         time: t,
         available: Math.random() > 0.3
@@ -97,9 +95,8 @@ function generateSlots() {
   return slots;
 }
 
-// App global state (shared across pages)
 window.AppState = {
-  bookingType: null, // 'camp' | 'evaluation'
+  bookingType: null,
   guardian: {},
   children: [],
   selectedCamp: null,
