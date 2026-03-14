@@ -1,15 +1,13 @@
 function renderAbout() {
   return `
-    <div class="page-header">
-      <h1>About Jasmine Alexander</h1>
-      <p>Pediatric Speech-Language Pathologist &amp; Founder of Toys for Talking</p>
+    <div class="page-header about-header-logo">
+      <img src="assets/images/logo.png" alt="Toys for Talking — Jasmine Alexander, M.A., CCC-SLP" class="site-logo-hero" />
     </div>
 
     <section class="section">
       <div class="container">
         <div class="about-bio-section">
-          <span class="badge badge-blue mb-2" style="display:inline-block;margin-bottom:0.75rem;">M.S., CCC-SLP · Pediatric Speech-Language Pathologist</span>
-          <h2 style="margin-bottom:1.25rem;">Hi, I'm Jasmine!</h2>
+          <h2 style="margin-bottom:1.25rem;">About our Founder</h2>
 
           <!-- Photo floated left -->
           <div class="about-photo-float">
@@ -20,25 +18,26 @@ function renderAbout() {
           </div>
 
           <p style="margin-bottom:1rem;font-size:1.05rem;line-height:1.8;">
-            I'm a passionate Pediatric Speech-Language Pathologist and encourager of parents,
-            committed to helping families and little ones grow communication skills through
-            joyful, intentional play.
+            Jasmine Alexander is a passionate Pediatric Speech-Language Pathologist and encourager
+            of parents, committed to helping families and little ones grow communication skills
+            through joyful, intentional play.
           </p>
           <p style="margin-bottom:1rem;line-height:1.8;">
-            I understand the challenges parents face when they realize their child may be struggling
-            to communicate. You want to help your child express their wants, share their thoughts,
-            and connect with the world around them. You try your best to talk, read, and play —
-            yet you may still wonder if you are doing enough. The uncertainty can lead to worry,
-            frustration, and the feeling that you are missing something important.
+            She understands the challenges parents face when they realize their child may be
+            struggling to communicate. Parents want to help their child express their wants, share
+            their thoughts, and connect with the world around them. They try their best to talk,
+            read, and play — yet may still wonder if they are doing enough. The uncertainty can
+            lead to worry, frustration, and the feeling that something important is being missed.
           </p>
           <p style="margin-bottom:1rem;line-height:1.8;">
-            I understand because I have walked alongside many families on this journey. I have
-            worked closely with children and their caregivers to support language development in
-            ways that are practical and meaningful. I have seen how powerful everyday interactions
-            can be when parents are given the right tools, guidance, and encouragement.
+            Jasmine understands because she has walked alongside many families on this journey.
+            She has worked closely with children and their caregivers to support language
+            development in ways that are practical and meaningful. She has seen how powerful
+            everyday interactions can be when parents are given the right tools, guidance,
+            and encouragement.
           </p>
           <p style="margin-bottom:1.5rem;line-height:1.8;clear:left;">
-            My work has led me to create resources and learning experiences — including
+            Her work has led her to create resources and learning experiences — including
             <strong>Toys for Talking</strong> and <strong>Little Lamps Speech Camp</strong> —
             where families learn simple strategies they can apply immediately with their children.
           </p>
@@ -47,7 +46,8 @@ function renderAbout() {
           <div style="margin-bottom:1.5rem;">
             <h4 style="margin-bottom:0.75rem;color:var(--text);">Credentials &amp; Training</h4>
             <div class="tag-strip">
-              <span class="credential-tag"><i class="bi bi-mortarboard"></i> M.S. Speech-Language Pathology</span>
+              <span class="credential-tag"><i class="bi bi-patch-check"></i> M.A., CCC-SLP · Pediatric Speech-Language Pathologist</span>
+              <span class="credential-tag"><i class="bi bi-mortarboard"></i> M.A. Speech-Language Pathology</span>
               <span class="credential-tag"><i class="bi bi-patch-check"></i> ASHA Certified (CCC-SLP)</span>
               <span class="credential-tag"><i class="bi bi-file-earmark-text"></i> State Licensed SLP</span>
               <span class="credential-tag"><i class="bi bi-person-heart"></i> Pediatric Specialist</span>
@@ -68,10 +68,10 @@ function renderAbout() {
     <section class="section-sm" style="background:var(--bg-card);">
       <div class="container">
         <div class="mission-box">
-          <h2>My Mission</h2>
+          <h2>Our Mission</h2>
           <p>
-            My intention is to help parents move from feeling unsure or overwhelmed to feeling
-            confident and equipped to support their child's communication development.
+            Jasmine's intention is to help parents move from feeling unsure or overwhelmed to
+            feeling confident and equipped to support their child's communication development.
             Every child deserves the opportunity to be heard — and every parent deserves the
             support and tools to help their child's voice shine.
           </p>
@@ -82,8 +82,8 @@ function renderAbout() {
     <!-- Three Pillars -->
     <section class="section">
       <div class="container">
-        <h2 class="section-title">How I Help Families</h2>
-        <p class="section-subtitle">Three principles that guide my work with every child and family.</p>
+        <h2 class="section-title">How Jasmine Helps Families</h2>
+        <p class="section-subtitle">Three principles that guide her work with every child and family.</p>
         <div class="grid-3">
           <div class="card">
             <div class="card-icon"><i class="bi bi-chat-dots"></i></div>
@@ -108,7 +108,7 @@ function renderAbout() {
     <section class="section-sm" style="background:var(--bg-card);">
       <div class="container">
         <h2 class="section-title">Ways to Get Started</h2>
-        <p class="section-subtitle">Join me in creating everyday moments that help children grow, connect, and communicate.</p>
+        <p class="section-subtitle">Join Jasmine in creating everyday moments that help children grow, connect, and communicate.</p>
         <div class="grid-3" style="margin-top:2rem;">
           <div class="card" style="text-align:center;">
             <div class="card-icon" style="justify-content:center;"><i class="bi bi-play-circle"></i></div>

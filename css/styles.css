@@ -500,6 +500,22 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
 .feature-card p { font-size: 0.9rem; }
 
 /* ===================== ABOUT PAGE ===================== */
+.about-header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  min-height: unset;
+}
+.site-logo-hero {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.18));
+}
+@media (max-width: 600px) {
+  .site-logo-hero { width: 140px; height: 140px; }
+}
 .about-bio-section { max-width: 780px; margin: 0 auto; }
 .about-photo-float {
   float: left;
