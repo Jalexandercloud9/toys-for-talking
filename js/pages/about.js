@@ -4,10 +4,10 @@ function renderAbout() {
       <img src="assets/images/logo.png" alt="Toys for Talking — Jasmine Alexander, M.A., CCC-SLP" class="site-logo-hero" />
     </div>
 
-    <section class="section">
+    <section class="section" style="padding-top:2rem;">
       <div class="container">
         <div class="about-bio-section">
-          <h2 style="margin-bottom:1.25rem;">About our Founder</h2>
+          <h2 style="margin-bottom:1.25rem;text-align:center;">About our Founder</h2>
 
           <!-- Photo floated left -->
           <div class="about-photo-float">

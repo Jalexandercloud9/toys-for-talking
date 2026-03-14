@@ -501,12 +501,23 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
 
 /* ===================== ABOUT PAGE ===================== */
 .about-header-logo {
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 0;
   min-height: unset;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--primary-gradient);
+  position: relative;
+}
+.about-header-logo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(240,245,252,0.85));
+  pointer-events: none;
 }
 .site-logo-hero {
   width: auto;
