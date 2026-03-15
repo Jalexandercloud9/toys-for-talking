@@ -86,7 +86,7 @@ function renderHome() {
           </div>
 
           <!-- Camp Card -->
-          <div class="card" style="border-top:4px solid var(--secondary);">
+          <div class="card" style="border-top:4px solid var(--primary);">
             <div class="card-icon"><i class="bi bi-tent"></i></div>
             <h3>Little Lamps Speech Camp</h3>
             <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Dallas In-Person &amp; Virtual</p>
@@ -104,7 +104,7 @@ function renderHome() {
         <!-- Decision Box -->
         <div style="margin-top:2rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;border-left:4px solid var(--primary);">
           <h4 style="margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
-            <i class="bi bi-lightbulb" style="color:var(--secondary);"></i> Not sure which option is right for you?
+            <i class="bi bi-lightbulb" style="color:var(--primary);"></i> Not sure which option is right for you?
           </h4>
           <p style="margin-bottom:0;">
             If you want a <strong>professional speech evaluation</strong> for your child and live in Texas, start with an evaluation.
@@ -125,7 +125,7 @@ function renderHome() {
             <div class="card camp-card" style="cursor:default;" onclick="navigate('#/book-camp')">
               <div class="card-icon"><i class="bi ${camp.icon}"></i></div>
               <h3>${camp.name}</h3>
-              <p style="font-size:0.8rem;color:var(--secondary);font-weight:600;margin-bottom:0.5rem;">${camp.subtitle}</p>
+              <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem;">${camp.subtitle}</p>
               <p style="font-size:0.875rem;margin-bottom:1rem;">${camp.description.substring(0, 100)}…</p>
               <span class="camp-dates"><i class="bi bi-calendar3"></i> ${camp.dates}</span>
               <div class="divider"></div>

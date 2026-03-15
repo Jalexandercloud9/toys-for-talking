@@ -208,7 +208,7 @@ function renderCampSelector() {
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;">
                   <div>
                     <h3 style="margin-bottom:0.2rem;">${camp.name}</h3>
-                    <p style="font-size:0.8rem;color:var(--secondary);font-weight:600;">${camp.subtitle}</p>
+                    <p style="font-size:0.8rem;color:var(--primary);font-weight:600;">${camp.subtitle}</p>
                   </div>
                   <div style="text-align:right;flex-shrink:0;">
                     <div class="camp-price">$${camp.price}</div>
@@ -232,7 +232,7 @@ function renderCampSelector() {
                 </ul>
                 <div style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">
                   <i class="bi bi-geo-alt"></i> ${camp.location} &nbsp;&middot;&nbsp;
-                  <span style="color:${camp.spotsLeft <= 3 ? 'var(--accent-dark)' : 'var(--text-muted)'};">
+                  <span style="color:${camp.spotsLeft <= 3 ? 'var(--error)' : 'var(--text-muted)'};">
                     ${camp.spotsLeft} spots remaining
                   </span>
                 </div>
@@ -243,7 +243,7 @@ function renderCampSelector() {
       </div>
 
       ${selected ? `
-        <div class="card" style="background:rgba(30,77,140,0.04);border-color:var(--secondary);">
+        <div class="card" style="background:rgba(30,77,140,0.04);border-color:var(--primary);">
           <h4 style="margin-bottom:0.75rem;">Order Summary</h4>
           <div class="order-row">
             <span>${selected.name}</span>
