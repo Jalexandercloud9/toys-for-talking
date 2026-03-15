@@ -28,7 +28,7 @@ function renderNavbar() {
           `).join('')}
           <li>
             <a href="#/book-camp" class="navbar-cta ${currentHash === '#/book-camp' ? 'active' : ''}"
-               onclick="closeMobileNav()">Book a Camp</a>
+               onclick="closeMobileNav()">Book Speech Camp</a>
           </li>
         </ul>
       </div>

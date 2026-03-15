@@ -2,7 +2,7 @@ function renderHome() {
   return `
     <section class="hero">
       <div class="hero-content">
-        <div class="hero-badge">Summer 2025 Camps Now Open</div>
+        <div class="hero-badge">Little Lamps Speech Camp 2026 — Now Open</div>
         <h1>Every Child Deserves to Be Heard</h1>
         <p>
           Jasmine Alexander, Speech-Language Pathologist, uses play-based therapy
@@ -11,7 +11,7 @@ function renderHome() {
         </p>
         <div class="hero-buttons">
           <a href="#/book-camp" class="btn btn-primary btn-lg">
-            <i class="bi bi-tent"></i> Book a Summer Camp
+            <i class="bi bi-tent"></i> Book Speech Camp
           </a>
           <a href="#/book-evaluation" class="btn btn-outline btn-lg">
             <i class="bi bi-clipboard-check"></i> Schedule an Evaluation
@@ -63,10 +63,62 @@ function renderHome() {
       </div>
     </section>
 
+    <!-- How We Can Support Your Family -->
+    <section class="section" style="background:var(--bg-card);">
+      <div class="container">
+        <h2 class="section-title">How We Can Support Your Family</h2>
+        <p class="section-subtitle">I offer two different ways to support your child's communication, depending on your needs.</p>
+
+        <div class="grid-2" style="margin-top:2rem;gap:1.5rem;">
+          <!-- Evaluation Card -->
+          <div class="card" style="border-top:4px solid var(--primary);">
+            <div class="card-icon"><i class="bi bi-clipboard-pulse"></i></div>
+            <h3>Speech &amp; Language Evaluations</h3>
+            <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Texas Residents Only</p>
+            <p style="margin-bottom:1rem;">A professional, clinical assessment to determine whether your child has a speech or language delay or disorder, and what support they need.</p>
+            <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Comprehensive diagnostic evaluation</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Written report with findings &amp; recommendations</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Initial consultation is complimentary</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person in the Dallas, TX area</li>
+            </ul>
+            <a href="#/book-evaluation" class="btn btn-blue">Schedule an Evaluation</a>
+          </div>
+
+          <!-- Camp Card -->
+          <div class="card" style="border-top:4px solid var(--secondary);">
+            <div class="card-icon"><i class="bi bi-tent"></i></div>
+            <h3>Little Lamps Speech Camp</h3>
+            <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Dallas In-Person &amp; Virtual</p>
+            <p style="margin-bottom:1rem;">A guided, play-based experience where parents and children learn practical communication strategies together — available to families anywhere.</p>
+            <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Play-based strategies you can use at home</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Small groups (max 8–12 children)</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person (Dallas) or virtual for any family</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> No prior diagnosis required</li>
+            </ul>
+            <a href="#/book-camp" class="btn btn-blue">Book Speech Camp</a>
+          </div>
+        </div>
+
+        <!-- Decision Box -->
+        <div style="margin-top:2rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;border-left:4px solid var(--primary);">
+          <h4 style="margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
+            <i class="bi bi-lightbulb" style="color:var(--secondary);"></i> Not sure which option is right for you?
+          </h4>
+          <p style="margin-bottom:0;">
+            If you want a <strong>professional speech evaluation</strong> for your child and live in Texas, start with an evaluation.
+            If you want <strong>practical strategies and guided support</strong> to encourage communication through play,
+            Little Lamps Speech Camp may be the best fit — and it's open to families everywhere.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- Summer Camps Preview -->
     <section class="section" style="background:var(--bg);">
       <div class="container">
-        <h2 class="section-title">Summer 2025 Camps</h2>
+        <h2 class="section-title">Little Lamps Speech Camp 2026</h2>
         <p class="section-subtitle">Small-group, immersive speech and language camps designed for lasting results.</p>
         <div class="grid-3">
           ${window.CAMPS.map(camp => `
