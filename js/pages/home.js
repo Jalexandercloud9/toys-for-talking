@@ -45,11 +45,6 @@ function renderHome() {
             <p>We partner with families every step of the way, providing coaching and strategies you can use at home every day.</p>
           </div>
           <div class="card feature-card">
-            <div class="card-icon"><i class="bi bi-graph-up-arrow"></i></div>
-            <h3>Measurable Progress</h3>
-            <p>Clear goals, regular updates, and data-driven tracking so you always know exactly how your child is growing.</p>
-          </div>
-          <div class="card feature-card">
             <div class="card-icon"><i class="bi bi-award"></i></div>
             <h3>Licensed &amp; Certified SLP</h3>
             <p>Jasmine holds full ASHA certification and state licensure, with specialized training in early childhood language development.</p>
