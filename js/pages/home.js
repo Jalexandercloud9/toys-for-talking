@@ -69,13 +69,13 @@ function renderHome() {
           <div class="card" style="border-top:4px solid var(--primary);">
             <div class="card-icon"><i class="bi bi-clipboard-pulse"></i></div>
             <h3>Speech &amp; Language Evaluations</h3>
-            <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Texas Residents Only</p>
-            <p style="margin-bottom:1rem;">A professional, clinical assessment to determine whether your child has a speech or language delay or disorder, and what support they need.</p>
+            <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">DFW Area · Under 18 · English &amp; Spanish</p>
+            <p style="margin-bottom:1rem;">A professional, clinical assessment to determine whether your child has a speech or language delay or disorder, and what support they need. $149.</p>
             <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Comprehensive diagnostic evaluation</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Written report with findings &amp; recommendations</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Initial consultation is complimentary</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person in the Dallas, TX area</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Available in English and Spanish</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Jasmine calls you to set time &amp; location</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person in the DFW metroplex</li>
             </ul>
             <a href="#/book-evaluation" class="btn btn-blue">Schedule an Evaluation</a>
           </div>
@@ -114,8 +114,8 @@ function renderHome() {
     <section class="section" style="background:var(--bg);">
       <div class="container">
         <h2 class="section-title">Little Lamps Speech Camp 2026</h2>
-        <p class="section-subtitle">Small-group, immersive speech and language camps designed for lasting results.</p>
-        <div class="grid-3">
+        <p class="section-subtitle">Play-based Sunday camps for children ages 0–4. In-person (Dallas) and virtual options available.</p>
+        <div class="grid-2">
           ${window.CAMPS.map(camp => `
             <div class="card camp-card" style="cursor:default;" onclick="navigate('#/book-camp')">
               <div class="card-icon"><i class="bi ${camp.icon}"></i></div>
@@ -161,9 +161,9 @@ function renderHome() {
     <!-- CTA -->
     <section class="cta-section">
       <h2>Ready to Get Started?</h2>
-      <p>Take the first step toward helping your child communicate with confidence. Book a free evaluation today.</p>
+      <p>Take the first step toward helping your child communicate with confidence.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-        <a href="#/book-evaluation" class="btn btn-primary btn-lg">Book a Free Evaluation</a>
+        <a href="#/book-evaluation" class="btn btn-primary btn-lg">Book an Evaluation</a>
         <a href="#/about" class="btn btn-outline btn-lg">Meet Jasmine</a>
       </div>
     </section>

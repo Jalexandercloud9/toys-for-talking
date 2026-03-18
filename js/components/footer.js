@@ -8,7 +8,7 @@ function renderFooter() {
             Helping children find their voice through play-based, evidence-driven speech and language therapy.
           </p>
           <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
-            <span style="font-size:0.75rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.35rem;"><i class="bi bi-geo-alt"></i> Available in-person &amp; virtually</span>
+            <span style="font-size:0.75rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.35rem;"><i class="bi bi-geo-alt"></i> In-person (DFW) &amp; virtual</span>
           </div>
         </div>
         <div>
@@ -16,28 +16,20 @@ function renderFooter() {
           <ul>
             <li><a href="#/">Home</a></li>
             <li><a href="#/about">About Jasmine</a></li>
-            <li><a href="#/book-camp">Summer Camps</a></li>
+            <li><a href="#/book-camp">Little Lamps Speech Camp</a></li>
             <li><a href="#/book-evaluation">Book Evaluation</a></li>
           </ul>
         </div>
         <div>
           <h4>Contact</h4>
           <ul>
-            <li><a href="mailto:info@toysfortalking.com">info@toysfortalking.com</a></li>
-            <li><a href="tel:+1-555-555-5555">(555) 555-5555</a></li>
+            <li><a href="mailto:toysfortalking@gmail.com">toysfortalking@gmail.com</a></li>
+            <li><a href="tel:+12143950109">(214) 395-0109</a></li>
           </ul>
-          <div style="margin-top:1.25rem;">
-            <h4 style="margin-bottom:0.5rem;">Hours</h4>
-            <p style="font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.8;">
-              Mon – Fri: 8:00 AM – 6:00 PM<br>
-              Sat: 9:00 AM – 2:00 PM<br>
-              Sun: Closed
-            </p>
-          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2025 Toys for Talking · Jasmine Alexander, SLP</span>
+        <span>J.Alexander Communication &amp; Education PLC · Jasmine Alexander, CCC-SLP</span>
         <span>All rights reserved</span>
       </div>
     </footer>

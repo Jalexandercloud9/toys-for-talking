@@ -5,8 +5,8 @@ const TOTAL_CAMP_STEPS = 3;
 function renderBookCamp() {
   return `
     <div class="page-header">
-      <h1>Book a Summer Camp</h1>
-      <p>Register your child for one of our small-group speech and language camps.</p>
+      <h1>Book Little Lamps Speech Camp</h1>
+      <p>Register your child (ages 0–4) for an in-person or virtual Sunday speech camp.</p>
     </div>
     <div class="booking-container" id="camp-booking-root">
       ${renderCampStep(campStep)}
@@ -171,7 +171,7 @@ function renderChildBlock(child, index) {
         <div class="form-group">
           <label>Age <span class="required">*</span></label>
           <input class="form-control" id="child-${index}-age" type="number"
-            placeholder="e.g. 5" min="2" max="18" value="${child.age || ''}">
+            placeholder="e.g. 2" min="0" max="4" value="${child.age || ''}">
         </div>
       </div>
       <div class="form-group">

@@ -2,6 +2,8 @@ let stripeInstance = null;
 let stripeCardElement = null;
 let paymentProcessing = false;
 
+const EVAL_PRICE = 149;
+
 function renderPayment() {
   const state = window.AppState;
   const isCamp = state.bookingType === 'camp';
@@ -23,12 +25,12 @@ function renderPayment() {
 
   const numKids = state.children.length;
   const campPrice = isCamp && state.selectedCamp ? state.selectedCamp.price * numKids : 0;
-  const evalPrice = 0; // First eval is complimentary
+  const totalPrice = isCamp ? campPrice : EVAL_PRICE;
 
   return `
     <div class="page-header">
       <h1><i class="bi bi-credit-card"></i> Secure Payment</h1>
-      <p>${isCamp ? 'Complete your camp registration' : 'Confirm your evaluation booking'}</p>
+      <p>${isCamp ? 'Complete your camp registration' : 'Complete your evaluation registration'}</p>
     </div>
 
     <div style="max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem;">
@@ -59,42 +61,30 @@ function renderPayment() {
           </div>
 
           <div class="card">
-            <h3 style="margin-bottom:1rem;">
-              ${isCamp && campPrice > 0 ? 'Card Details' : 'Confirm Your Booking'}
-            </h3>
+            <h3 style="margin-bottom:1rem;">Card Details</h3>
 
-            ${isCamp && campPrice > 0 ? `
-              <!-- Stripe Card Element mount point -->
-              <div class="form-group">
-                <label>Card Information</label>
-                <div id="stripe-card-element"></div>
-                <div id="stripe-card-error" class="form-error" style="display:none;"></div>
-              </div>
+            <!-- Stripe Card Element mount point -->
+            <div class="form-group">
+              <label>Card Information</label>
+              <div id="stripe-card-element"></div>
+              <div id="stripe-card-error" class="form-error" style="display:none;"></div>
+            </div>
 
-              <div class="secure-badge">
-                <i class="bi bi-lock"></i> Payments secured by <strong style="margin-left:4px;">Stripe</strong>
-              </div>
-            ` : `
-              <div class="alert alert-success">
-                <i class="bi bi-gift"></i> <strong>Your initial evaluation is complimentary!</strong><br>
-                No payment is required today. Jasmine will meet with you and your child,
-                then discuss any recommended next steps and associated fees.
-              </div>
-            `}
+            <div class="secure-badge">
+              <i class="bi bi-lock"></i> Payments secured by <strong style="margin-left:4px;">Stripe</strong>
+            </div>
 
             <div id="payment-error" class="alert alert-error" style="display:none;margin-top:1rem;"></div>
 
             <button class="btn btn-blue btn-lg" style="width:100%;justify-content:center;margin-top:1.5rem;"
               id="pay-btn" onclick="submitPayment()">
-              ${isCamp && campPrice > 0
-                ? `<i class="bi bi-lock"></i> Pay $${campPrice.toLocaleString()} Securely`
-                : '<i class="bi bi-check-circle"></i> Confirm My Evaluation'}
+              <i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} Securely
             </button>
 
             <p class="text-center text-muted text-sm mt-2">
               ${isCamp
-                ? 'By clicking Pay, you agree to our cancellation policy. Full refunds available up to 7 days before camp.'
-                : 'We\'ll send a confirmation email with all the details. You can reschedule up to 48 hours in advance.'}
+                ? 'By clicking Pay, you agree to our cancellation policy. Full refunds available up to 7 days before camp starts.'
+                : 'By clicking Pay, you agree to our registration terms. After payment, Jasmine will contact you to schedule your evaluation time and location in the DFW area.'}
             </p>
           </div>
         </div>
@@ -108,12 +98,13 @@ function renderPayment() {
               <span style="font-size:1.5rem;"><i class="bi ${state.selectedCamp.icon}"></i></span>
               <div>
                 <div style="font-weight:700;font-size:0.9rem;">${state.selectedCamp.name}</div>
+                <div style="font-size:0.8rem;color:var(--text-muted);">${state.selectedCamp.subtitle}</div>
                 <div style="font-size:0.8rem;color:var(--text-muted);">${state.selectedCamp.dates}</div>
               </div>
             </div>
             ${state.children.map((c, i) => `
               <div class="order-row">
-                <span><i class="bi bi-person"></i> ${c.firstName || `Child ${i+1}`}, age ${c.age}</span>
+                <span><i class="bi bi-person"></i> ${c.firstName || 'Child ' + (i+1)}, age ${c.age}</span>
                 <span>$${state.selectedCamp.price}</span>
               </div>
             `).join('')}
@@ -124,19 +115,18 @@ function renderPayment() {
           ` : `
             <div style="padding-bottom:1rem;border-bottom:1px solid var(--border);margin-bottom:1rem;">
               <div style="font-weight:700;font-size:0.9rem;"><i class="bi bi-clipboard-check"></i> Speech &amp; Language Evaluation</div>
-              <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem;">
-                ${state.selectedDate ? formatDisplayDate(state.selectedDate) : '—'} at ${state.selectedTime || '—'}
-              </div>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem;">English &amp; Spanish available · DFW area</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.15rem;">Jasmine will call you to schedule time &amp; location</div>
             </div>
-            ${state.children.map(c => `
+            ${state.children.map((c, i) => `
               <div class="order-row">
-                <span><i class="bi bi-person"></i> ${c.firstName || 'Child'}, age ${c.age}</span>
-                <span style="color:var(--success);font-weight:600;">Complimentary</span>
+                <span><i class="bi bi-person"></i> ${c.firstName || 'Child ' + (i+1)}, age ${c.age}</span>
+                <span>$${EVAL_PRICE}</span>
               </div>
             `).join('')}
             <div class="order-row order-total">
               <span>Total Today</span>
-              <span style="color:var(--success);">$0.00</span>
+              <span>$${EVAL_PRICE}</span>
             </div>
           `}
 
@@ -146,25 +136,24 @@ function renderPayment() {
             <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
               <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Confirmation email sent immediately
             </div>
-            <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
-              <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Add to calendar on next screen
-            </div>
             ${isCamp ? `
               <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
-                <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Full refund if cancelled 7+ days before
+                <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Full refund if cancelled 7+ days before camp
               </div>
             ` : `
               <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
-                <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Reschedule up to 48 hours before
+                <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Jasmine will call you to confirm details
               </div>
             `}
           </div>
 
           <div class="divider"></div>
 
-          <div class="alert alert-info" style="font-size:0.8rem;padding:0.75rem;">
-            <i class="bi bi-telephone"></i> Questions? Call us at <strong>(555) 555-5555</strong> or email
-            <strong>info@toysfortalking.com</strong>
+          <div class="alert alert-info" style="font-size:0.8rem;padding:0.75rem;overflow-wrap:break-word;word-break:break-word;">
+            <div style="display:flex;gap:0.5rem;align-items:flex-start;flex-wrap:wrap;">
+              <i class="bi bi-telephone" style="flex-shrink:0;"></i>
+              <span>Questions? Call <strong>(214) 395-0109</strong> or email <strong>toysfortalking@gmail.com</strong></span>
+            </div>
           </div>
         </div>
       </div>
@@ -173,7 +162,6 @@ function renderPayment() {
 }
 
 function initStripe() {
-  // Check if Stripe is available (loaded via CDN)
   if (typeof Stripe === 'undefined') {
     const cardEl = document.getElementById('stripe-card-element');
     if (cardEl) {
@@ -190,7 +178,6 @@ function initStripe() {
     return;
   }
 
-  // Use env-injected key or a placeholder
   const pubKey = window.STRIPE_PUBLISHABLE_KEY || 'pk_test_placeholder';
   try {
     stripeInstance = Stripe(pubKey);
@@ -223,7 +210,6 @@ async function submitPayment() {
 
   errorEl.style.display = 'none';
 
-  // Validate billing fields
   const firstName = document.getElementById('pay-first')?.value.trim();
   const lastName  = document.getElementById('pay-last')?.value.trim();
   const email     = document.getElementById('pay-email')?.value.trim();
@@ -234,19 +220,12 @@ async function submitPayment() {
     return;
   }
 
-  // If eval (no charge), skip Stripe
-  if (!isCamp || (isCamp && state.selectedCamp && state.selectedCamp.price === 0)) {
-    confirmBooking();
-    return;
-  }
-
-  // Attempt Stripe payment
   paymentProcessing = true;
   payBtn.disabled = true;
+  const totalPrice = isCamp && state.selectedCamp ? state.selectedCamp.price * state.children.length : EVAL_PRICE;
   payBtn.innerHTML = '<span class="spinner"></span> Processing…';
 
   if (!stripeInstance || !stripeCardElement) {
-    // Demo mode — simulate payment
     await new Promise(r => setTimeout(r, 1800));
     paymentProcessing = false;
     confirmBooking();
@@ -254,8 +233,6 @@ async function submitPayment() {
   }
 
   try {
-    // In production, you'd create a PaymentIntent on your server first
-    // and use the client_secret here. For now we simulate.
     const { error } = await stripeInstance.createPaymentMethod({
       type: 'card',
       card: stripeCardElement,
@@ -266,7 +243,7 @@ async function submitPayment() {
       const cardErrorEl = document.getElementById('stripe-card-error');
       if (cardErrorEl) { cardErrorEl.textContent = error.message; cardErrorEl.style.display = 'block'; }
       payBtn.disabled = false;
-      payBtn.innerHTML = `<i class="bi bi-lock"></i> Pay $${(state.selectedCamp.price * state.children.length).toLocaleString()} Securely`;
+      payBtn.innerHTML = `<i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} Securely`;
       paymentProcessing = false;
       return;
     }
@@ -276,7 +253,7 @@ async function submitPayment() {
     errorEl.style.display = 'flex';
     errorEl.textContent = 'An error occurred. Please try again or contact us.';
     payBtn.disabled = false;
-    payBtn.innerHTML = '<i class="bi bi-lock"></i> Pay Securely';
+    payBtn.innerHTML = `<i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} Securely`;
     paymentProcessing = false;
   }
 }
