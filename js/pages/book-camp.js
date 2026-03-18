@@ -231,10 +231,7 @@ function renderCampSelector() {
                   `).join('')}
                 </ul>
                 <div style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">
-                  <i class="bi bi-geo-alt"></i> ${camp.location} &nbsp;&middot;&nbsp;
-                  <span style="color:${camp.spotsLeft <= 3 ? 'var(--error)' : 'var(--text-muted)'};">
-                    ${camp.spotsLeft} spots remaining
-                  </span>
+                  <i class="bi bi-geo-alt"></i> ${camp.location}
                 </div>
               </div>
             </div>

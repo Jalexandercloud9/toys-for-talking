@@ -129,7 +129,6 @@ function renderHome() {
               <div class="divider"></div>
               <div style="display:flex;justify-content:space-between;align-items:center;">
                 <span class="camp-price">$${camp.price}</span>
-                <span style="font-size:0.8rem;color:var(--text-muted);">${camp.spotsLeft} spots left</span>
               </div>
             </div>
           `).join('')}
