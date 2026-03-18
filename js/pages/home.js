@@ -5,9 +5,9 @@ function renderHome() {
         <div class="hero-badge">Little Lamps Speech Camp 2026 — Now Open</div>
         <h1>Every Child Deserves to Be Heard</h1>
         <p>
-          Jasmine Alexander, Speech-Language Pathologist, uses play-based therapy
-          and evidence-driven techniques to help children unlock their full
-          communication potential.
+          Jasmine Alexander, Speech-Language Pathologist, coaches parents with
+          the play-based strategies and professional guidance they need to
+          support their child's speech and language development at home.
         </p>
         <div class="hero-buttons">
           <a href="#/book-camp" class="btn btn-primary btn-lg">
@@ -25,8 +25,8 @@ function renderHome() {
       <div class="container">
         <h2 class="section-title">Why Families Choose Toys for Talking</h2>
         <p class="section-subtitle">
-          A personalized, joyful approach to speech therapy that children love
-          — and parents trust.
+          Jasmine doesn't just work with your child — she equips you with the
+          strategies and confidence to support your child's communication every day.
         </p>
         <div class="grid-3">
           <div class="card feature-card">
@@ -41,8 +41,13 @@ function renderHome() {
           </div>
           <div class="card feature-card">
             <div class="card-icon"><i class="bi bi-people"></i></div>
-            <h3>Family-Centered Care</h3>
-            <p>We partner with families every step of the way, providing coaching and strategies you can use at home every day.</p>
+            <h3>Parent Coaching at the Core</h3>
+            <p>You are your child's best teacher. Jasmine coaches parents directly on the strategies, language models, and play routines that make the biggest difference at home.</p>
+          </div>
+          <div class="card feature-card">
+            <div class="card-icon"><i class="bi bi-clipboard-pulse"></i></div>
+            <h3>Evaluations That Guide Next Steps</h3>
+            <p>Not sure where your child stands? A professional speech evaluation pinpoints their specific needs and gives you a clear, practical roadmap for what to do next.</p>
           </div>
           <div class="card feature-card">
             <div class="card-icon"><i class="bi bi-award"></i></div>
@@ -52,7 +57,7 @@ function renderHome() {
           <div class="card feature-card">
             <div class="card-icon"><i class="bi bi-laptop"></i></div>
             <h3>In-Person &amp; Virtual</h3>
-            <p>Flexible service delivery — meet us at our center or connect online. Same quality, your schedule.</p>
+            <p>Flexible service delivery — meet in the DFW area or join virtually from anywhere. Same expert guidance, your schedule.</p>
           </div>
         </div>
       </div>
@@ -85,12 +90,12 @@ function renderHome() {
             <div class="card-icon"><i class="bi bi-tent"></i></div>
             <h3>Little Lamps Speech Camp</h3>
             <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Dallas In-Person &amp; Virtual</p>
-            <p style="margin-bottom:1rem;">A guided, play-based experience where parents and children learn practical communication strategies together — available to families anywhere.</p>
+            <p style="margin-bottom:1rem;">A parent coaching camp — Jasmine teaches you the play-based language strategies you can use at home every day. You leave each session with real tools, not just observations.</p>
             <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Play-based strategies you can use at home</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Small groups (max 8–12 children)</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Parents learn strategies they can use immediately</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Ages 0–4 · No prior diagnosis required</li>
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person (Dallas) or virtual for any family</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> No prior diagnosis required</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Small groups · Sundays · $99–$199</li>
             </ul>
             <a href="#/book-camp" class="btn btn-blue">Book Speech Camp</a>
           </div>
@@ -102,9 +107,9 @@ function renderHome() {
             <i class="bi bi-lightbulb" style="color:var(--primary);"></i> Not sure which option is right for you?
           </h4>
           <p style="margin-bottom:0;">
-            If you want a <strong>professional speech evaluation</strong> for your child and live in Texas, start with an evaluation.
-            If you want <strong>practical strategies and guided support</strong> to encourage communication through play,
-            Little Lamps Speech Camp may be the best fit — and it's open to families everywhere.
+            If you want to know <strong>exactly where your child stands</strong> and live in the DFW area, start with a professional evaluation — you'll leave with a clear picture and practical next steps.
+            If you're ready to <strong>learn hands-on strategies</strong> you can use today to support your child's communication through play,
+            Little Lamps Speech Camp is for you — open to families everywhere.
           </p>
         </div>
       </div>
