@@ -25,7 +25,8 @@ function renderPayment() {
 
   const numKids = state.children.length;
   const campPrice = isCamp && state.selectedCamp ? state.selectedCamp.price * numKids : 0;
-  const totalPrice = isCamp ? campPrice : EVAL_PRICE;
+  const evalPrice = EVAL_PRICE * numKids;
+  const totalPrice = isCamp ? campPrice : evalPrice;
 
   return `
     <div class="page-header">
@@ -126,7 +127,7 @@ function renderPayment() {
             `).join('')}
             <div class="order-row order-total">
               <span>Total Today</span>
-              <span>$${EVAL_PRICE}</span>
+              <span>$${evalPrice.toLocaleString()}</span>
             </div>
           `}
 
@@ -222,7 +223,7 @@ async function submitPayment() {
 
   paymentProcessing = true;
   payBtn.disabled = true;
-  const totalPrice = isCamp && state.selectedCamp ? state.selectedCamp.price * state.children.length : EVAL_PRICE;
+  const totalPrice = isCamp && state.selectedCamp ? state.selectedCamp.price * state.children.length : EVAL_PRICE * state.children.length;
   payBtn.innerHTML = '<span class="spinner"></span> Processing…';
 
   if (!stripeInstance || !stripeCardElement) {

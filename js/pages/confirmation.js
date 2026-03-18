@@ -88,17 +88,19 @@ function renderConfirmation() {
             <span class="summary-label">Service</span>
             <span class="summary-value">Speech &amp; Language Evaluation</span>
           </div>
-          <div class="summary-row">
-            <span class="summary-label">Child</span>
-            <span class="summary-value">${children[0]?.firstName || '—'} (age ${children[0]?.age || '—'})</span>
-          </div>
+          ${children.map((c, i) => `
+            <div class="summary-row">
+              <span class="summary-label">${children.length > 1 ? `Child ${i + 1}` : 'Child'}</span>
+              <span class="summary-value">${c.firstName || '—'} (age ${c.age || '—'})</span>
+            </div>
+          `).join('')}
           <div class="summary-row">
             <span class="summary-label">Guardian</span>
             <span class="summary-value">${guardian.firstName} ${guardian.lastName}</span>
           </div>
           <div class="summary-row">
             <span class="summary-label">Amount Paid</span>
-            <span class="summary-value" style="font-weight:700;color:var(--primary);">$149.00</span>
+            <span class="summary-value" style="font-weight:700;color:var(--primary);">$${(149 * children.length).toLocaleString()}.00</span>
           </div>
         `}
       </div>
