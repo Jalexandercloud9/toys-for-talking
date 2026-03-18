@@ -25,28 +25,10 @@ function renderConfirmation() {
 
   if (isCamp && camp) {
     eventTitle = `Toys for Talking: ${camp.name}`;
-    eventDescription = `${camp.name} camp registration for ${children.map(c => c.firstName).join(', ')}.\\n\\nLocation: ${camp.location}\\nTime: ${camp.time}\\n\\nQuestions? Contact info@toysfortalking.com or (555) 555-5555`;
+    eventDescription = `${camp.name} camp registration for ${children.map(c => c.firstName).join(', ')}.\\n\\nLocation: ${camp.location}\\nTime: ${camp.time}\\n\\nQuestions? Contact toysfortalking@gmail.com or (214) 395-0109`;
     eventStartDate = camp.startDate;
     eventEndDate = camp.endDate;
-    eventLocation = camp.location + ', Speech Therapy Center';
-  } else {
-    eventTitle = `Toys for Talking: Speech Evaluation — ${children[0]?.firstName || 'Your Child'}`;
-    eventDescription = `Speech & Language Evaluation with Jasmine Alexander, SLP.\\n\\nArrival: Please arrive 5 minutes early.\\nDuration: 60–90 minutes\\n\\nQuestions? Contact info@toysfortalking.com or (555) 555-5555`;
-    eventStartDate = state.selectedDate;
-    eventLocation = 'Toys for Talking Center';
-
-    // Set end time (90 minutes after start)
-    if (state.selectedDate && state.selectedTime) {
-      const [timePart, ampm] = state.selectedTime.split(' ');
-      let [hours, minutes] = timePart.split(':').map(Number);
-      if (ampm === 'PM' && hours !== 12) hours += 12;
-      if (ampm === 'AM' && hours === 12) hours = 0;
-      const start = new Date(state.selectedDate + 'T00:00:00');
-      start.setHours(hours, minutes, 0, 0);
-      const end = new Date(start.getTime() + 90 * 60 * 1000);
-      eventStartDate = formatIcsDate(start);
-      eventEndDate = formatIcsDate(end);
-    }
+    eventLocation = camp.location;
   }
 
   return `
@@ -107,14 +89,6 @@ function renderConfirmation() {
             <span class="summary-value">Speech &amp; Language Evaluation</span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Date</span>
-            <span class="summary-value">${state.selectedDate ? formatDisplayDate(state.selectedDate) : '—'}</span>
-          </div>
-          <div class="summary-row">
-            <span class="summary-label">Time</span>
-            <span class="summary-value">${state.selectedTime || '—'}</span>
-          </div>
-          <div class="summary-row">
             <span class="summary-label">Child</span>
             <span class="summary-value">${children[0]?.firstName || '—'} (age ${children[0]?.age || '—'})</span>
           </div>
@@ -123,18 +97,19 @@ function renderConfirmation() {
             <span class="summary-value">${guardian.firstName} ${guardian.lastName}</span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Amount Due</span>
-            <span class="summary-value" style="font-weight:700;color:var(--success);">$0.00 — Complimentary</span>
+            <span class="summary-label">Amount Paid</span>
+            <span class="summary-value" style="font-weight:700;color:var(--primary);">$149.00</span>
           </div>
         `}
       </div>
 
-      <!-- Calendar Buttons -->
+      ${isCamp ? `
+      <!-- Calendar Buttons (camp only) -->
       <h3 style="margin-top:2rem;margin-bottom:0.5rem;"><i class="bi bi-calendar3"></i> Add to Your Calendar</h3>
-      <p class="text-muted text-sm" style="margin-bottom:1rem;">Don't miss it — add this event to your calendar now.</p>
+      <p class="text-muted text-sm" style="margin-bottom:1rem;">Don't miss it — add the camp dates to your calendar now.</p>
 
       <div class="calendar-buttons">
-        <a class="cal-btn google" href="${buildGoogleCalendarUrl(eventTitle, eventDescription, eventStartDate, eventEndDate, eventLocation, isCamp)}" target="_blank" rel="noopener">
+        <a class="cal-btn google" href="${buildGoogleCalendarUrl(eventTitle, eventDescription, eventStartDate, eventEndDate, eventLocation, true)}" target="_blank" rel="noopener">
           <span class="cal-icon">
             <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M34 10H14C11.8 10 10 11.8 10 14V34C10 36.2 11.8 38 14 38H34C36.2 38 38 36.2 38 34V14C38 11.8 36.2 10 34 10Z" fill="#4285F4"/>
@@ -144,16 +119,17 @@ function renderConfirmation() {
           Add to Google Calendar
         </a>
 
-        <button class="cal-btn apple" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${typeof eventStartDate === 'string' && eventStartDate.includes('T') ? eventStartDate : eventStartDate}', '${typeof eventEndDate === 'string' ? eventEndDate : eventStartDate}', '${eventLocation}', ${isCamp})">
+        <button class="cal-btn apple" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${eventStartDate}', '${eventEndDate}', '${eventLocation}', true)">
           <span class="cal-icon"><i class="bi bi-apple"></i></span>
           Add to Apple Calendar (iCal)
         </button>
 
-        <button class="cal-btn outlook" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${typeof eventStartDate === 'string' && eventStartDate.includes('T') ? eventStartDate : eventStartDate}', '${typeof eventEndDate === 'string' ? eventEndDate : eventStartDate}', '${eventLocation}', ${isCamp})">
+        <button class="cal-btn outlook" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${eventStartDate}', '${eventEndDate}', '${eventLocation}', true)">
           <span class="cal-icon"><i class="bi bi-envelope"></i></span>
           Add to Outlook Calendar
         </button>
       </div>
+      ` : ''}
 
       <div class="divider"></div>
 
@@ -162,7 +138,7 @@ function renderConfirmation() {
           <strong>What happens next?</strong><br>
           ${isCamp
             ? 'Jasmine will send a welcome packet and preparation guide within 2 business days. Feel free to reach out with any questions!'
-            : 'Jasmine will confirm your appointment within 1 business day. Please bring any prior evaluations or school reports if available.'}
+            : `<span style="font-size:1rem;">📞</span> <strong>Jasmine will call you at the number you provided</strong> to confirm your meet-up spot and time in the DFW area. Please bring any notes about your child's speech and language history to the evaluation.`}
         </div>
       </div>
 
@@ -270,8 +246,6 @@ function resetBooking() {
     guardian: {},
     children: [],
     selectedCamp: null,
-    selectedDate: null,
-    selectedTime: null,
     evalReason: '',
     paymentConfirmed: false,
     confirmationId: null

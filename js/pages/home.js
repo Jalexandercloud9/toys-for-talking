@@ -72,14 +72,13 @@ function renderHome() {
         <div class="grid-2" style="margin-top:2rem;gap:1.5rem;">
           <!-- Evaluation Card -->
           <div class="card" style="border-top:4px solid var(--primary);">
-            <div class="card-icon"><i class="bi bi-clipboard-pulse"></i></div>
             <h3>Speech &amp; Language Evaluations</h3>
             <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">DFW Area · Under 18 · English &amp; Spanish</p>
-            <p style="margin-bottom:1rem;">A professional, clinical assessment to determine whether your child has a speech or language delay or disorder, and what support they need. $149.</p>
+            <p style="margin-bottom:1rem;">A professional, 1-hour clinical assessment to determine whether your child has a speech or language delay or disorder, and what support they need. $149.</p>
             <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Comprehensive diagnostic evaluation</li>
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Available in English and Spanish</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Jasmine calls you to set time &amp; location</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Only 1 hour of your time</li>
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person in the DFW metroplex</li>
             </ul>
             <a href="#/book-evaluation" class="btn btn-blue">Schedule an Evaluation</a>
@@ -87,7 +86,6 @@ function renderHome() {
 
           <!-- Camp Card -->
           <div class="card" style="border-top:4px solid var(--primary);">
-            <div class="card-icon"><i class="bi bi-tent"></i></div>
             <h3>Little Lamps Speech Camp</h3>
             <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Dallas In-Person &amp; Virtual</p>
             <p style="margin-bottom:1rem;">A parent coaching camp — Jasmine teaches you the play-based language strategies you can use at home every day. You leave each session with real tools, not just observations.</p>
