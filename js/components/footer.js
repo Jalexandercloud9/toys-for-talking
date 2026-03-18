@@ -10,6 +10,29 @@ function renderFooter() {
           <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
             <span style="font-size:0.75rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:0.35rem;"><i class="bi bi-geo-alt"></i> In-person (DFW) &amp; virtual</span>
           </div>
+          <div style="margin-top:1.25rem;">
+            <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.05em;">Follow Us</p>
+            <div style="display:flex;gap:0.75rem;align-items:center;">
+              <a href="https://www.instagram.com/toysfortalking/" target="_blank" rel="noopener"
+                style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);font-size:1.1rem;text-decoration:none;transition:background 0.2s;"
+                onmouseover="this.style.background='rgba(255,255,255,0.22)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"
+                title="Instagram">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="https://www.youtube.com/@ToysforTalking" target="_blank" rel="noopener"
+                style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);font-size:1.1rem;text-decoration:none;transition:background 0.2s;"
+                onmouseover="this.style.background='rgba(255,255,255,0.22)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"
+                title="YouTube">
+                <i class="bi bi-youtube"></i>
+              </a>
+              <a href="https://www.tiktok.com/@toysfortalking" target="_blank" rel="noopener"
+                style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);font-size:1.1rem;text-decoration:none;transition:background 0.2s;"
+                onmouseover="this.style.background='rgba(255,255,255,0.22)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"
+                title="TikTok">
+                <i class="bi bi-tiktok"></i>
+              </a>
+            </div>
+          </div>
         </div>
         <div>
           <h4>Quick Links</h4>
