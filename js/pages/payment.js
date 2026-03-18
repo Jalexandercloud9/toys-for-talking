@@ -1,7 +1,3 @@
-let stripeInstance = null;
-let stripeCardElement = null;
-let paymentProcessing = false;
-
 const EVAL_PRICE = 149;
 
 function renderPayment() {
@@ -30,67 +26,75 @@ function renderPayment() {
 
   return `
     <div class="page-header">
-      <h1><i class="bi bi-credit-card"></i> Secure Payment</h1>
+      <h1><i class="bi bi-lock"></i> Secure Checkout</h1>
       <p>${isCamp ? 'Complete your camp registration' : 'Complete your evaluation registration'}</p>
     </div>
 
     <div style="max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem;">
       <div class="payment-grid">
 
-        <!-- Payment Form -->
+        <!-- Left: Review & Pay -->
         <div>
-          <div class="card" style="margin-bottom:1.5rem;">
-            <h3 style="margin-bottom:1rem;">Billing Information</h3>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>First Name</label>
-                <input class="form-control" id="pay-first" type="text"
-                  value="${state.guardian.firstName || ''}" placeholder="First name">
-              </div>
-              <div class="form-group">
-                <label>Last Name</label>
-                <input class="form-control" id="pay-last" type="text"
-                  value="${state.guardian.lastName || ''}" placeholder="Last name">
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input class="form-control" id="pay-email" type="email"
-                value="${state.guardian.email || ''}" placeholder="your@email.com">
-            </div>
-          </div>
-
           <div class="card">
-            <h3 style="margin-bottom:1rem;">Card Details</h3>
+            <h3 style="margin-bottom:1rem;">Review Your Order</h3>
 
-            <!-- Stripe Card Element mount point -->
-            <div class="form-group">
-              <label>Card Information</label>
-              <div id="stripe-card-element"></div>
-              <div id="stripe-card-error" class="form-error" style="display:none;"></div>
+            ${isCamp && state.selectedCamp ? `
+              <div style="display:flex;gap:0.75rem;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--border);margin-bottom:1rem;">
+                <span style="font-size:1.5rem;"><i class="bi ${state.selectedCamp.icon}"></i></span>
+                <div>
+                  <div style="font-weight:700;font-size:0.9rem;">${state.selectedCamp.name}</div>
+                  <div style="font-size:0.8rem;color:var(--text-muted);">${state.selectedCamp.subtitle}</div>
+                  <div style="font-size:0.8rem;color:var(--text-muted);">${state.selectedCamp.dates}</div>
+                </div>
+              </div>
+              ${state.children.map((c, i) => `
+                <div class="order-row">
+                  <span><i class="bi bi-person"></i> ${c.firstName || 'Child ' + (i + 1)}, age ${c.age}</span>
+                  <span>$${state.selectedCamp.price}</span>
+                </div>
+              `).join('')}
+              <div class="order-row order-total" style="margin-top:0.5rem;">
+                <span>Total</span>
+                <span>$${campPrice.toLocaleString()}</span>
+              </div>
+            ` : `
+              <div style="padding-bottom:1rem;border-bottom:1px solid var(--border);margin-bottom:1rem;">
+                <div style="font-weight:700;font-size:0.9rem;"><i class="bi bi-clipboard-check"></i> Speech &amp; Language Evaluation</div>
+                <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem;">English &amp; Spanish available · DFW area</div>
+              </div>
+              ${state.children.map((c, i) => `
+                <div class="order-row">
+                  <span><i class="bi bi-person"></i> ${c.firstName || 'Child ' + (i + 1)}, age ${c.age}</span>
+                  <span>$${EVAL_PRICE}</span>
+                </div>
+              `).join('')}
+              <div class="order-row order-total" style="margin-top:0.5rem;">
+                <span>Total</span>
+                <span>$${evalPrice.toLocaleString()}</span>
+              </div>
+            `}
+
+            <div class="divider"></div>
+
+            <!-- Stripe redirect button -->
+            <div style="text-align:center;">
+              <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1.25rem;">
+                You'll be taken to Stripe's secure checkout to complete your payment.
+                ${isCamp
+                  ? 'Full refunds available up to 7 days before camp starts.'
+                  : 'After payment, Jasmine will call you to confirm your evaluation time and location.'}
+              </p>
+              <button class="btn btn-blue btn-lg" style="width:100%;justify-content:center;" onclick="proceedToStripe()">
+                <i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} with Stripe
+              </button>
+              <div class="secure-badge" style="margin-top:1rem;">
+                <i class="bi bi-shield-check"></i> Secured by <strong style="margin-left:4px;">Stripe</strong>
+              </div>
             </div>
-
-            <div class="secure-badge">
-              <i class="bi bi-lock"></i> Payments secured by <strong style="margin-left:4px;">Stripe</strong>
-            </div>
-
-            <div id="payment-error" class="alert alert-error" style="display:none;margin-top:1rem;"></div>
-
-            <button class="btn btn-blue btn-lg" style="width:100%;justify-content:center;margin-top:1.5rem;"
-              id="pay-btn" onclick="submitPayment()">
-              <i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} Securely
-            </button>
-
-            <p class="text-center text-muted text-sm mt-2">
-              ${isCamp
-                ? 'By clicking Pay, you agree to our cancellation policy. Full refunds available up to 7 days before camp starts.'
-                : 'By clicking Pay, you agree to our registration terms. After payment, Jasmine will contact you to schedule your evaluation time and location in the DFW area.'}
-            </p>
           </div>
         </div>
 
-        <!-- Order Summary -->
+        <!-- Right: Order Summary -->
         <div class="card order-summary-card">
           <h4 style="margin-bottom:1rem;">Order Summary</h4>
 
@@ -105,7 +109,7 @@ function renderPayment() {
             </div>
             ${state.children.map((c, i) => `
               <div class="order-row">
-                <span><i class="bi bi-person"></i> ${c.firstName || 'Child ' + (i+1)}, age ${c.age}</span>
+                <span><i class="bi bi-person"></i> ${c.firstName || 'Child ' + (i + 1)}, age ${c.age}</span>
                 <span>$${state.selectedCamp.price}</span>
               </div>
             `).join('')}
@@ -121,7 +125,7 @@ function renderPayment() {
             </div>
             ${state.children.map((c, i) => `
               <div class="order-row">
-                <span><i class="bi bi-person"></i> ${c.firstName || 'Child ' + (i+1)}, age ${c.age}</span>
+                <span><i class="bi bi-person"></i> ${c.firstName || 'Child ' + (i + 1)}, age ${c.age}</span>
                 <span>$${EVAL_PRICE}</span>
               </div>
             `).join('')}
@@ -162,106 +166,33 @@ function renderPayment() {
   `;
 }
 
-function initStripe() {
-  if (typeof Stripe === 'undefined') {
-    const cardEl = document.getElementById('stripe-card-element');
-    if (cardEl) {
-      cardEl.innerHTML = `
-        <div class="stripe-placeholder">
-          <div class="stripe-logo"><i class="bi bi-credit-card" style="font-size:1.75rem;color:var(--primary);"></i></div>
-          <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
-            Stripe payment form will appear here.<br>
-            <small>Add your Stripe publishable key to enable live payments.</small>
-          </p>
-        </div>
-      `;
-    }
-    return;
-  }
-
-  const pubKey = window.STRIPE_PUBLISHABLE_KEY || 'pk_test_placeholder';
-  try {
-    stripeInstance = Stripe(pubKey);
-    const elements = stripeInstance.elements({
-      fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap' }]
-    });
-    stripeCardElement = elements.create('card', {
-      style: {
-        base: {
-          fontSize: '16px',
-          fontFamily: '"Inter", sans-serif',
-          color: '#2C3E50',
-          '::placeholder': { color: '#8FA3B1' }
-        }
-      }
-    });
-    const mountEl = document.getElementById('stripe-card-element');
-    if (mountEl) stripeCardElement.mount('#stripe-card-element');
-  } catch (e) {
-    console.warn('Stripe init error:', e);
-  }
-}
-
-async function submitPayment() {
-  if (paymentProcessing) return;
+function proceedToStripe() {
   const state = window.AppState;
   const isCamp = state.bookingType === 'camp';
-  const errorEl = document.getElementById('payment-error');
-  const payBtn = document.getElementById('pay-btn');
+  const numKids = state.children.length;
 
-  errorEl.style.display = 'none';
+  // Generate confirmation ID now so it's ready when we return
+  state.confirmationId = 'TFT-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+  state.paymentConfirmed = true;
 
-  const firstName = document.getElementById('pay-first')?.value.trim();
-  const lastName  = document.getElementById('pay-last')?.value.trim();
-  const email     = document.getElementById('pay-email')?.value.trim();
+  // Persist booking state to localStorage before leaving the page
+  localStorage.setItem('tft_booking', JSON.stringify(state));
 
-  if (!firstName || !lastName || !email) {
-    errorEl.style.display = 'flex';
-    errorEl.textContent = 'Please fill in your billing information.';
-    return;
+  // Build the Stripe Payment Link URL
+  let stripeUrl;
+  if (isCamp && state.selectedCamp && state.selectedCamp.stripeLink) {
+    stripeUrl = state.selectedCamp.stripeLink;
+  } else {
+    stripeUrl = window.EVAL_STRIPE_LINK;
   }
 
-  paymentProcessing = true;
-  payBtn.disabled = true;
-  const totalPrice = isCamp && state.selectedCamp ? state.selectedCamp.price * state.children.length : EVAL_PRICE * state.children.length;
-  payBtn.innerHTML = '<span class="spinner"></span> Processing…';
-
-  if (!stripeInstance || !stripeCardElement) {
-    await new Promise(r => setTimeout(r, 1800));
-    paymentProcessing = false;
-    confirmBooking();
-    return;
+  // Pre-fill quantity if registering multiple children
+  if (numKids > 1) {
+    stripeUrl += '?prefilled_quantity=' + numKids;
   }
 
-  try {
-    const { error } = await stripeInstance.createPaymentMethod({
-      type: 'card',
-      card: stripeCardElement,
-      billing_details: { name: `${firstName} ${lastName}`, email }
-    });
-
-    if (error) {
-      const cardErrorEl = document.getElementById('stripe-card-error');
-      if (cardErrorEl) { cardErrorEl.textContent = error.message; cardErrorEl.style.display = 'block'; }
-      payBtn.disabled = false;
-      payBtn.innerHTML = `<i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} Securely`;
-      paymentProcessing = false;
-      return;
-    }
-
-    confirmBooking();
-  } catch (e) {
-    errorEl.style.display = 'flex';
-    errorEl.textContent = 'An error occurred. Please try again or contact us.';
-    payBtn.disabled = false;
-    payBtn.innerHTML = `<i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} Securely`;
-    paymentProcessing = false;
-  }
+  window.location.href = stripeUrl;
 }
 
-function confirmBooking() {
-  paymentProcessing = false;
-  window.AppState.paymentConfirmed = true;
-  window.AppState.confirmationId = 'TFT-' + Math.random().toString(36).substr(2, 8).toUpperCase();
-  window.location.hash = '#/confirmation';
-}
+// Legacy — kept so old references don't break
+function initStripe() {}

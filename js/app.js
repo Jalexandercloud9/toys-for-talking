@@ -46,8 +46,7 @@ function renderPage() {
     case '#/book-evaluation':
       evalStep = 1;
       if (window._lastRoute !== '#/book-evaluation') {
-        window.AppState.selectedDate = null;
-        window.AppState.selectedTime = null;
+        window.AppState.children = [];
       }
       contentEl.innerHTML = renderBookEvaluation();
       break;
@@ -78,7 +77,25 @@ function renderPage() {
 
 // Listen for hash changes (back/forward navigation)
 window.addEventListener('hashchange', renderPage);
-window.addEventListener('load', renderPage);
+
+// On load: check if returning from Stripe payment, then render
+window.addEventListener('load', function () {
+  if (window.location.search.includes('payment=success')) {
+    // Restore booking state saved before redirecting to Stripe
+    try {
+      const saved = localStorage.getItem('tft_booking');
+      if (saved) {
+        Object.assign(window.AppState, JSON.parse(saved));
+        localStorage.removeItem('tft_booking');
+      }
+    } catch (e) {}
+    // Swap the URL to the confirmation hash without a full reload
+    window.history.replaceState(null, '', window.location.pathname + '#/confirmation');
+    renderPage();
+    return;
+  }
+  renderPage();
+});
 
 // Also handle direct link clicks via navigate()
 window.navigate = navigate;

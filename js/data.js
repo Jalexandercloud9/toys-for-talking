@@ -5,6 +5,7 @@
 const CAMPS = [
   {
     id: 'llsc-june-inperson',
+    stripeLink: 'https://buy.stripe.com/test_6oU9AU0Hm3Qa8g630GgA806',
     name: 'Little Lamps Speech Camp',
     subtitle: 'June Cohort · In-Person · Ages 0–4',
     description: 'A small-group, play-based speech camp held in-person in the Dallas area. Children ages 0–4 build communication skills through guided play each Sunday. Sessions are split into two intimate 35-minute groups.',
@@ -27,6 +28,7 @@ const CAMPS = [
   },
   {
     id: 'llsc-july-inperson',
+    stripeLink: 'https://buy.stripe.com/test_eVq9AUgGkeuO8g69p4gA805',
     name: 'Little Lamps Speech Camp',
     subtitle: 'July Cohort · In-Person · Ages 0–4',
     description: 'A small-group, play-based speech camp held in-person in the Dallas area. Children ages 0–4 build communication skills through guided play each Sunday. Sessions are split into two intimate 35-minute groups.',
@@ -49,6 +51,7 @@ const CAMPS = [
   },
   {
     id: 'llsc-june-virtual',
+    stripeLink: 'https://buy.stripe.com/test_8x29AUeycbiC0NE44KgA804',
     name: 'Virtual Little Lamps Speech Camp',
     subtitle: 'June Cohort · Virtual · Ages 0–4',
     description: 'The same guided, play-based Little Lamps experience — available to families anywhere. Session time will be determined based on what works best for all virtual attendees.',
@@ -71,6 +74,7 @@ const CAMPS = [
   },
   {
     id: 'llsc-july-virtual',
+    stripeLink: 'https://buy.stripe.com/test_4gMaEYeyc5Yi67YeJogA803',
     name: 'Virtual Little Lamps Speech Camp',
     subtitle: 'July Cohort · Virtual · Ages 0–4',
     description: 'The same guided, play-based Little Lamps experience — available to families anywhere. Session time will be determined based on what works best for all virtual attendees.',
@@ -104,3 +108,4 @@ window.AppState = {
 };
 
 window.CAMPS = CAMPS;
+window.EVAL_STRIPE_LINK = 'https://buy.stripe.com/test_4gM00kcq44Ueaoe30GgA801';
