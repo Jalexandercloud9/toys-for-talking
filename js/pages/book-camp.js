@@ -116,7 +116,7 @@ function renderGuardianForm(context) {
       <div id="guardian-error" class="alert alert-error" style="display:none;"></div>
 
       <div style="display:flex;justify-content:flex-end;margin-top:1.5rem;">
-        <button class="btn btn-blue" onclick="saveGuardianAndNext('camp')">
+        <button class="btn btn-blue" onclick="saveGuardianAndNext('${context}')">
           Next: Child Information <i class="bi bi-arrow-right"></i>
         </button>
       </div>
