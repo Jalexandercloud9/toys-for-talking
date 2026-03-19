@@ -89,9 +89,13 @@ window.addEventListener('load', function () {
         localStorage.removeItem('tft_booking');
       }
     } catch (e) {}
-    // Send booking confirmation emails (customer + Jasmine)
+    // Send customer confirmation email
     if (window.sendBookingEmails) {
       window.sendBookingEmails(window.AppState);
+    }
+    // Log full booking details to Google Sheets via Zapier
+    if (window.logBookingToZapier) {
+      window.logBookingToZapier(window.AppState);
     }
     // Swap the URL to the confirmation hash without a full reload
     window.history.replaceState(null, '', window.location.pathname + '#/confirmation');

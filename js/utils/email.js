@@ -1,25 +1,29 @@
 // =====================================================
-// TOYS FOR TALKING — EmailJS Integration
+// TOYS FOR TALKING — Notifications & Tracking
 // =====================================================
-// Free setup at: https://www.emailjs.com
-//
-// After creating your EmailJS account, replace the
-// four placeholder values below with your real IDs.
+// EmailJS (customer confirmation): https://www.emailjs.com
+// Zapier (Google Sheets booking log): webhook below
 // =====================================================
 
+// --- EmailJS — customer confirmation email ---
 const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';        // EmailJS > Account > General > Public Key
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';        // EmailJS > Email Services > (your service) > Service ID
-const TEMPLATE_CUSTOMER  = 'YOUR_CUSTOMER_TEMPLATE'; // EmailJS > Email Templates > template_customer_confirm > Template ID
-const TEMPLATE_NOTIFY    = 'YOUR_NOTIFY_TEMPLATE';   // EmailJS > Email Templates > template_jasmine_notify > Template ID
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';        // EmailJS > Email Services > Service ID
+const TEMPLATE_CUSTOMER  = 'YOUR_CUSTOMER_TEMPLATE'; // EmailJS > Email Templates > Template ID
 
-let _emailSent = false; // Prevents duplicate emails if page re-renders in same session
+// --- Zapier — booking log to Google Sheets ---
+const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/26882497/up5tq8t/';
 
+let _emailSent   = false;
+let _zapierSent  = false;
+
+// -----------------------------------------------
+// Customer Confirmation Email (via EmailJS)
+// -----------------------------------------------
 function sendBookingEmails(state) {
   if (_emailSent) return;
 
-  // Skip silently if EmailJS hasn't been configured yet
   if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-    console.info('[TFT] EmailJS not configured — skipping email send.');
+    console.info('[TFT] EmailJS not configured — skipping customer email.');
     return;
   }
 
@@ -28,7 +32,6 @@ function sendBookingEmails(state) {
   const children = state.children   || [];
   const camp     = state.selectedCamp;
 
-  // --- Shared content builders ---
   const childrenList = children.map((c, i) =>
     `Child ${i + 1}: ${c.firstName || '—'}, age ${c.age || '—'}`
   ).join('\n');
@@ -37,9 +40,6 @@ function sendBookingEmails(state) {
     ? `$${(camp.price * children.length).toLocaleString()}`
     : `$${(149 * children.length).toLocaleString()}.00`;
 
-  // -----------------------------------------------
-  // 1. Customer Confirmation Email
-  // -----------------------------------------------
   const customerParams = {
     to_email:        guardian.email || '',
     to_name:         guardian.firstName || 'there',
@@ -55,46 +55,70 @@ function sendBookingEmails(state) {
       : `Jasmine will call you at ${guardian.phone || 'the number you provided'} to confirm your meet-up spot and time in the DFW area. Please bring any notes about your child\'s speech and language history to the evaluation.`
   };
 
-  // -----------------------------------------------
-  // 2. Jasmine's Booking Notification Email
-  // -----------------------------------------------
-  const evalDetails = !isCamp
-    ? children.map((c, i) =>
-        `Child ${i + 1}: ${c.firstName || '—'}, age ${c.age || '—'}\n` +
-        `  Language: ${c.language || 'english'}\n` +
-        `  Concerns: ${c.reason || '—'}\n` +
-        `  Prior therapy: ${c.priorTherapy || '—'}\n` +
-        `  Notes: ${c.notes || '—'}`
-      ).join('\n\n')
-    : `Camp: ${camp ? camp.name : '—'}\nDates: ${camp ? camp.dates : '—'}\nTime: ${camp ? camp.time : '—'}`;
-
-  const notifyParams = {
-    booking_type:    isCamp ? `Camp — ${camp ? camp.name : ''}` : 'Speech Evaluation',
-    guardian_name:   `${guardian.firstName || ''} ${guardian.lastName || ''}`.trim() || '—',
-    guardian_email:  guardian.email || '—',
-    guardian_phone:  guardian.phone || '—',
-    children_list:   childrenList,
-    booking_details: evalDetails,
-    total_paid:      totalPaid,
-    confirmation_id: state.confirmationId || '—'
-  };
-
-  // --- Fire emails via EmailJS ---
   emailjs.init(EMAILJS_PUBLIC_KEY);
 
-  // Send customer confirmation (only if we have their email)
   if (guardian.email) {
     emailjs.send(EMAILJS_SERVICE_ID, TEMPLATE_CUSTOMER, customerParams)
       .then(() => console.info('[TFT] Customer confirmation email sent.'))
       .catch(err => console.warn('[TFT] Customer email error:', err));
   }
 
-  // Always send Jasmine's notification
-  emailjs.send(EMAILJS_SERVICE_ID, TEMPLATE_NOTIFY, notifyParams)
-    .then(() => console.info('[TFT] Jasmine notification email sent.'))
-    .catch(err => console.warn('[TFT] Notify email error:', err));
-
   _emailSent = true;
 }
 
-window.sendBookingEmails = sendBookingEmails;
+// -----------------------------------------------
+// Booking Log to Google Sheets (via Zapier)
+// -----------------------------------------------
+function logBookingToZapier(state) {
+  if (_zapierSent) return;
+
+  const isCamp   = state.bookingType === 'camp';
+  const guardian = state.guardian   || {};
+  const children = state.children   || [];
+  const camp     = state.selectedCamp;
+
+  const totalAmount = isCamp
+    ? (camp.price * children.length)
+    : (149 * children.length);
+
+  // One readable line per child — eval gets full detail, camp gets name + age
+  const childrenSummary = children.map((c, i) => {
+    let line = `Child ${i + 1}: ${c.firstName || '—'}, age ${c.age || '—'}`;
+    if (!isCamp) {
+      line += ` | Language: ${c.language || 'english'}`;
+      line += ` | Concerns: ${c.reason || '—'}`;
+      line += ` | Prior therapy: ${c.priorTherapy || 'no'}`;
+      if (c.notes) line += ` | Notes: ${c.notes}`;
+    }
+    return line;
+  }).join('\n');
+
+  const payload = {
+    confirmation_id:  state.confirmationId || '',
+    booking_date:     new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    booking_type:     isCamp ? 'Camp' : 'Evaluation',
+    product:          isCamp ? (camp ? camp.name : '—') : 'Speech & Language Evaluation',
+    camp_dates:       isCamp && camp ? camp.dates    : '',
+    camp_time:        isCamp && camp ? camp.time     : '',
+    camp_location:    isCamp && camp ? camp.location : '',
+    guardian_name:    `${guardian.firstName || ''} ${guardian.lastName || ''}`.trim() || '—',
+    guardian_email:   guardian.email || '—',
+    guardian_phone:   guardian.phone || '—',
+    num_children:     children.length,
+    children_summary: childrenSummary,
+    total_paid:       `$${totalAmount.toLocaleString()}.00`
+  };
+
+  fetch(ZAPIER_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+    .then(() => console.info('[TFT] Booking logged to Zapier.'))
+    .catch(err => console.warn('[TFT] Zapier log error:', err));
+
+  _zapierSent = true;
+}
+
+window.sendBookingEmails   = sendBookingEmails;
+window.logBookingToZapier  = logBookingToZapier;
