@@ -111,6 +111,7 @@ function logBookingToZapier(state) {
 
   fetch(ZAPIER_WEBHOOK_URL, {
     method: 'POST',
+    mode: 'no-cors',
     body: new URLSearchParams(payload)
   })
     .then(() => console.info('[TFT] Booking logged to Zapier.'))
