@@ -35,8 +35,9 @@ function renderPage() {
       break;
 
     case '#/book-camp':
-      campStep = 1; // reset to step 1 on fresh visit
-      if (window._lastRoute !== '#/book-camp') {
+      // Only reset if arriving fresh (not returning from payment to edit)
+      if (window._lastRoute !== '#/book-camp' && window._lastRoute !== '#/payment') {
+        campStep = 1;
         window.AppState.selectedCamp = null;
         window.AppState.children = [];
       }
@@ -44,8 +45,9 @@ function renderPage() {
       break;
 
     case '#/book-evaluation':
-      evalStep = 1;
-      if (window._lastRoute !== '#/book-evaluation') {
+      // Only reset if arriving fresh (not returning from payment to edit)
+      if (window._lastRoute !== '#/book-evaluation' && window._lastRoute !== '#/payment') {
+        evalStep = 1;
         window.AppState.children = [];
       }
       contentEl.innerHTML = renderBookEvaluation();

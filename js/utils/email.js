@@ -81,13 +81,13 @@ function logBookingToZapier(state) {
     ? (camp.price * children.length)
     : (149 * children.length);
 
-  // One readable line per child — eval gets full detail, camp gets name + age
+  // One readable line per child — includes concerns for both camp and eval
   const childrenSummary = children.map((c, i) => {
     let line = `Child ${i + 1}: ${c.firstName || '—'}, age ${c.age || '—'}`;
+    if (c.reason) line += ` | Concerns: ${c.reason}`;
     if (!isCamp) {
       line += ` | Language: ${c.language || 'english'}`;
-      line += ` | Concerns: ${c.reason || '—'}`;
-      line += ` | Prior therapy: ${c.priorTherapy || 'no'}`;
+      line += ` | Prior therapy: ${c.priorTherapy || '—'}`;
       if (c.notes) line += ` | Notes: ${c.notes}`;
     }
     return line;
