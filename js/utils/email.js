@@ -111,8 +111,7 @@ function logBookingToZapier(state) {
 
   fetch(ZAPIER_WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+    body: new URLSearchParams(payload)
   })
     .then(() => console.info('[TFT] Booking logged to Zapier.'))
     .catch(err => console.warn('[TFT] Zapier log error:', err));
