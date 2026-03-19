@@ -6,9 +6,9 @@
 // =====================================================
 
 // --- EmailJS — customer confirmation email ---
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';        // EmailJS > Account > General > Public Key
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';        // EmailJS > Email Services > Service ID
-const TEMPLATE_CUSTOMER  = 'YOUR_CUSTOMER_TEMPLATE'; // EmailJS > Email Templates > Template ID
+const EMAILJS_PUBLIC_KEY = 'muew2ffrIQXKrYByd';
+const EMAILJS_SERVICE_ID = 'service_zw47q51';
+const TEMPLATE_CUSTOMER  = 'template_a0azha7';
 
 // --- Zapier — booking log to Google Sheets ---
 const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/26882497/up5tq8t/';
