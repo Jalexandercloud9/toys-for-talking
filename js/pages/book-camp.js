@@ -267,13 +267,34 @@ function renderCampSelector() {
           ${campCards}
         </div>
 
+        <!-- Acknowledgements -->
+        <div class="card" style="margin-top:1.5rem;background:var(--bg);">
+          <div style="font-weight:700;margin-bottom:0.75rem;">
+            Please acknowledge the following statements <span style="color:var(--error);">*</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
+              <input type="checkbox" id="ack1" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="updateAckState()">
+              I understand that a caregiver must remain present and actively participate with their child during each session.
+            </label>
+            <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
+              <input type="checkbox" id="ack2" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="updateAckState()">
+              I understand that this program provides parent coaching and early communication enrichment and does not replace individualized speech therapy services.
+            </label>
+            <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
+              <input type="checkbox" id="ack3" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="updateAckState()">
+              I have read and agree to the <a href="#/refund-policy" target="_blank" style="color:var(--primary);text-decoration:underline;">Payment &amp; Refund Policy</a>.
+            </label>
+          </div>
+        </div>
+
         <div id="camp-select-error" class="alert alert-error" style="display:none;margin-top:1rem;"></div>
 
         <div style="display:flex;justify-content:space-between;margin-top:1.5rem;">
           <button class="btn btn-ghost" onclick="campGoBack()">
             <i class="bi bi-arrow-left"></i> Back
           </button>
-          <button class="btn btn-blue camp-desktop-proceed" onclick="proceedToPayment('camp')" ${!selected ? 'disabled' : ''}>
+          <button id="camp-proceed-btn" class="btn btn-blue camp-desktop-proceed" onclick="proceedToPayment('camp')" disabled>
             Proceed to Payment <i class="bi bi-arrow-right"></i>
           </button>
         </div>
@@ -297,7 +318,7 @@ function renderCampSelector() {
         <span class="shelf-label">${selected ? selected.name : 'No camp selected'}</span>
         <span class="shelf-amount">${selected ? `$${total}` : '—'}</span>
       </div>
-      <button class="btn btn-blue" onclick="proceedToPayment('camp')" ${!selected ? 'disabled' : ''}>
+      <button id="camp-shelf-btn" class="btn btn-blue" onclick="proceedToPayment('camp')" disabled>
         ${selected ? `Pay $${total}` : 'Select a camp'} <i class="bi bi-arrow-right"></i>
       </button>
     </div>
@@ -402,7 +423,28 @@ function refreshCampRoot() {
   root.innerHTML = renderCampStep(campStep);
 }
 
+function updateAckState() {
+  const a1 = document.getElementById('ack1');
+  const a2 = document.getElementById('ack2');
+  const a3 = document.getElementById('ack3');
+  const btn = document.getElementById('camp-proceed-btn');
+  const shelf = document.getElementById('camp-shelf-btn');
+  const allChecked = a1 && a2 && a3 && a1.checked && a2.checked && a3.checked;
+  if (btn)   btn.disabled   = !allChecked;
+  if (shelf) shelf.disabled = !allChecked;
+}
+
 function proceedToPayment(bookingType) {
+  if (bookingType === 'camp') {
+    const a1 = document.getElementById('ack1');
+    const a2 = document.getElementById('ack2');
+    const a3 = document.getElementById('ack3');
+    if (!a1?.checked || !a2?.checked || !a3?.checked) {
+      const err = document.getElementById('camp-select-error');
+      if (err) { err.textContent = 'Please acknowledge all statements before proceeding.'; err.style.display = 'flex'; }
+      return;
+    }
+  }
   window.AppState.bookingType = bookingType;
   window.location.hash = '#/payment';
 }
