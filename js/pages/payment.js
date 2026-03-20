@@ -23,6 +23,18 @@ function renderPayment() {
   const totalPrice = isCamp ? campPrice : evalPrice;
   const guardian  = state.guardian || {};
 
+  // Pre-build the Stripe URL and save state NOW so the Pay button
+  // can be a plain <a href> — most reliable cross-browser navigation
+  if (!state.confirmationId) {
+    state.confirmationId = 'TFT-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+  }
+  state.paymentConfirmed = false; // true only after Stripe returns
+  let stripeUrl = isCamp && state.selectedCamp && state.selectedCamp.stripeLink
+    ? state.selectedCamp.stripeLink
+    : window.EVAL_STRIPE_LINK;
+  if (numKids > 1) stripeUrl += '?prefilled_quantity=' + numKids;
+  try { localStorage.setItem('tft_booking', JSON.stringify(state)); } catch(e) {}
+
   const priorTherapyLabel = v =>
     v === 'no'          ? 'No prior therapy'           :
     v === 'yes-current' ? 'Currently in therapy'       :
@@ -151,9 +163,9 @@ function renderPayment() {
               : 'After payment, Jasmine will call you to confirm your evaluation time and location in the DFW area.'}
           </p>
 
-          <button class="btn btn-blue btn-lg" style="width:100%;justify-content:center;" onclick="proceedToStripe()">
+          <a href="${stripeUrl}" class="btn btn-blue btn-lg" style="width:100%;justify-content:center;text-decoration:none;">
             <i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} with Stripe
-          </button>
+          </a>
 
           <div class="secure-badge" style="margin-top:1rem;">
             <i class="bi bi-shield-check"></i> Secured by <strong style="margin-left:4px;">Stripe</strong>
@@ -195,9 +207,9 @@ function renderPayment() {
         <span class="shelf-label">Total</span>
         <span class="shelf-amount">$${totalPrice.toLocaleString()}</span>
       </div>
-      <button class="btn btn-blue btn-lg" onclick="proceedToStripe()">
+      <a href="${stripeUrl}" class="btn btn-blue btn-lg" style="text-decoration:none;">
         <i class="bi bi-lock"></i> Pay with Stripe
-      </button>
+      </a>
     </div>
   `;
 }
@@ -230,30 +242,6 @@ function editCamp() {
   navigate('#/book-camp');
 }
 
-// -----------------------------------------------
-// Stripe redirect
-// -----------------------------------------------
-function proceedToStripe() {
-  const state   = window.AppState;
-  const isCamp  = state.bookingType === 'camp';
-  const numKids = state.children.length;
-
-  state.confirmationId  = 'TFT-' + Math.random().toString(36).substr(2, 8).toUpperCase();
-  state.paymentConfirmed = true;
-
-  // Save state before leaving — wrapped in try/catch for Safari private mode
-  try { localStorage.setItem('tft_booking', JSON.stringify(state)); } catch(e) {}
-
-  let stripeUrl = isCamp && state.selectedCamp && state.selectedCamp.stripeLink
-    ? state.selectedCamp.stripeLink
-    : window.EVAL_STRIPE_LINK;
-
-  if (numKids > 1) stripeUrl += '?prefilled_quantity=' + numKids;
-
-  // Navigate immediately — must stay within the user gesture context
-  // (setTimeout would break the gesture chain and get blocked by browsers)
-  window.location.href = stripeUrl;
-}
-
-// Legacy stub
+// Legacy stubs (navigation now handled by <a href> in renderPayment)
+function proceedToStripe() {}
 function initStripe() {}
