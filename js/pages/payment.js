@@ -74,13 +74,13 @@ function renderPayment() {
                 ${c.reason ? `
                   <div class="summary-row" style="align-items:flex-start;">
                     <span class="summary-label">Concerns</span>
-                    <span class="summary-value" style="text-align:right;max-width:65%;">${c.reason}</span>
+                    <span class="summary-value">${c.reason}</span>
                   </div>` : ''}
                 ${isEval && c.priorTherapy ? `<div class="summary-row"><span class="summary-label">Prior therapy</span><span class="summary-value">${priorTherapyLabel(c.priorTherapy)}</span></div>` : ''}
                 ${isEval && c.notes ? `
                   <div class="summary-row" style="align-items:flex-start;">
                     <span class="summary-label">Notes</span>
-                    <span class="summary-value" style="text-align:right;max-width:65%;">${c.notes}</span>
+                    <span class="summary-value">${c.notes}</span>
                   </div>` : ''}
               </div>
             `).join('')}
