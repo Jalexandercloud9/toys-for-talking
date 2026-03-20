@@ -129,6 +129,7 @@ function logBookingToZapier(state) {
     guardian_name:    `${guardian.firstName || ''} ${guardian.lastName || ''}`.trim() || '—',
     guardian_email:   guardian.email || '—',
     guardian_phone:   guardian.phone || '—',
+    guardian_address: [guardian.address, guardian.city, guardian.state, guardian.zip].filter(Boolean).join(', ') || '—',
     num_children:     children.length,
     children_summary: childrenSummary,
     child_concerns:   childConcerns,
