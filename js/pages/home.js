@@ -231,9 +231,6 @@ function renderHome() {
           })()}
 
         </div>
-        <div class="text-center mt-4">
-          <a href="#/book-camp" class="btn btn-blue btn-lg">View All Camps &amp; Register</a>
-        </div>
       </div>
     </section>
 
