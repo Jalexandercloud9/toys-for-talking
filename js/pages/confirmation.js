@@ -21,14 +21,25 @@ function renderConfirmation() {
   const guardian = state.guardian || {};
 
   // Build event details for calendar
-  let eventTitle, eventDescription, eventStartDate, eventEndDate, eventLocation;
+  let eventTitle, eventDescription, eventStartDate, eventEndDate, eventLocation, eventRrule = null, eventIsAllDay = true;
 
   if (isCamp && camp) {
-    eventTitle = `Toys for Talking: ${camp.name}`;
-    eventDescription = `${camp.name} camp registration for ${children.map(c => c.firstName).join(', ')}.\\n\\nLocation: ${camp.location}\\nTime: ${camp.time}\\n\\nQuestions? Contact toysfortalking@gmail.com or (214) 395-0109`;
-    eventStartDate = camp.startDate;
-    eventEndDate = camp.endDate;
-    eventLocation = camp.location;
+    const isVirtualCamp = camp.id.includes('virtual');
+    eventTitle       = `Toys for Talking: ${camp.name}`;
+    eventDescription = `${camp.name} for ${children.map(c => c.firstName).join(', ')}.\\n\\nLocation: ${camp.location}\\nTime: ${camp.time}\\n\\nQuestions? toysfortalking@gmail.com or (214) 395-0109`;
+    eventLocation    = camp.location;
+
+    if (!isVirtualCamp) {
+      // Timed recurring: 4:00–5:30 PM CDT (UTC-5) each Sunday × 4
+      eventStartDate = camp.startDate + 'T21:00:00Z'; // 4:00 PM CDT
+      eventEndDate   = camp.startDate + 'T22:30:00Z'; // 5:30 PM CDT
+      eventRrule     = 'RRULE:FREQ=WEEKLY;COUNT=4';
+      eventIsAllDay  = false;
+    } else {
+      eventStartDate = camp.startDate;
+      eventEndDate   = camp.endDate;
+      eventIsAllDay  = true;
+    }
   }
 
   return `
@@ -111,7 +122,7 @@ function renderConfirmation() {
       <p class="text-muted text-sm" style="margin-bottom:1rem;">Don't miss it — add the camp dates to your calendar now.</p>
 
       <div class="calendar-buttons">
-        <a class="cal-btn google" href="${buildGoogleCalendarUrl(eventTitle, eventDescription, eventStartDate, eventEndDate, eventLocation, true)}" target="_blank" rel="noopener">
+        <a class="cal-btn google" href="${buildGoogleCalendarUrl(eventTitle, eventDescription, eventStartDate, eventEndDate, eventLocation, eventIsAllDay, eventRrule)}" target="_blank" rel="noopener">
           <span class="cal-icon">
             <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M34 10H14C11.8 10 10 11.8 10 14V34C10 36.2 11.8 38 14 38H34C36.2 38 38 36.2 38 34V14C38 11.8 36.2 10 34 10Z" fill="#4285F4"/>
@@ -121,12 +132,12 @@ function renderConfirmation() {
           Add to Google Calendar
         </a>
 
-        <button class="cal-btn apple" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${eventStartDate}', '${eventEndDate}', '${eventLocation}', true)">
+        <button class="cal-btn apple" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${eventStartDate}', '${eventEndDate}', '${eventLocation}', ${eventIsAllDay}, ${JSON.stringify(eventRrule)})">
           <span class="cal-icon"><i class="bi bi-apple"></i></span>
           Add to Apple Calendar (iCal)
         </button>
 
-        <button class="cal-btn outlook" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${eventStartDate}', '${eventEndDate}', '${eventLocation}', true)">
+        <button class="cal-btn outlook" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${eventStartDate}', '${eventEndDate}', '${eventLocation}', ${eventIsAllDay}, ${JSON.stringify(eventRrule)})">
           <span class="cal-icon"><i class="bi bi-envelope"></i></span>
           Add to Outlook Calendar
         </button>
@@ -156,23 +167,18 @@ function renderConfirmation() {
 
 /* ===== CALENDAR HELPERS ===== */
 
-function buildGoogleCalendarUrl(title, description, startDate, endDate, location, isMultiDay) {
+function buildGoogleCalendarUrl(title, description, startDate, endDate, location, isAllDay, rrule) {
   let startStr, endStr;
 
-  if (isMultiDay) {
-    // All-day event format: YYYYMMDD
+  if (isAllDay) {
     startStr = startDate.replace(/-/g, '');
     const endD = new Date(endDate + 'T00:00:00');
     endD.setDate(endD.getDate() + 1); // Google uses exclusive end date
     endStr = endD.toISOString().split('T')[0].replace(/-/g, '');
-  } else if (startDate && startDate.includes('T')) {
-    // DateTime event
-    startStr = startDate.replace(/[-:]/g, '').replace('.000', '');
-    const endD = new Date(endDate);
-    endStr = endD.toISOString().replace(/[-:]/g, '').replace('.000', '');
   } else {
-    startStr = (startDate || '').replace(/-/g, '');
-    endStr = startStr;
+    // Timed event — startDate is already ISO UTC e.g. '2026-06-07T21:00:00Z'
+    startStr = startDate.replace(/[-:]/g, '').replace('.000', '');
+    endStr   = endDate.replace(/[-:]/g, '').replace('.000', '');
   }
 
   const params = new URLSearchParams({
@@ -183,6 +189,8 @@ function buildGoogleCalendarUrl(title, description, startDate, endDate, location
     dates: `${startStr}/${endStr}`
   });
 
+  if (rrule) params.append('recur', rrule);
+
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
@@ -190,27 +198,39 @@ function formatIcsDate(date) {
   return date.toISOString().replace(/[-:]/g, '').replace('.000', '');
 }
 
-function downloadIcs(title, description, startDate, endDate, location, isMultiDay) {
+function downloadIcs(title, description, startDate, endDate, location, isAllDay, rrule) {
   let dtStart, dtEnd;
 
-  if (isMultiDay) {
+  if (isAllDay) {
     dtStart = `DTSTART;VALUE=DATE:${startDate.replace(/-/g, '')}`;
     const endD = new Date(endDate + 'T00:00:00');
     endD.setDate(endD.getDate() + 1);
     dtEnd = `DTEND;VALUE=DATE:${endD.toISOString().split('T')[0].replace(/-/g, '')}`;
-  } else if (startDate && startDate.includes('T')) {
-    const cleanStart = startDate.replace(/[-:.]/g, '').replace('000Z', 'Z').substring(0, 15) + 'Z';
-    const cleanEnd = endDate.replace(/[-:.]/g, '').replace('000Z', 'Z').substring(0, 15) + 'Z';
-    dtStart = `DTSTART:${cleanStart}`;
-    dtEnd = `DTEND:${cleanEnd}`;
   } else {
-    dtStart = `DTSTART;VALUE=DATE:${(startDate || '').replace(/-/g, '')}`;
-    dtEnd = `DTEND;VALUE=DATE:${(startDate || '').replace(/-/g, '')}`;
+    // Timed UTC event — e.g. '2026-06-07T21:00:00Z'
+    const cleanStart = startDate.replace(/[-:]/g, '').replace('.000', '');
+    const cleanEnd   = endDate.replace(/[-:]/g, '').replace('.000', '');
+    dtStart = `DTSTART:${cleanStart}`;
+    dtEnd   = `DTEND:${cleanEnd}`;
   }
 
   const uid = `${Date.now()}@toysfortalking.com`;
   const now = new Date().toISOString().replace(/[-:.]/g, '').substring(0, 15) + 'Z';
   const cleanDesc = (description || '').replace(/\\n/g, '\\n');
+
+  const eventLines = [
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${now}`,
+    dtStart,
+    dtEnd,
+    ...(rrule ? [rrule] : []),
+    `SUMMARY:${title}`,
+    `DESCRIPTION:${cleanDesc}`,
+    `LOCATION:${location}`,
+    'STATUS:CONFIRMED',
+    'END:VEVENT'
+  ];
 
   const icsContent = [
     'BEGIN:VCALENDAR',
@@ -218,16 +238,7 @@ function downloadIcs(title, description, startDate, endDate, location, isMultiDa
     'PRODID:-//Toys for Talking//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    `UID:${uid}`,
-    `DTSTAMP:${now}`,
-    dtStart,
-    dtEnd,
-    `SUMMARY:${title}`,
-    `DESCRIPTION:${cleanDesc}`,
-    `LOCATION:${location}`,
-    'STATUS:CONFIRMED',
-    'END:VEVENT',
+    ...eventLines,
     'END:VCALENDAR'
   ].join('\r\n');
 
