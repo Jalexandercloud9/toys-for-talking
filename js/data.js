@@ -8,7 +8,7 @@ const CAMPS = [
     stripeLink: 'https://buy.stripe.com/test_6oU9AU0Hm3Qa8g630GgA806',
     name: 'Little Lamps Speech Camp',
     subtitle: 'June Cohort · In-Person · Ages 0–4',
-    description: 'A small-group, play-based speech camp held in-person in the Dallas area. Children ages 0–4 build communication skills through guided play each Sunday. Sessions are split into two intimate 35-minute groups.',
+    description: 'A 4-week play-based early communication enrichment program where caregivers learn and practice evidence-informed strategies alongside their toddler in a guided, interactive setting.',
     dates: 'June 7 – June 28, 2026',
     startDate: '2026-06-07',
     endDate: '2026-06-28',
@@ -20,10 +20,19 @@ const CAMPS = [
     icon: 'bi-sun',
     tags: ['Ages 0–4', 'In-Person', 'June Cohort'],
     highlights: [
-      'Sundays, June 7 – June 28',
-      'Two 35-minute small-group sessions per meeting',
-      'Play-based strategies you can use at home',
-      'Meet-up location confirmed post-registration'
+      '4 in-person 35-minute small group sessions',
+      'Guided play with real-time parent coaching',
+      'Weekly instructional video access',
+      '4 live group Q&A sessions with a licensed SLP',
+      'Structured, supportive group environment',
+      'Small group size — limited to 8 families per session'
+    ],
+    notIncluded: [
+      'Individualized speech therapy',
+      'Written treatment plans or progress reports',
+      'One-on-one clinical services',
+      'Make-up sessions for missed classes',
+      'Child drop-off participation'
     ]
   },
   {
@@ -31,7 +40,7 @@ const CAMPS = [
     stripeLink: 'https://buy.stripe.com/test_eVq9AUgGkeuO8g69p4gA805',
     name: 'Little Lamps Speech Camp',
     subtitle: 'July Cohort · In-Person · Ages 0–4',
-    description: 'A small-group, play-based speech camp held in-person in the Dallas area. Children ages 0–4 build communication skills through guided play each Sunday. Sessions are split into two intimate 35-minute groups.',
+    description: 'A 4-week play-based early communication enrichment program where caregivers learn and practice evidence-informed strategies alongside their toddler in a guided, interactive setting.',
     dates: 'July 12 – August 2, 2026',
     startDate: '2026-07-12',
     endDate: '2026-08-02',
@@ -43,18 +52,27 @@ const CAMPS = [
     icon: 'bi-sun',
     tags: ['Ages 0–4', 'In-Person', 'July Cohort'],
     highlights: [
-      'Sundays, July 12 – August 2',
-      'Two 35-minute small-group sessions per meeting',
-      'Play-based strategies you can use at home',
-      'Meet-up location confirmed post-registration'
+      '4 in-person 35-minute small group sessions',
+      'Guided play with real-time parent coaching',
+      'Weekly instructional video access',
+      '4 live group Q&A sessions with a licensed SLP',
+      'Structured, supportive group environment',
+      'Small group size — limited to 8 families per session'
+    ],
+    notIncluded: [
+      'Individualized speech therapy',
+      'Written treatment plans or progress reports',
+      'One-on-one clinical services',
+      'Make-up sessions for missed classes',
+      'Child drop-off participation'
     ]
   },
   {
     id: 'llsc-june-virtual',
     stripeLink: 'https://buy.stripe.com/test_8x29AUeycbiC0NE44KgA804',
-    name: 'Virtual Little Lamps Speech Camp',
+    name: 'Virtual Parent Coaching',
     subtitle: 'June Cohort · Virtual · Ages 0–4',
-    description: 'The same guided, play-based Little Lamps experience — available to families anywhere. Session time will be determined based on what works best for all virtual attendees.',
+    description: 'A structured 4-week parent education experience designed to help caregivers confidently support early communication at home.',
     dates: 'June 7 – June 28, 2026',
     startDate: '2026-06-07',
     endDate: '2026-06-28',
@@ -66,18 +84,23 @@ const CAMPS = [
     icon: 'bi-laptop',
     tags: ['Ages 0–4', 'Virtual', 'June Cohort'],
     highlights: [
-      'Sundays, June 7 – June 28',
-      'Time coordinated with all virtual attendees',
-      'Join from anywhere — no travel required',
-      'Zoom link sent after registration'
+      '4 weekly instructional videos',
+      '4 live group Q&A sessions with a licensed SLP',
+      'Downloadable weekly strategy guides',
+      '1 year access to recordings'
+    ],
+    notIncluded: [
+      'Individualized feedback',
+      'Direct therapy',
+      'One-on-one sessions'
     ]
   },
   {
     id: 'llsc-july-virtual',
     stripeLink: 'https://buy.stripe.com/test_4gMaEYeyc5Yi67YeJogA803',
-    name: 'Virtual Little Lamps Speech Camp',
+    name: 'Virtual Parent Coaching',
     subtitle: 'July Cohort · Virtual · Ages 0–4',
-    description: 'The same guided, play-based Little Lamps experience — available to families anywhere. Session time will be determined based on what works best for all virtual attendees.',
+    description: 'A structured 4-week parent education experience designed to help caregivers confidently support early communication at home.',
     dates: 'July 12 – August 2, 2026',
     startDate: '2026-07-12',
     endDate: '2026-08-02',
@@ -89,10 +112,15 @@ const CAMPS = [
     icon: 'bi-laptop',
     tags: ['Ages 0–4', 'Virtual', 'July Cohort'],
     highlights: [
-      'Sundays, July 12 – August 2',
-      'Time coordinated with all virtual attendees',
-      'Join from anywhere — no travel required',
-      'Zoom link sent after registration'
+      '4 weekly instructional videos',
+      '4 live group Q&A sessions with a licensed SLP',
+      'Downloadable weekly strategy guides',
+      '1 year access to recordings'
+    ],
+    notIncluded: [
+      'Individualized feedback',
+      'Direct therapy',
+      'One-on-one sessions'
     ]
   }
 ];

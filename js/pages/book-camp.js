@@ -215,14 +215,24 @@ function renderCampSelector() {
           <div class="tag-strip" style="margin-bottom:0.75rem;">
             ${camp.tags.map(t => `<span class="badge badge-blue">${t}</span>`).join('')}
           </div>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;">
+          <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Includes</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.75rem;">
             ${camp.highlights.map(h => `
               <li style="font-size:0.8rem;color:var(--text-light);display:flex;gap:0.4rem;align-items:flex-start;">
                 <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;margin-top:2px;"></i> ${h}
               </li>
             `).join('')}
           </ul>
-          <div style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">
+          ${camp.notIncluded && camp.notIncluded.length ? `
+          <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Does not include</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.75rem;">
+            ${camp.notIncluded.map(h => `
+              <li style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.4rem;align-items:flex-start;">
+                <i class="bi bi-x" style="color:#e57373;flex-shrink:0;margin-top:2px;"></i> ${h}
+              </li>
+            `).join('')}
+          </ul>` : ''}
+          <div style="font-size:0.8rem;color:var(--text-muted);">
             <i class="bi bi-geo-alt"></i> ${camp.location}
           </div>
         </div>
