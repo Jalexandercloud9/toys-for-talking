@@ -679,9 +679,8 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
   display: grid;
   grid-template-columns: 1fr 280px;
   gap: 1.5rem;
-  align-items: start;
 }
-.camp-summary-sidebar .order-summary-card { position: sticky; top: 90px; }
+.camp-summary-sidebar { align-self: start; position: sticky; top: 90px; }
 
 /* Mobile: hide sidebar, show sticky bottom shelf */
 .camp-shelf { display: none; }
