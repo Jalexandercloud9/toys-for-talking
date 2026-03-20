@@ -140,7 +140,7 @@ function renderConfirmation() {
           <strong>What happens next?</strong><br>
           ${isCamp
             ? 'Jasmine will send a welcome packet and preparation guide within 2 business days. Feel free to reach out with any questions!'
-            : `<span style="font-size:1rem;">📞</span> Thank you for your registration. Jasmine will contact you shortly at <strong>318-828-9192</strong> to confirm the location and time for your child's evaluation in the DFW area. Please bring any notes or relevant information about your child's speech and language history to your appointment.`}
+            : `<span style="font-size:1rem;">📞</span> Thank you for your registration. Jasmine will contact you shortly at <strong>${guardian.phone || 'the number you provided'}</strong> to confirm the location and time for your child's evaluation in the DFW area. Please bring any notes or relevant information about your child's speech and language history to your appointment.`}
         </div>
       </div>
 

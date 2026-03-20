@@ -49,7 +49,7 @@ function renderEvalChildrenForm() {
 
       <div class="alert alert-info" style="font-size:0.875rem;margin-top:1.25rem;">
         <i class="bi bi-telephone"></i>
-        <span>After you register, Jasmine will give you a call at <strong>214-395-0109</strong> to confirm the details for your child's evaluation in the DFW area.</span>
+        <span>After you register, Jasmine will give you a call at <strong>${phone}</strong> to confirm the details for your child's evaluation in the DFW area.</span>
       </div>
 
       <div id="eval-child-error" class="alert alert-error" style="display:none;margin-top:1rem;"></div>
