@@ -117,43 +117,119 @@ function renderHome() {
     <section class="section" style="background:var(--bg);">
       <div class="container">
         <h2 class="section-title">Little Lamps Speech Camp 2026</h2>
-        <p class="section-subtitle">Play-based Sunday camps for children ages 0–4. In-person (Dallas) and virtual options available.</p>
+        <p class="section-subtitle">Play-based Sunday programs for children ages 0–4. Choose in-person or virtual — two cohorts available for each.</p>
         <div class="grid-2">
-          ${window.CAMPS.map(camp => `
-            <div class="card camp-card" style="cursor:default;" onclick="navigate('#/book-camp')">
-              <div class="card-icon"><i class="bi ${camp.icon}"></i></div>
-              <h3>${camp.name}</h3>
-              <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem;">${camp.subtitle}</p>
-              <p style="font-size:0.875rem;margin-bottom:0.75rem;">${camp.description}</p>
-              <span class="camp-dates"><i class="bi bi-calendar3"></i> ${camp.dates}</span>
-              <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.35rem;">
-                <i class="bi bi-clock"></i> ${camp.time}
+
+          <!-- IN-PERSON CARD -->
+          ${(() => {
+            const camp = window.CAMPS.find(c => c.id === 'llsc-june-inperson');
+            return `
+            <div class="card camp-card" style="display:flex;flex-direction:column;">
+              <div>
+                <div class="card-icon"><i class="bi ${camp.icon}"></i></div>
+                <h3>${camp.name}</h3>
+                <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem;">In-Person · Ages 0–4 · Dallas, TX</p>
+                <p style="font-size:0.875rem;margin-bottom:0.75rem;">${camp.description}</p>
+
+                <!-- Cohort dates -->
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.5rem;">Two Cohorts Available</div>
+                <div style="display:flex;flex-direction:column;gap:0.4rem;margin-bottom:0.75rem;">
+                  <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;">
+                    <span class="badge badge-blue" style="flex-shrink:0;">June</span>
+                    <span style="color:var(--text-light);">June 7 – June 28 &nbsp;·&nbsp; Sundays 4:00 PM or 4:45 PM</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;">
+                    <span class="badge badge-blue" style="flex-shrink:0;">July</span>
+                    <span style="color:var(--text-light);">July 12 – Aug 2 &nbsp;·&nbsp; Sundays 4:00 PM or 4:45 PM</span>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Includes</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
+                  ${camp.highlights.map(h => `
+                    <li style="font-size:0.8rem;color:var(--text-light);display:flex;gap:0.4rem;align-items:flex-start;">
+                      <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;margin-top:2px;"></i> ${h}
+                    </li>
+                  `).join('')}
+                </ul>
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Does not include</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
+                  ${camp.notIncluded.map(h => `
+                    <li style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.4rem;align-items:flex-start;">
+                      <i class="bi bi-x" style="color:#e57373;flex-shrink:0;margin-top:2px;"></i> ${h}
+                    </li>
+                  `).join('')}
+                </ul>
               </div>
-              <div class="divider"></div>
-              <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Includes</div>
-              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
-                ${camp.highlights.map(h => `
-                  <li style="font-size:0.8rem;color:var(--text-light);display:flex;gap:0.4rem;align-items:flex-start;">
-                    <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;margin-top:2px;"></i> ${h}
-                  </li>
-                `).join('')}
-              </ul>
-              ${camp.notIncluded && camp.notIncluded.length ? `
-              <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Does not include</div>
-              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
-                ${camp.notIncluded.map(h => `
-                  <li style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.4rem;align-items:flex-start;">
-                    <i class="bi bi-x" style="color:#e57373;flex-shrink:0;margin-top:2px;"></i> ${h}
-                  </li>
-                `).join('')}
-              </ul>` : ''}
-              <div class="divider"></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span class="camp-price">$${camp.price}</span>
-                <span style="font-size:0.8rem;color:var(--text-muted);">per child</span>
+              <div style="margin-top:auto;">
+                <div class="divider"></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+                  <span class="camp-price">$${camp.price}</span>
+                  <span style="font-size:0.8rem;color:var(--text-muted);">per child</span>
+                </div>
+                <a href="#/book-camp" class="btn btn-blue" style="width:100%;justify-content:center;" onclick="navigate('#/book-camp');return false;">
+                  Register Now <i class="bi bi-arrow-right"></i>
+                </a>
               </div>
-            </div>
-          `).join('')}
+            </div>`;
+          })()}
+
+          <!-- VIRTUAL CARD -->
+          ${(() => {
+            const camp = window.CAMPS.find(c => c.id === 'llsc-june-virtual');
+            return `
+            <div class="card camp-card" style="display:flex;flex-direction:column;">
+              <div>
+                <div class="card-icon"><i class="bi ${camp.icon}"></i></div>
+                <h3>${camp.name}</h3>
+                <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem;">Virtual · Ages 0–4 · Anywhere</p>
+                <p style="font-size:0.875rem;margin-bottom:0.75rem;">${camp.description}</p>
+
+                <!-- Cohort dates -->
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.5rem;">Two Cohorts Available</div>
+                <div style="display:flex;flex-direction:column;gap:0.4rem;margin-bottom:0.75rem;">
+                  <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;">
+                    <span class="badge badge-blue" style="flex-shrink:0;">June</span>
+                    <span style="color:var(--text-light);">June 7 – June 28 &nbsp;·&nbsp; Time scheduled with group</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;">
+                    <span class="badge badge-blue" style="flex-shrink:0;">July</span>
+                    <span style="color:var(--text-light);">July 12 – Aug 2 &nbsp;·&nbsp; Time scheduled with group</span>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Includes</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
+                  ${camp.highlights.map(h => `
+                    <li style="font-size:0.8rem;color:var(--text-light);display:flex;gap:0.4rem;align-items:flex-start;">
+                      <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;margin-top:2px;"></i> ${h}
+                    </li>
+                  `).join('')}
+                </ul>
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Does not include</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
+                  ${camp.notIncluded.map(h => `
+                    <li style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.4rem;align-items:flex-start;">
+                      <i class="bi bi-x" style="color:#e57373;flex-shrink:0;margin-top:2px;"></i> ${h}
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+              <div style="margin-top:auto;">
+                <div class="divider"></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+                  <span class="camp-price">$${camp.price}</span>
+                  <span style="font-size:0.8rem;color:var(--text-muted);">per child</span>
+                </div>
+                <a href="#/book-camp" class="btn btn-blue" style="width:100%;justify-content:center;" onclick="navigate('#/book-camp');return false;">
+                  Register Now <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>`;
+          })()}
+
         </div>
         <div class="text-center mt-4">
           <a href="#/book-camp" class="btn btn-blue btn-lg">View All Camps &amp; Register</a>
