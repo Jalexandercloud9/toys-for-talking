@@ -216,7 +216,8 @@ function renderCampSelector() {
             ${camp.tags.map(t => `<span class="badge badge-blue">${t}</span>`).join('')}
           </div>
           <div style="font-size:0.8rem;color:var(--text-muted);">
-            <i class="bi bi-geo-alt"></i> ${camp.location}
+            <i class="bi bi-geo-alt"></i>
+            ${camp.id.includes('virtual') ? camp.location : 'Location provided after payment'}
           </div>
         </div>
       </div>

@@ -98,7 +98,7 @@ function renderPayment() {
             <div class="summary-row"><span class="summary-label">Camp</span><span class="summary-value">${state.selectedCamp.name}</span></div>
             <div class="summary-row"><span class="summary-label">Dates</span><span class="summary-value">${state.selectedCamp.dates}</span></div>
             <div class="summary-row"><span class="summary-label">Time</span><span class="summary-value">${state.selectedCamp.time}</span></div>
-            <div class="summary-row"><span class="summary-label">Location</span><span class="summary-value">${state.selectedCamp.location}</span></div>
+            ${!state.selectedCamp.id.includes('virtual') ? '' : `<div class="summary-row"><span class="summary-label">Location</span><span class="summary-value">${state.selectedCamp.location}</span></div>`}
           </div>
           ` : ''}
 
