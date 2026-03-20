@@ -188,6 +188,17 @@ function renderPayment() {
 
       </div>
     </div>
+
+    <!-- Mobile sticky shelf -->
+    <div class="pay-shelf">
+      <div class="pay-shelf-total">
+        <span class="shelf-label">Total</span>
+        <span class="shelf-amount">$${totalPrice.toLocaleString()}</span>
+      </div>
+      <button class="btn btn-blue btn-lg" onclick="proceedToStripe()">
+        <i class="bi bi-lock"></i> Pay with Stripe
+      </button>
+    </div>
   `;
 }
 
