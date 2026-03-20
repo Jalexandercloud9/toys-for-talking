@@ -250,14 +250,9 @@ function proceedToStripe() {
 
   if (numKids > 1) stripeUrl += '?prefilled_quantity=' + numKids;
 
-  // Give buttons a loading state so users know the redirect is happening
-  document.querySelectorAll('[onclick*="proceedToStripe"]').forEach(btn => {
-    btn.disabled = true;
-    btn.innerHTML = '<i class="bi bi-arrow-repeat" style="animation:spin 1s linear infinite;"></i> Redirecting to Stripe…';
-  });
-
-  // Small delay so the loading state renders before navigation
-  setTimeout(function() { window.location.href = stripeUrl; }, 80);
+  // Navigate immediately — must stay within the user gesture context
+  // (setTimeout would break the gesture chain and get blocked by browsers)
+  window.location.href = stripeUrl;
 }
 
 // Legacy stub
