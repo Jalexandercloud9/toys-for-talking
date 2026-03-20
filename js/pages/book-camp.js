@@ -8,7 +8,7 @@ function renderBookCamp() {
       <h1>Book Little Lamps Speech Camp</h1>
       <p>Register your child (ages 0–4) for an in-person or virtual Sunday speech camp.</p>
     </div>
-    <div class="booking-container" id="camp-booking-root">
+    <div class="booking-container ${campStep === 3 ? 'booking-wide' : ''}" id="camp-booking-root">
       ${renderCampStep(campStep)}
     </div>
   `;
@@ -188,85 +188,118 @@ function renderCampSelector() {
   const selected = window.AppState.selectedCamp;
   const children = window.AppState.children;
   const numKids = children.length;
+  const total = selected ? selected.price * numKids : 0;
 
-  return `
-    <div>
-      <div class="alert alert-info" style="margin-bottom:1.5rem;">
-        <i class="bi bi-info-circle"></i>
-        Registering <strong>${numKids} child${numKids > 1 ? 'ren' : ''}</strong>:
-        ${children.map(c => `<strong>${c.firstName}</strong>`).join(', ')}
-      </div>
-
-      <div style="display:flex;flex-direction:column;gap:1.25rem;margin-bottom:1.5rem;">
-        ${window.CAMPS.map(camp => `
-          <div class="card camp-card ${selected && selected.id === camp.id ? 'selected' : ''}"
-               onclick="selectCamp('${camp.id}')">
-            <div class="selected-badge"><i class="bi bi-check2"></i> Selected</div>
-            <div style="display:flex;align-items:flex-start;gap:1.25rem;">
-              <div class="card-icon" style="flex-shrink:0;margin-bottom:0;"><i class="bi ${camp.icon}"></i></div>
-              <div style="flex:1;">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;">
-                  <div>
-                    <h3 style="margin-bottom:0.2rem;">${camp.name}</h3>
-                    <p style="font-size:0.8rem;color:var(--primary);font-weight:600;">${camp.subtitle}</p>
-                  </div>
-                  <div style="text-align:right;flex-shrink:0;">
-                    <div class="camp-price">$${camp.price}</div>
-                    <div style="font-size:0.75rem;color:var(--text-muted);">per child</div>
-                  </div>
-                </div>
-                <span class="camp-dates"><i class="bi bi-calendar3"></i> ${camp.dates}</span>
-                <span style="font-size:0.8rem;color:var(--text-muted);margin-left:0.5rem;">
-                  <i class="bi bi-clock"></i> ${camp.time}
-                </span>
-                <p style="font-size:0.875rem;margin:0.75rem 0;">${camp.description}</p>
-                <div class="tag-strip" style="margin-bottom:0.75rem;">
-                  ${camp.tags.map(t => `<span class="badge badge-blue">${t}</span>`).join('')}
-                </div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;">
-                  ${camp.highlights.map(h => `
-                    <li style="font-size:0.8rem;color:var(--text-light);display:flex;gap:0.4rem;align-items:flex-start;">
-                      <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;margin-top:2px;"></i> ${h}
-                    </li>
-                  `).join('')}
-                </ul>
-                <div style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">
-                  <i class="bi bi-geo-alt"></i> ${camp.location}
-                </div>
-              </div>
+  const campCards = window.CAMPS.map(camp => `
+    <div class="card camp-card ${selected && selected.id === camp.id ? 'selected' : ''}"
+         onclick="selectCamp('${camp.id}')">
+      <div style="display:flex;align-items:flex-start;gap:1.25rem;">
+        <div class="card-icon" style="flex-shrink:0;margin-bottom:0;"><i class="bi ${camp.icon}"></i></div>
+        <div style="flex:1;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;">
+            <div>
+              <h3 style="margin-bottom:0.2rem;">${camp.name}</h3>
+              <p style="font-size:0.8rem;color:var(--primary);font-weight:600;">${camp.subtitle}</p>
+              <div class="selected-badge"><i class="bi bi-check2"></i> Selected</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <div class="camp-price">$${camp.price}</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">per child</div>
             </div>
           </div>
-        `).join('')}
+          <span class="camp-dates"><i class="bi bi-calendar3"></i> ${camp.dates}</span>
+          <span style="font-size:0.8rem;color:var(--text-muted);margin-left:0.5rem;">
+            <i class="bi bi-clock"></i> ${camp.time}
+          </span>
+          <p style="font-size:0.875rem;margin:0.75rem 0;">${camp.description}</p>
+          <div class="tag-strip" style="margin-bottom:0.75rem;">
+            ${camp.tags.map(t => `<span class="badge badge-blue">${t}</span>`).join('')}
+          </div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.3rem;">
+            ${camp.highlights.map(h => `
+              <li style="font-size:0.8rem;color:var(--text-light);display:flex;gap:0.4rem;align-items:flex-start;">
+                <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;margin-top:2px;"></i> ${h}
+              </li>
+            `).join('')}
+          </ul>
+          <div style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">
+            <i class="bi bi-geo-alt"></i> ${camp.location}
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  const sidebarSummary = selected ? `
+    ${children.map(c => `
+      <div class="order-row">
+        <span style="color:var(--text-light);font-size:0.875rem;">${c.firstName}, age ${c.age}</span>
+        <span>$${selected.price}</span>
+      </div>
+    `).join('')}
+    <div class="order-row order-total">
+      <span>Total Due</span>
+      <span>$${total}</span>
+    </div>
+    <button class="btn btn-blue" style="width:100%;margin-top:1.25rem;justify-content:center;"
+      onclick="proceedToPayment('camp')">
+      Pay $${total} with Stripe <i class="bi bi-arrow-right"></i>
+    </button>
+  ` : `
+    <p style="color:var(--text-muted);font-size:0.875rem;text-align:center;padding:0.75rem 0;">
+      <i class="bi bi-hand-index-thumb" style="display:block;font-size:1.5rem;margin-bottom:0.5rem;"></i>
+      Select a camp to see pricing
+    </p>
+  `;
+
+  return `
+    <div class="camp-selector-layout">
+
+      <!-- LEFT: camp list -->
+      <div>
+        <div class="alert alert-info" style="margin-bottom:1.25rem;">
+          <i class="bi bi-info-circle"></i>
+          Registering <strong>${numKids} child${numKids > 1 ? 'ren' : ''}</strong>:
+          ${children.map(c => `<strong>${c.firstName}</strong>`).join(', ')}
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+          ${campCards}
+        </div>
+
+        <div id="camp-select-error" class="alert alert-error" style="display:none;margin-top:1rem;"></div>
+
+        <div style="display:flex;justify-content:space-between;margin-top:1.5rem;">
+          <button class="btn btn-ghost" onclick="campGoBack()">
+            <i class="bi bi-arrow-left"></i> Back
+          </button>
+          <button class="btn btn-blue camp-desktop-proceed" onclick="proceedToPayment('camp')" ${!selected ? 'disabled' : ''}>
+            Proceed to Payment <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
       </div>
 
-      ${selected ? `
-        <div class="card" style="background:rgba(30,77,140,0.04);border-color:var(--primary);">
-          <h4 style="margin-bottom:0.75rem;">Order Summary</h4>
-          <div class="order-row">
+      <!-- RIGHT: sticky order summary (desktop only) -->
+      <div class="camp-summary-sidebar">
+        <div class="card order-summary-card" style="border-color:${selected ? 'var(--primary)' : 'var(--border)'};">
+          <h4 style="margin-bottom:0.75rem;"><i class="bi bi-receipt" style="margin-right:0.4rem;"></i>Order Summary</h4>
+          ${selected ? `<div class="order-row" style="font-weight:600;">
             <span>${selected.name}</span>
-            <span>$${selected.price} &times; ${numKids} = <strong>$${selected.price * numKids}</strong></span>
-          </div>
-          <div class="order-row order-total">
-            <span>Total Due</span>
-            <span>$${selected.price * numKids}</span>
-          </div>
+          </div>` : ''}
+          ${sidebarSummary}
         </div>
-      ` : `
-        <div class="alert alert-info">
-          <i class="bi bi-hand-index-thumb"></i> Please select a camp above to continue.
-        </div>
-      `}
-
-      <div id="camp-select-error" class="alert alert-error" style="display:none;margin-top:1rem;"></div>
-
-      <div style="display:flex;justify-content:space-between;margin-top:1.5rem;">
-        <button class="btn btn-ghost" onclick="campGoBack()">
-          <i class="bi bi-arrow-left"></i> Back
-        </button>
-        <button class="btn btn-blue" onclick="proceedToPayment('camp')" ${!selected ? 'disabled' : ''}>
-          Proceed to Payment <i class="bi bi-arrow-right"></i>
-        </button>
       </div>
+    </div>
+
+    <!-- MOBILE: sticky bottom shelf -->
+    <div class="camp-shelf">
+      <div class="pay-shelf-total">
+        <span class="shelf-label">${selected ? selected.name : 'No camp selected'}</span>
+        <span class="shelf-amount">${selected ? `$${total}` : '—'}</span>
+      </div>
+      <button class="btn btn-blue" onclick="proceedToPayment('camp')" ${!selected ? 'disabled' : ''}>
+        ${selected ? `Pay $${total}` : 'Select a camp'} <i class="bi bi-arrow-right"></i>
+      </button>
     </div>
   `;
 }
@@ -364,7 +397,9 @@ function campGoBack() {
 }
 
 function refreshCampRoot() {
-  document.getElementById('camp-booking-root').innerHTML = renderCampStep(campStep);
+  const root = document.getElementById('camp-booking-root');
+  root.classList.toggle('booking-wide', campStep === 3);
+  root.innerHTML = renderCampStep(campStep);
 }
 
 function proceedToPayment(bookingType) {

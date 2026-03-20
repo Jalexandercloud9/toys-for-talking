@@ -299,18 +299,19 @@ a:hover { color: var(--primary-dark); }
   box-shadow: 0 0 0 3px rgba(30,77,140,0.2), var(--shadow-md);
 }
 .camp-card .selected-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  display: none;
+  align-items: center;
+  gap: 0.3rem;
   background: var(--primary);
   color: white;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.65rem;
   border-radius: 50px;
-  display: none;
+  margin-top: 0.4rem;
+  width: fit-content;
 }
-.camp-card.selected .selected-badge { display: block; }
+.camp-card.selected .selected-badge { display: inline-flex; }
 .camp-price {
   font-size: 1.6rem;
   font-weight: 800;
@@ -647,7 +648,7 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
 }
 .order-summary-card { position: sticky; top: 90px; height: fit-content; }
 
-/* Mobile sticky pay shelf */
+/* Mobile sticky pay shelf (payment page) */
 .pay-shelf {
   display: none;
 }
@@ -669,6 +670,44 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
   .pay-shelf-total .shelf-label { font-size: 0.75rem; color: var(--text-muted); }
   .pay-shelf-total .shelf-amount { font-size: 1.15rem; font-weight: 800; color: var(--primary); }
   .pay-shelf .btn { white-space: nowrap; flex-shrink: 0; }
+}
+
+/* ===================== CAMP SELECTOR STEP 3 ===================== */
+.booking-container.booking-wide { max-width: 960px; }
+
+.camp-selector-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.5rem;
+  align-items: start;
+}
+.camp-summary-sidebar .order-summary-card { position: sticky; top: 90px; }
+
+/* Mobile: hide sidebar, show sticky bottom shelf */
+.camp-shelf { display: none; }
+
+@media (max-width: 768px) {
+  .camp-selector-layout { grid-template-columns: 1fr; }
+  .camp-summary-sidebar { display: none; }
+  .camp-desktop-proceed { display: none; }
+
+  .camp-shelf {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--bg-card);
+    border-top: 1.5px solid var(--border);
+    padding: 0.85rem 1.25rem;
+    z-index: 200;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+    gap: 1rem;
+  }
+  .camp-shelf .pay-shelf-total { display: flex; flex-direction: column; }
+  .camp-shelf .shelf-label { font-size: 0.75rem; color: var(--text-muted); }
+  .camp-shelf .shelf-amount { font-size: 1.15rem; font-weight: 800; color: var(--primary); }
+  .camp-shelf .btn { white-space: nowrap; flex-shrink: 0; }
 }
 .order-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
 .order-row:last-child { border-bottom: none; }

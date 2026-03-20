@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "toys-for-talking",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["/tmp/serve-tft.sh"],
+      "port": 3001
+    }
+  ]
+}

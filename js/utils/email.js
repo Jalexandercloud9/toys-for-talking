@@ -93,6 +93,29 @@ function logBookingToZapier(state) {
     return line;
   }).join('\n');
 
+  const childConcerns = children.map((c, i) =>
+    `Child ${i + 1} (${c.firstName || '—'}): ${c.reason || '—'}`
+  ).join('\n');
+
+  const childDiagnoses = children.map((c, i) =>
+    `Child ${i + 1} (${c.firstName || '—'}): ${c.notes || '—'}`
+  ).join('\n');
+
+  const childLanguages = children.map((c, i) => {
+    const lang = c.language === 'spanish' ? 'Spanish'
+               : c.language === 'both'    ? 'English & Spanish'
+               : 'English';
+    return `Child ${i + 1} (${c.firstName || '—'}): ${lang}`;
+  }).join('\n');
+
+  const childPriorTherapy = children.map((c, i) => {
+    const pt = c.priorTherapy === 'no'          ? 'No prior therapy'
+             : c.priorTherapy === 'yes-current' ? 'Currently in therapy'
+             : c.priorTherapy === 'yes-past'    ? 'Previously received therapy'
+             : '—';
+    return `Child ${i + 1} (${c.firstName || '—'}): ${pt}`;
+  }).join('\n');
+
   const payload = {
     confirmation_id:  state.confirmationId || '',
     booking_date:     new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
@@ -106,6 +129,10 @@ function logBookingToZapier(state) {
     guardian_phone:   guardian.phone || '—',
     num_children:     children.length,
     children_summary: childrenSummary,
+    child_concerns:   childConcerns,
+    child_languages:    childLanguages,
+    child_prior_therapy: childPriorTherapy,
+    child_diagnoses:    childDiagnoses,
     total_paid:       `$${totalAmount.toLocaleString()}.00`
   };
 
