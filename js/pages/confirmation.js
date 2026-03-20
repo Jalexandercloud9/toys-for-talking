@@ -26,13 +26,12 @@ function renderConfirmation() {
   if (isCamp && camp) {
     const isVirtualCamp = camp.id.includes('virtual');
     eventTitle       = `Toys for Talking: ${camp.name}`;
-    eventDescription = `${camp.name} for ${children.map(c => c.firstName).join(', ')}.\\n\\nLocation: ${camp.location}\\nTime: ${camp.time}\\n\\nQuestions? toysfortalking@gmail.com or (214) 395-0109`;
+    eventDescription = `${camp.name} for ${children.map(c => c.firstName).join(', ')}.\n\nLocation: ${camp.location}\nTime: ${camp.time}\n\nQuestions? toysfortalking@gmail.com or (214) 395-0109`;
     eventLocation    = camp.location;
 
     if (!isVirtualCamp) {
-      // Timed recurring: 4:00–5:30 PM CDT (UTC-5) each Sunday × 4
-      eventStartDate = camp.startDate + 'T21:00:00Z'; // 4:00 PM CDT
-      eventEndDate   = camp.startDate + 'T22:30:00Z'; // 5:30 PM CDT
+      eventStartDate = camp.startDate + 'T21:00:00Z';
+      eventEndDate   = camp.startDate + 'T22:30:00Z';
       eventRrule     = 'RRULE:FREQ=WEEKLY;COUNT=4';
       eventIsAllDay  = false;
     } else {
@@ -40,6 +39,9 @@ function renderConfirmation() {
       eventEndDate   = camp.endDate;
       eventIsAllDay  = true;
     }
+
+    // Store on window so buttons can call without inline argument escaping issues
+    window._calEvent = { title: eventTitle, description: eventDescription, startDate: eventStartDate, endDate: eventEndDate, location: eventLocation, isAllDay: eventIsAllDay, rrule: eventRrule };
   }
 
   return `
@@ -132,12 +134,12 @@ function renderConfirmation() {
           Add to Google Calendar
         </a>
 
-        <button class="cal-btn apple" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${eventStartDate}', '${eventEndDate}', '${eventLocation}', ${eventIsAllDay}, ${JSON.stringify(eventRrule)})">
+        <button class="cal-btn apple" onclick="downloadCalendarEvent()">
           <span class="cal-icon"><i class="bi bi-apple"></i></span>
           Add to Apple Calendar (iCal)
         </button>
 
-        <button class="cal-btn outlook" onclick="downloadIcs(${JSON.stringify(eventTitle).replace(/'/g,"\'")}, ${JSON.stringify(eventDescription).replace(/'/g,"\'")}, '${eventStartDate}', '${eventEndDate}', '${eventLocation}', ${eventIsAllDay}, ${JSON.stringify(eventRrule)})">
+        <button class="cal-btn outlook" onclick="downloadCalendarEvent()">
           <span class="cal-icon"><i class="bi bi-envelope"></i></span>
           Add to Outlook Calendar
         </button>
@@ -184,7 +186,7 @@ function buildGoogleCalendarUrl(title, description, startDate, endDate, location
   const params = new URLSearchParams({
     action: 'TEMPLATE',
     text: title,
-    details: description.replace(/\\n/g, '\n'),
+    details: description,
     location: location,
     dates: `${startStr}/${endStr}`
   });
@@ -192,6 +194,12 @@ function buildGoogleCalendarUrl(title, description, startDate, endDate, location
   if (rrule) params.append('recur', rrule);
 
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+function downloadCalendarEvent() {
+  const e = window._calEvent;
+  if (!e) return;
+  downloadIcs(e.title, e.description, e.startDate, e.endDate, e.location, e.isAllDay, e.rrule);
 }
 
 function formatIcsDate(date) {
@@ -216,7 +224,7 @@ function downloadIcs(title, description, startDate, endDate, location, isAllDay,
 
   const uid = `${Date.now()}@toysfortalking.com`;
   const now = new Date().toISOString().replace(/[-:.]/g, '').substring(0, 15) + 'Z';
-  const cleanDesc = (description || '').replace(/\\n/g, '\\n');
+  const cleanDesc = (description || '').replace(/\n/g, '\\n');
 
   const eventLines = [
     'BEGIN:VEVENT',
