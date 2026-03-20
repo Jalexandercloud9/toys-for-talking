@@ -241,7 +241,8 @@ function proceedToStripe() {
   state.confirmationId  = 'TFT-' + Math.random().toString(36).substr(2, 8).toUpperCase();
   state.paymentConfirmed = true;
 
-  localStorage.setItem('tft_booking', JSON.stringify(state));
+  // Save state before leaving — wrapped in try/catch for Safari private mode
+  try { localStorage.setItem('tft_booking', JSON.stringify(state)); } catch(e) {}
 
   let stripeUrl = isCamp && state.selectedCamp && state.selectedCamp.stripeLink
     ? state.selectedCamp.stripeLink
@@ -249,7 +250,14 @@ function proceedToStripe() {
 
   if (numKids > 1) stripeUrl += '?prefilled_quantity=' + numKids;
 
-  window.location.href = stripeUrl;
+  // Give buttons a loading state so users know the redirect is happening
+  document.querySelectorAll('[onclick*="proceedToStripe"]').forEach(btn => {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="bi bi-arrow-repeat" style="animation:spin 1s linear infinite;"></i> Redirecting to Stripe…';
+  });
+
+  // Small delay so the loading state renders before navigation
+  setTimeout(function() { window.location.href = stripeUrl; }, 80);
 }
 
 // Legacy stub
