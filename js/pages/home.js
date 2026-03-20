@@ -124,11 +124,33 @@ function renderHome() {
               <div class="card-icon"><i class="bi ${camp.icon}"></i></div>
               <h3>${camp.name}</h3>
               <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem;">${camp.subtitle}</p>
-              <p style="font-size:0.875rem;margin-bottom:1rem;">${camp.description.substring(0, 100)}…</p>
+              <p style="font-size:0.875rem;margin-bottom:0.75rem;">${camp.description}</p>
               <span class="camp-dates"><i class="bi bi-calendar3"></i> ${camp.dates}</span>
+              <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.35rem;">
+                <i class="bi bi-clock"></i> ${camp.time}
+              </div>
+              <div class="divider"></div>
+              <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Includes</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
+                ${camp.highlights.map(h => `
+                  <li style="font-size:0.8rem;color:var(--text-light);display:flex;gap:0.4rem;align-items:flex-start;">
+                    <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;margin-top:2px;"></i> ${h}
+                  </li>
+                `).join('')}
+              </ul>
+              ${camp.notIncluded && camp.notIncluded.length ? `
+              <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.4rem;">Does not include</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
+                ${camp.notIncluded.map(h => `
+                  <li style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.4rem;align-items:flex-start;">
+                    <i class="bi bi-x" style="color:#e57373;flex-shrink:0;margin-top:2px;"></i> ${h}
+                  </li>
+                `).join('')}
+              </ul>` : ''}
               <div class="divider"></div>
               <div style="display:flex;justify-content:space-between;align-items:center;">
                 <span class="camp-price">$${camp.price}</span>
+                <span style="font-size:0.8rem;color:var(--text-muted);">per child</span>
               </div>
             </div>
           `).join('')}
