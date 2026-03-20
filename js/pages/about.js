@@ -86,6 +86,7 @@ function renderAbout() {
             <div class="card-icon" style="justify-content:center;"><i class="bi bi-play-circle"></i></div>
             <h4>YouTube Channel</h4>
             <p style="font-size:0.9rem;">Subscribe for practical speech and language strategies you can try right away with your child.</p>
+            <a href="https://www.youtube.com/@ToysforTalking" target="_blank" rel="noopener" class="btn btn-blue" style="margin-top:0.75rem;font-size:0.85rem;">Visit Channel</a>
           </div>
           <div class="card" style="text-align:center;">
             <div class="card-icon" style="justify-content:center;"><i class="bi bi-journal-bookmark"></i></div>
@@ -102,11 +103,5 @@ function renderAbout() {
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-      <h2>Let's Talk About Your Child</h2>
-      <p>Every child's journey is different. Let's start yours with a personalized evaluation.</p>
-      <a href="#/book-evaluation" class="btn btn-primary btn-lg">Schedule a Free Evaluation</a>
-    </section>
   `;
 }
