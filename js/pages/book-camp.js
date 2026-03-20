@@ -255,6 +255,12 @@ function renderCampSelector() {
       onclick="proceedToPayment('camp')">
       Pay $${total} with Stripe <i class="bi bi-arrow-right"></i>
     </button>
+    <div style="margin-top:1rem;font-size:0.78rem;color:var(--text-muted);line-height:1.5;">
+      ${selected.id.includes('virtual')
+        ? '<i class="bi bi-calendar-check" style="margin-right:0.3rem;"></i>After you register, Jasmine will reach out to gather your availability. Weekly live sessions will be scheduled at times that work best for the majority of families in your selected cohort.'
+        : '<i class="bi bi-clock" style="margin-right:0.3rem;"></i>After you register, Jasmine will contact you to confirm your child\'s assigned session time. Each Sunday includes two sessions. Your child will be assigned to attend one session, either 4:00–4:35 PM or 4:45–5:20 PM.'
+      }
+    </div>
   ` : `
     <p style="color:var(--text-muted);font-size:0.875rem;text-align:center;padding:0.75rem 0;">
       <i class="bi bi-hand-index-thumb" style="display:block;font-size:1.5rem;margin-bottom:0.5rem;"></i>

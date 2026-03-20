@@ -50,9 +50,11 @@ function sendBookingEmails(state) {
       : 'Service: Speech & Language Evaluation\nArea: DFW (location confirmed by Jasmine)',
     children_list:   childrenList,
     total_paid:      totalPaid,
-    next_steps: isCamp
-      ? 'Jasmine will send a welcome packet and preparation guide within 2 business days.'
-      : `Jasmine will call you at ${guardian.phone || 'the number you provided'} to confirm your meet-up spot and time in the DFW area. Please bring any notes about your child\'s speech and language history to the evaluation.`
+    next_steps: isCamp && camp && camp.id.includes('virtual')
+      ? 'Jasmine will reach out to gather your availability. Weekly live sessions will be scheduled at times that work best for the majority of families in your cohort. You will also receive access to the weekly instructional content prior to the start of the program.'
+      : isCamp
+      ? 'Jasmine will contact you shortly to confirm your child\'s assigned session time. Each Sunday includes two sessions, and your child will attend one session from 4:00–4:35 PM or 4:45–5:20 PM.'
+      : `Jasmine will contact you shortly at ${guardian.phone || 'the number you provided'} to confirm the location and time for your child\'s evaluation in the DFW area. Please bring any notes or relevant information about your child\'s speech and language history to your appointment.`
   };
 
   emailjs.init(EMAILJS_PUBLIC_KEY);

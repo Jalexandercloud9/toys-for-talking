@@ -138,8 +138,10 @@ function renderConfirmation() {
       <div class="alert alert-info" style="text-align:left;margin-bottom:1.5rem;">
         <div>
           <strong>What happens next?</strong><br>
-          ${isCamp
-            ? 'Jasmine will send a welcome packet and preparation guide within 2 business days. Feel free to reach out with any questions!'
+          ${isCamp && camp && camp.id.includes('virtual')
+            ? 'Jasmine will reach out to gather your availability. Weekly live sessions will be scheduled at times that work best for the majority of families in your cohort. You will also receive access to the weekly instructional content prior to the start of the program.'
+            : isCamp
+            ? 'Jasmine will contact you shortly to confirm your child\'s assigned session time. Each Sunday includes two sessions, and your child will attend one session from 4:00–4:35 PM or 4:45–5:20 PM.'
             : `<span style="font-size:1rem;">📞</span> Thank you for your registration. Jasmine will contact you shortly at <strong>${guardian.phone || 'the number you provided'}</strong> to confirm the location and time for your child's evaluation in the DFW area. Please bring any notes or relevant information about your child's speech and language history to your appointment.`}
         </div>
       </div>
