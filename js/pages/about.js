@@ -55,7 +55,7 @@ function renderAbout() {
 
           <div style="display:flex;gap:1rem;flex-wrap:wrap;">
             <a href="#/book-evaluation" class="btn btn-blue">Book an Evaluation</a>
-            <a href="#/book-camp" class="btn btn-ghost">View Summer Camps</a>
+            <a href="#/book-camp" class="btn btn-ghost">Register for Speech Camp</a>
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@ function renderAbout() {
             <div class="card-icon" style="justify-content:center;"><i class="bi bi-tent"></i></div>
             <h4>Little Lamps Speech Camp</h4>
             <p style="font-size:0.9rem;">Available in person in the Dallas area and virtually for families who want guided support.</p>
-            <a href="#/book-camp" class="btn btn-blue" style="margin-top:0.75rem;font-size:0.85rem;">View Camps</a>
+            <a href="#/book-camp" class="btn btn-blue" style="margin-top:0.75rem;font-size:0.85rem;">Register Now</a>
           </div>
         </div>
       </div>
