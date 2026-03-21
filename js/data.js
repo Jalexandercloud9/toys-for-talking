@@ -5,7 +5,7 @@
 const CAMPS = [
   {
     id: 'llsc-june-inperson',
-    stripeLink: 'https://buy.stripe.com/test_28E3cwcelfhB5MQcZJ8IU00',
+    stripeLink: 'https://buy.stripe.com/8x29AUeycbiC0NE44KgA804',
     name: 'Little Lamps Speech Camp',
     subtitle: 'June Cohort · In-Person · Ages 0–4',
     description: 'A 4-week play-based early communication enrichment program where caregivers learn and practice evidence-informed strategies alongside their toddler in a guided, interactive setting. Each session is 35 minutes.',
@@ -37,7 +37,7 @@ const CAMPS = [
   },
   {
     id: 'llsc-july-inperson',
-    stripeLink: 'https://buy.stripe.com/test_aFaaEY4LT5H11wAf7R8IU01',
+    stripeLink: 'https://buy.stripe.com/4gMaEYeyc5Yi67YeJogA803',
     name: 'Little Lamps Speech Camp',
     subtitle: 'July Cohort · In-Person · Ages 0–4',
     description: 'A 4-week play-based early communication enrichment program where caregivers learn and practice evidence-informed strategies alongside their toddler in a guided, interactive setting. Each session is 35 minutes.',
@@ -69,7 +69,7 @@ const CAMPS = [
   },
   {
     id: 'llsc-june-virtual',
-    stripeLink: 'https://buy.stripe.com/test_14A9AUa6d0mHb7a3p98IU02',
+    stripeLink: 'https://buy.stripe.com/8x2dRa3Ty86q3ZQ9p4gA802',
     name: 'Virtual Parent Coaching',
     subtitle: 'June Cohort · Virtual · Ages 0–4',
     description: 'A structured 4-week parent education experience designed to help caregivers confidently support early communication at home.',
@@ -97,7 +97,7 @@ const CAMPS = [
   },
   {
     id: 'llsc-july-virtual',
-    stripeLink: 'https://buy.stripe.com/test_28EcN6a6d2uP1wAf7R8IU03',
+    stripeLink: 'https://buy.stripe.com/4gM00kcq44Ueaoe30GgA801',
     name: 'Virtual Parent Coaching',
     subtitle: 'July Cohort · Virtual · Ages 0–4',
     description: 'A structured 4-week parent education experience designed to help caregivers confidently support early communication at home.',
@@ -136,4 +136,4 @@ window.AppState = {
 };
 
 window.CAMPS = CAMPS;
-window.EVAL_STRIPE_LINK = 'https://buy.stripe.com/test_6oUdRa3HP1qLejm5xh8IU04';
+window.EVAL_STRIPE_LINK = 'https://buy.stripe.com/cNiaEYdu8gCW9kafNsgA800';
