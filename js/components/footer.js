@@ -41,6 +41,8 @@ function renderFooter() {
             <li><a href="#/about">About Jasmine</a></li>
             <li><a href="#/book-camp">Little Lamps Speech Camp</a></li>
             <li><a href="#/book-evaluation">Book Evaluation</a></li>
+            <li><a href="#/refund-policy">Payment &amp; Refund Policy</a></li>
+            <li><a href="#/privacy-policy">Privacy Policy</a></li>
           </ul>
         </div>
         <div>
@@ -53,7 +55,11 @@ function renderFooter() {
       </div>
       <div class="footer-bottom">
         <span>J.Alexander Communication &amp; Education PLC · Jasmine Alexander, CCC-SLP</span>
-        <span>All rights reserved</span>
+        <span style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+          <a href="#/privacy-policy" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Privacy Policy</a>
+          <a href="#/refund-policy" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Refund Policy</a>
+          <span>All rights reserved</span>
+        </span>
       </div>
     </footer>
   `;

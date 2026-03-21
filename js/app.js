@@ -67,6 +67,10 @@ function renderPage() {
       contentEl.innerHTML = renderRefundPolicy();
       break;
 
+    case '#/privacy-policy':
+      contentEl.innerHTML = renderPrivacyPolicy();
+      break;
+
     default:
       contentEl.innerHTML = `
         <div class="booking-container" style="text-align:center;padding:5rem 1.5rem;">
