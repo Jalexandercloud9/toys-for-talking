@@ -235,10 +235,13 @@ function renderCampSelector() {
       <span>Total Due</span>
       <span>$${total}</span>
     </div>
-    <button class="btn btn-blue" style="width:100%;margin-top:1.25rem;justify-content:center;"
-      onclick="proceedToPayment('camp')">
+    <button id="camp-sidebar-btn" class="btn btn-blue" style="width:100%;margin-top:1.25rem;justify-content:center;"
+      onclick="proceedToPayment('camp')" disabled>
       Pay $${total} with Stripe <i class="bi bi-arrow-right"></i>
     </button>
+    <p id="camp-sidebar-ack-hint" style="font-size:0.78rem;color:var(--text-muted);margin-top:0.6rem;text-align:center;">
+      ↓ Please check all acknowledgements below to continue
+    </p>
     <div style="margin-top:1rem;font-size:0.78rem;color:var(--text-muted);line-height:1.5;">
       ${selected.id.includes('virtual')
         ? '<i class="bi bi-calendar-check" style="margin-right:0.3rem;"></i>After you register, Jasmine will reach out to gather your availability. Weekly live sessions will be scheduled at times that work best for the majority of families in your selected cohort.'
@@ -427,11 +430,15 @@ function updateAckState() {
   const a1 = document.getElementById('ack1');
   const a2 = document.getElementById('ack2');
   const a3 = document.getElementById('ack3');
-  const btn = document.getElementById('camp-proceed-btn');
-  const shelf = document.getElementById('camp-shelf-btn');
+  const btn     = document.getElementById('camp-proceed-btn');
+  const shelf   = document.getElementById('camp-shelf-btn');
+  const sidebar = document.getElementById('camp-sidebar-btn');
+  const hint    = document.getElementById('camp-sidebar-ack-hint');
   const allChecked = a1 && a2 && a3 && a1.checked && a2.checked && a3.checked;
-  if (btn)   btn.disabled   = !allChecked;
-  if (shelf) shelf.disabled = !allChecked;
+  if (btn)     btn.disabled     = !allChecked;
+  if (shelf)   shelf.disabled   = !allChecked;
+  if (sidebar) sidebar.disabled = !allChecked;
+  if (hint)    hint.style.display = allChecked ? 'none' : 'block';
 }
 
 function proceedToPayment(bookingType) {
@@ -441,7 +448,7 @@ function proceedToPayment(bookingType) {
     const a3 = document.getElementById('ack3');
     if (!a1?.checked || !a2?.checked || !a3?.checked) {
       const err = document.getElementById('camp-select-error');
-      if (err) { err.textContent = 'Please acknowledge all statements before proceeding.'; err.style.display = 'flex'; }
+      if (err) { err.textContent = 'Please check all three acknowledgements below before proceeding.'; err.style.display = 'flex'; err.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       return;
     }
   }
