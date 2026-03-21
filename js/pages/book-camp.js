@@ -432,7 +432,7 @@ function refreshCampRoot() {
   const root = document.getElementById('camp-booking-root');
   root.classList.toggle('booking-wide', campStep === 3);
   root.innerHTML = renderCampStep(campStep);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollToTop();
 }
 
 function updateAckState() {} // acks now validated at step 1

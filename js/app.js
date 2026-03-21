@@ -11,6 +11,14 @@ function getRoute() {
   return hash.split('?')[0]; // strip query params
 }
 
+// Reliably reset scroll position on any page/step change
+function scrollToTop() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+window.scrollToTop = scrollToTop;
+
 function renderPage() {
   const route = getRoute();
   const contentEl = document.getElementById('page-content');
@@ -18,9 +26,6 @@ function renderPage() {
 
   // Re-render navbar (updates active link)
   if (navbarEl) navbarEl.innerHTML = renderNavbar();
-
-  // Scroll to top on navigation
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 
   // Route matching
   switch (route) {
@@ -81,6 +86,9 @@ function renderPage() {
         </div>
       `;
   }
+
+  // Scroll to top AFTER content is rendered
+  scrollToTop();
 
   window._lastRoute = route;
 }
