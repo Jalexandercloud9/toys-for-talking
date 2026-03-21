@@ -58,7 +58,7 @@ function renderEvalChildrenForm() {
         <button class="btn btn-ghost" onclick="evalGoBack()">
           <i class="bi bi-arrow-left"></i> Back
         </button>
-        <button class="btn btn-blue" onclick="saveEvalChildren()">
+        <button id="eval-children-next-btn" class="btn btn-blue" onclick="saveEvalChildren()" disabled>
           Review &amp; Pay <i class="bi bi-arrow-right"></i>
         </button>
       </div>
@@ -78,12 +78,12 @@ function renderEvalChildBlock(child, index) {
         <div class="form-group">
           <label>Child's First Name <span class="required">*</span></label>
           <input class="form-control" id="eval-child-${index}-name" type="text"
-            placeholder="First name" value="${child.firstName || ''}">
+            placeholder="First name" value="${child.firstName || ''}" oninput="validateEvalChildrenForm()">
         </div>
         <div class="form-group">
           <label>Child's Age <span class="required">*</span></label>
           <input class="form-control" id="eval-child-${index}-age" type="number"
-            placeholder="e.g. 4" min="0" max="17" value="${child.age || ''}">
+            placeholder="e.g. 4" min="0" max="17" value="${child.age || ''}" oninput="validateEvalChildrenForm()">
         </div>
       </div>
 
@@ -99,7 +99,7 @@ function renderEvalChildBlock(child, index) {
       <div class="form-group">
         <label>What are your primary concerns about this child's speech or language? <span class="required">*</span></label>
         <textarea class="form-control" id="eval-child-${index}-reason" rows="4"
-          placeholder="Describe any observations — e.g. limited vocabulary, unclear speech, difficulty following directions, stuttering, late talker, etc.">${child.reason || ''}</textarea>
+          placeholder="Describe any observations — e.g. limited vocabulary, unclear speech, difficulty following directions, stuttering, late talker, etc." oninput="validateEvalChildrenForm()">${child.reason || ''}</textarea>
       </div>
 
       <div class="form-group">
@@ -123,6 +123,18 @@ function renderEvalChildBlock(child, index) {
 
 /* ===== EVAL FORM ACTIONS ===== */
 
+function validateEvalChildrenForm() {
+  const blocks = document.querySelectorAll('#eval-children-list .child-block');
+  let ok = blocks.length > 0;
+  blocks.forEach((_, i) => {
+    if (!document.getElementById(`eval-child-${i}-name`)?.value.trim() ||
+        !document.getElementById(`eval-child-${i}-age`)?.value ||
+        !document.getElementById(`eval-child-${i}-reason`)?.value.trim()) ok = false;
+  });
+  const btn = document.getElementById('eval-children-next-btn');
+  if (btn) btn.disabled = !ok;
+}
+
 function saveCurrentEvalChildren() {
   window.AppState.children = window.AppState.children.map((_, i) => ({
     firstName:    document.getElementById(`eval-child-${i}-name`)?.value.trim() || '',
@@ -139,6 +151,7 @@ function addEvalChild() {
   window.AppState.children.push({ firstName: '', age: '', language: 'english', reason: '', priorTherapy: '', notes: '' });
   document.getElementById('eval-children-list').innerHTML =
     window.AppState.children.map((c, i) => renderEvalChildBlock(c, i)).join('');
+  validateEvalChildrenForm();
 }
 
 function removeEvalChild(index) {
@@ -146,6 +159,7 @@ function removeEvalChild(index) {
   window.AppState.children.splice(index, 1);
   document.getElementById('eval-children-list').innerHTML =
     window.AppState.children.map((c, i) => renderEvalChildBlock(c, i)).join('');
+  validateEvalChildrenForm();
 }
 
 function saveEvalChildren() {

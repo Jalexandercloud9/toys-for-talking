@@ -58,30 +58,30 @@ function renderGuardianForm(context) {
         <div class="form-group">
           <label>First Name <span class="required">*</span></label>
           <input class="form-control" id="g-first" type="text" placeholder="First name"
-            value="${g.firstName || ''}" required>
+            value="${g.firstName || ''}" oninput="validateGuardianForm('${context}')" required>
         </div>
         <div class="form-group">
           <label>Last Name <span class="required">*</span></label>
           <input class="form-control" id="g-last" type="text" placeholder="Last name"
-            value="${g.lastName || ''}">
+            value="${g.lastName || ''}" oninput="validateGuardianForm('${context}')">
         </div>
       </div>
 
       <div class="form-group">
         <label>Email Address <span class="required">*</span></label>
         <input class="form-control" id="g-email" type="email" placeholder="your@email.com"
-          value="${g.email || ''}">
+          value="${g.email || ''}" oninput="validateGuardianForm('${context}')">
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label>Phone Number <span class="required">*</span></label>
           <input class="form-control" id="g-phone" type="tel" placeholder="(555) 000-0000"
-            value="${g.phone || ''}">
+            value="${g.phone || ''}" oninput="validateGuardianForm('${context}')">
         </div>
         <div class="form-group">
           <label>Relationship to Child <span class="required">*</span></label>
-          <select class="form-control" id="g-relationship">
+          <select class="form-control" id="g-relationship" onchange="validateGuardianForm('${context}')">
             <option value="">Select…</option>
             ${['Parent', 'Legal Guardian', 'Grandparent', 'Other Caregiver'].map(r =>
               `<option value="${r}" ${g.relationship === r ? 'selected' : ''}>${r}</option>`
@@ -120,15 +120,15 @@ function renderGuardianForm(context) {
       </div>
       <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1rem;">
         <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
-          <input type="checkbox" id="ack1" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;">
+          <input type="checkbox" id="ack1" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="validateGuardianForm('camp')">
           I understand that a caregiver must remain present and actively participate with their child during each session.
         </label>
         <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
-          <input type="checkbox" id="ack2" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;">
+          <input type="checkbox" id="ack2" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="validateGuardianForm('camp')">
           I understand that this program provides parent coaching and early communication enrichment and does not replace individualized speech therapy services.
         </label>
         <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
-          <input type="checkbox" id="ack3" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;">
+          <input type="checkbox" id="ack3" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="validateGuardianForm('camp')">
           I have read and agree to the <a href="#/refund-policy" target="_blank" style="color:var(--primary);text-decoration:underline;">Payment &amp; Refund Policy</a>.
         </label>
       </div>
@@ -137,7 +137,7 @@ function renderGuardianForm(context) {
       <div id="guardian-error" class="alert alert-error" style="display:none;"></div>
 
       <div style="display:flex;justify-content:flex-end;margin-top:1.5rem;">
-        <button class="btn btn-blue" onclick="saveGuardianAndNext('${context}')">
+        <button id="guardian-next-btn" class="btn btn-blue" onclick="saveGuardianAndNext('${context}')" disabled>
           Next: Child Information <i class="bi bi-arrow-right"></i>
         </button>
       </div>
@@ -168,7 +168,7 @@ function renderChildrenForm() {
         <button class="btn btn-ghost" onclick="campGoBack()">
           <i class="bi bi-arrow-left"></i> Back
         </button>
-        <button class="btn btn-blue" onclick="saveChildrenAndNext()">
+        <button id="children-next-btn" class="btn btn-blue" onclick="saveChildrenAndNext()" disabled>
           Next: Select Camp <i class="bi bi-arrow-right"></i>
         </button>
       </div>
@@ -187,19 +187,19 @@ function renderChildBlock(child, index) {
         <div class="form-group">
           <label>Child's First Name <span class="required">*</span></label>
           <input class="form-control" id="child-${index}-name" type="text"
-            placeholder="First name" value="${child.firstName || ''}">
+            placeholder="First name" value="${child.firstName || ''}" oninput="validateCampChildrenForm()">
         </div>
         <div class="form-group">
           <label>Age <span class="required">*</span></label>
           <input class="form-control" id="child-${index}-age" type="number"
-            placeholder="e.g. 2" min="0" max="4" value="${child.age || ''}">
+            placeholder="e.g. 2" min="0" max="4" value="${child.age || ''}" oninput="validateCampChildrenForm()">
         </div>
       </div>
       <div class="form-group">
         <label>Why do you believe your child may benefit from speech therapy? <span class="required">*</span></label>
         <textarea class="form-control" id="child-${index}-reason"
           placeholder="Please share any concerns, observations, or background about your child's speech and language development. This helps us prepare the best experience for them."
-          rows="4">${child.reason || ''}</textarea>
+          rows="4" oninput="validateCampChildrenForm()">${child.reason || ''}</textarea>
       </div>
     </div>
   `;
@@ -376,6 +376,7 @@ function addChild() {
   window.AppState.children.push({ firstName: '', age: '', reason: '' });
   document.getElementById('children-list').innerHTML =
     window.AppState.children.map((c, i) => renderChildBlock(c, i)).join('');
+  validateCampChildrenForm();
 }
 
 function removeChild(index) {
@@ -383,6 +384,7 @@ function removeChild(index) {
   window.AppState.children.splice(index, 1);
   document.getElementById('children-list').innerHTML =
     window.AppState.children.map((c, i) => renderChildBlock(c, i)).join('');
+  validateCampChildrenForm();
 }
 
 function saveCurrentChildren() {
@@ -432,6 +434,35 @@ function refreshCampRoot() {
 }
 
 function updateAckState() {} // acks now validated at step 1
+
+function validateGuardianForm(context) {
+  const ok = !!(
+    document.getElementById('g-first')?.value.trim() &&
+    document.getElementById('g-last')?.value.trim() &&
+    document.getElementById('g-email')?.value.trim() &&
+    document.getElementById('g-phone')?.value.trim() &&
+    document.getElementById('g-relationship')?.value &&
+    (context !== 'camp' || (
+      document.getElementById('ack1')?.checked &&
+      document.getElementById('ack2')?.checked &&
+      document.getElementById('ack3')?.checked
+    ))
+  );
+  const btn = document.getElementById('guardian-next-btn');
+  if (btn) btn.disabled = !ok;
+}
+
+function validateCampChildrenForm() {
+  const blocks = document.querySelectorAll('#children-list .child-block');
+  let ok = blocks.length > 0;
+  blocks.forEach((_, i) => {
+    if (!document.getElementById(`child-${i}-name`)?.value.trim() ||
+        !document.getElementById(`child-${i}-age`)?.value ||
+        !document.getElementById(`child-${i}-reason`)?.value.trim()) ok = false;
+  });
+  const btn = document.getElementById('children-next-btn');
+  if (btn) btn.disabled = !ok;
+}
 
 function proceedToPayment(bookingType) {
   window.AppState.bookingType = bookingType;
