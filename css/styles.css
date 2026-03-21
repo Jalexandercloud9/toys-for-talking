@@ -673,7 +673,7 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
   padding: 2.5rem 1.5rem;
 }
 @media (max-width: 768px) {
-  .payment-outer { padding: 1.25rem 1.25rem 2.5rem; }
+  .payment-outer { max-width: 720px; padding: 2rem 1.5rem 2.5rem; }
 }
 .payment-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; }
 @media (max-width: 768px) {
