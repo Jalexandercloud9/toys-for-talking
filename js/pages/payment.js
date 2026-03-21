@@ -201,7 +201,8 @@ function renderPayment() {
       </div>
     </div>
 
-    <!-- Mobile sticky shelf -->
+    <!-- Mobile sticky shelf (camp only) -->
+    ${isCamp ? `
     <div class="pay-shelf">
       <div class="pay-shelf-total">
         <span class="shelf-label">Total</span>
@@ -211,6 +212,7 @@ function renderPayment() {
         <i class="bi bi-lock"></i> Pay with Stripe
       </a>
     </div>
+    ` : ''}
   `;
 }
 
