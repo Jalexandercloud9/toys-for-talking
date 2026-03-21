@@ -113,6 +113,27 @@ function renderGuardianForm(context) {
         </div>
       </div>
 
+      ${context === 'camp' ? `
+      <div class="divider" style="margin:1.5rem 0;"></div>
+      <div style="font-weight:700;margin-bottom:0.75rem;">
+        Please acknowledge the following <span style="color:var(--error);">*</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1rem;">
+        <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
+          <input type="checkbox" id="ack1" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;">
+          I understand that a caregiver must remain present and actively participate with their child during each session.
+        </label>
+        <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
+          <input type="checkbox" id="ack2" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;">
+          I understand that this program provides parent coaching and early communication enrichment and does not replace individualized speech therapy services.
+        </label>
+        <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
+          <input type="checkbox" id="ack3" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;">
+          I have read and agree to the <a href="#/refund-policy" target="_blank" style="color:var(--primary);text-decoration:underline;">Payment &amp; Refund Policy</a>.
+        </label>
+      </div>
+      ` : ''}
+
       <div id="guardian-error" class="alert alert-error" style="display:none;"></div>
 
       <div style="display:flex;justify-content:flex-end;margin-top:1.5rem;">
@@ -235,13 +256,10 @@ function renderCampSelector() {
       <span>Total Due</span>
       <span>$${total}</span>
     </div>
-    <button id="camp-sidebar-btn" class="btn btn-blue" style="width:100%;margin-top:1.25rem;justify-content:center;"
-      onclick="proceedToPayment('camp')" disabled>
+    <button class="btn btn-blue" style="width:100%;margin-top:1.25rem;justify-content:center;"
+      onclick="proceedToPayment('camp')">
       Pay $${total} with Stripe <i class="bi bi-arrow-right"></i>
     </button>
-    <p id="camp-sidebar-ack-hint" style="font-size:0.78rem;color:var(--text-muted);margin-top:0.6rem;text-align:center;">
-      ↓ Please check all acknowledgements below to continue
-    </p>
     <div style="margin-top:1rem;font-size:0.78rem;color:var(--text-muted);line-height:1.5;">
       ${selected.id.includes('virtual')
         ? '<i class="bi bi-calendar-check" style="margin-right:0.3rem;"></i>After you register, Jasmine will reach out to gather your availability. Weekly live sessions will be scheduled at times that work best for the majority of families in your selected cohort.'
@@ -270,34 +288,11 @@ function renderCampSelector() {
           ${campCards}
         </div>
 
-        <!-- Acknowledgements -->
-        <div class="card" style="margin-top:1.5rem;background:var(--bg);">
-          <div style="font-weight:700;margin-bottom:0.75rem;">
-            Please acknowledge the following statements <span style="color:var(--error);">*</span>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:0.75rem;">
-            <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
-              <input type="checkbox" id="ack1" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="updateAckState()">
-              I understand that a caregiver must remain present and actively participate with their child during each session.
-            </label>
-            <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
-              <input type="checkbox" id="ack2" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="updateAckState()">
-              I understand that this program provides parent coaching and early communication enrichment and does not replace individualized speech therapy services.
-            </label>
-            <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-light);">
-              <input type="checkbox" id="ack3" style="margin-top:3px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="updateAckState()">
-              I have read and agree to the <a href="#/refund-policy" target="_blank" style="color:var(--primary);text-decoration:underline;">Payment &amp; Refund Policy</a>.
-            </label>
-          </div>
-        </div>
-
-        <div id="camp-select-error" class="alert alert-error" style="display:none;margin-top:1rem;"></div>
-
         <div style="display:flex;justify-content:space-between;margin-top:1.5rem;">
           <button class="btn btn-ghost" onclick="campGoBack()">
             <i class="bi bi-arrow-left"></i> Back
           </button>
-          <button id="camp-proceed-btn" class="btn btn-blue camp-desktop-proceed" onclick="proceedToPayment('camp')" disabled>
+          <button id="camp-proceed-btn" class="btn btn-blue camp-desktop-proceed" onclick="proceedToPayment('camp')" ${selected ? '' : 'disabled'}>
             Proceed to Payment <i class="bi bi-arrow-right"></i>
           </button>
         </div>
@@ -321,7 +316,7 @@ function renderCampSelector() {
         <span class="shelf-label">${selected ? selected.name : 'No camp selected'}</span>
         <span class="shelf-amount">${selected ? `$${total}` : '—'}</span>
       </div>
-      <button id="camp-shelf-btn" class="btn btn-blue" onclick="proceedToPayment('camp')" disabled>
+      <button id="camp-shelf-btn" class="btn btn-blue" onclick="proceedToPayment('camp')" ${selected ? '' : 'disabled'}>
         ${selected ? `Pay $${total}` : 'Select a camp'} <i class="bi bi-arrow-right"></i>
       </button>
     </div>
@@ -353,6 +348,16 @@ function saveGuardianAndNext(context) {
     errorEl.style.display = 'flex';
     errorEl.textContent = 'Please enter a valid email address.';
     return;
+  }
+  if (context === 'camp') {
+    const a1 = document.getElementById('ack1');
+    const a2 = document.getElementById('ack2');
+    const a3 = document.getElementById('ack3');
+    if (!a1?.checked || !a2?.checked || !a3?.checked) {
+      errorEl.style.display = 'flex';
+      errorEl.textContent = 'Please check all three acknowledgements before continuing.';
+      return;
+    }
   }
   errorEl.style.display = 'none';
   window.AppState.guardian = fields;
@@ -426,32 +431,9 @@ function refreshCampRoot() {
   root.innerHTML = renderCampStep(campStep);
 }
 
-function updateAckState() {
-  const a1 = document.getElementById('ack1');
-  const a2 = document.getElementById('ack2');
-  const a3 = document.getElementById('ack3');
-  const btn     = document.getElementById('camp-proceed-btn');
-  const shelf   = document.getElementById('camp-shelf-btn');
-  const sidebar = document.getElementById('camp-sidebar-btn');
-  const hint    = document.getElementById('camp-sidebar-ack-hint');
-  const allChecked = a1 && a2 && a3 && a1.checked && a2.checked && a3.checked;
-  if (btn)     btn.disabled     = !allChecked;
-  if (shelf)   shelf.disabled   = !allChecked;
-  if (sidebar) sidebar.disabled = !allChecked;
-  if (hint)    hint.style.display = allChecked ? 'none' : 'block';
-}
+function updateAckState() {} // acks now validated at step 1
 
 function proceedToPayment(bookingType) {
-  if (bookingType === 'camp') {
-    const a1 = document.getElementById('ack1');
-    const a2 = document.getElementById('ack2');
-    const a3 = document.getElementById('ack3');
-    if (!a1?.checked || !a2?.checked || !a3?.checked) {
-      const err = document.getElementById('camp-select-error');
-      if (err) { err.textContent = 'Please check all three acknowledgements below before proceeding.'; err.style.display = 'flex'; err.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-      return;
-    }
-  }
   window.AppState.bookingType = bookingType;
   window.location.hash = '#/payment';
 }
