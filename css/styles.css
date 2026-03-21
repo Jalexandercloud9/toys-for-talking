@@ -688,12 +688,13 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
     background: var(--bg-card);
     border-top: 1.5px solid var(--border);
     padding: 0.85rem 1.25rem;
+    padding-bottom: max(0.85rem, env(safe-area-inset-bottom));
     z-index: 200;
     box-shadow: 0 -4px 16px rgba(44,36,24,0.10);
     gap: 1rem;
   }
-  .pay-shelf-total { display: flex; flex-direction: column; }
-  .pay-shelf-total .shelf-label { font-size: 0.75rem; color: var(--text-muted); font-family: 'Inter', sans-serif; }
+  .pay-shelf-total { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden; }
+  .pay-shelf-total .shelf-label { font-size: 0.75rem; color: var(--text-muted); font-family: 'Inter', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .pay-shelf-total .shelf-amount { font-size: 1.15rem; font-weight: 800; color: var(--primary); font-family: 'Playfair Display', Georgia, serif; }
   .pay-shelf .btn { white-space: nowrap; flex-shrink: 0; }
 }
@@ -725,12 +726,13 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
     background: var(--bg-card);
     border-top: 1.5px solid var(--border);
     padding: 0.85rem 1.25rem;
+    padding-bottom: max(0.85rem, env(safe-area-inset-bottom));
     z-index: 200;
     box-shadow: 0 -4px 20px rgba(44,36,24,0.12);
     gap: 1rem;
   }
-  .camp-shelf .pay-shelf-total { display: flex; flex-direction: column; }
-  .camp-shelf .shelf-label { font-size: 0.75rem; color: var(--text-muted); font-family: 'Inter', sans-serif; }
+  .camp-shelf .pay-shelf-total { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden; }
+  .camp-shelf .shelf-label { font-size: 0.75rem; color: var(--text-muted); font-family: 'Inter', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .camp-shelf .shelf-amount { font-size: 1.15rem; font-weight: 800; color: var(--primary); font-family: 'Playfair Display', Georgia, serif; }
   .camp-shelf .btn { white-space: nowrap; flex-shrink: 0; }
 }

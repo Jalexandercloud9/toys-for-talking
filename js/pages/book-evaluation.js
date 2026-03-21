@@ -187,4 +187,5 @@ function evalGoBack() {
 
 function refreshEvalRoot() {
   document.getElementById('eval-booking-root').innerHTML = renderEvalStep(evalStep);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
