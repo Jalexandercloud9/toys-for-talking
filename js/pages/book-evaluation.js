@@ -82,8 +82,9 @@ function renderEvalChildBlock(child, index) {
         </div>
         <div class="form-group">
           <label>Child's Age <span class="required">*</span></label>
-          <input class="form-control" id="eval-child-${index}-age" type="number"
-            placeholder="e.g. 4" min="0" max="17" value="${child.age || ''}" oninput="validateEvalChildrenForm()">
+          <input class="form-control" id="eval-child-${index}-age" type="text"
+            inputmode="numeric" pattern="[0-9]*"
+            placeholder="e.g. 4" value="${child.age || ''}" oninput="validateEvalChildrenForm()">
         </div>
       </div>
 

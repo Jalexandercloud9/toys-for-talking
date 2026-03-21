@@ -191,8 +191,9 @@ function renderChildBlock(child, index) {
         </div>
         <div class="form-group">
           <label>Age <span class="required">*</span></label>
-          <input class="form-control" id="child-${index}-age" type="number"
-            placeholder="e.g. 2" min="0" max="4" value="${child.age || ''}" oninput="validateCampChildrenForm()">
+          <input class="form-control" id="child-${index}-age" type="text"
+            inputmode="numeric" pattern="[0-9]*"
+            placeholder="e.g. 2" value="${child.age || ''}" oninput="validateCampChildrenForm()">
         </div>
       </div>
       <div class="form-group">
