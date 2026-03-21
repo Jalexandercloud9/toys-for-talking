@@ -163,7 +163,7 @@ function renderPayment() {
               : 'After payment, Jasmine will call you to confirm your evaluation time and location in the DFW area.'}
           </p>
 
-          <a href="${stripeUrl}" target="_blank" rel="noopener" class="btn btn-blue btn-lg" style="width:100%;justify-content:center;text-decoration:none;">
+          <a href="${stripeUrl}" class="btn btn-blue btn-lg" style="width:100%;justify-content:center;text-decoration:none;">
             <i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} with Stripe
           </a>
 
@@ -207,7 +207,7 @@ function renderPayment() {
         <span class="shelf-label">Total</span>
         <span class="shelf-amount">$${totalPrice.toLocaleString()}</span>
       </div>
-      <a href="${stripeUrl}" target="_blank" rel="noopener" class="btn btn-blue btn-lg" style="text-decoration:none;">
+      <a href="${stripeUrl}" class="btn btn-blue btn-lg" style="text-decoration:none;">
         <i class="bi bi-lock"></i> Pay with Stripe
       </a>
     </div>
