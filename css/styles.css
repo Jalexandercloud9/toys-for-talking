@@ -667,10 +667,20 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
 .date-btn.selected .day-name, .date-btn.selected .day-num, .date-btn.selected .month { color: white; }
 
 /* ===================== PAYMENT ===================== */
-.payment-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; max-width: 1000px; margin: 0 auto; }
+.payment-outer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
 @media (max-width: 768px) {
-  .payment-grid { grid-template-columns: 1fr; }
-  #page-content { padding-bottom: 90px; }
+  .payment-outer { padding: 1.25rem 1rem 2rem; }
+}
+.payment-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; }
+@media (max-width: 768px) {
+  .payment-grid { grid-template-columns: 1fr; gap: 1rem; }
+  /* Only add bottom clearance when a fixed shelf is actually visible */
+  body:has(.pay-shelf) #page-content,
+  body:has(.camp-shelf) #page-content { padding-bottom: 90px; }
 }
 .order-summary-card { position: sticky; top: 90px; height: fit-content; }
 

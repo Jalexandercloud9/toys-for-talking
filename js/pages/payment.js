@@ -50,7 +50,7 @@ function renderPayment() {
       <p>Please review your details before completing payment.</p>
     </div>
 
-    <div style="max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem;">
+    <div class="payment-outer">
       <div class="payment-grid">
 
         <!-- Left: Full booking review -->
