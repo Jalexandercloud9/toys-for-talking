@@ -62,6 +62,9 @@ function renderConfirmation() {
       <p class="text-muted text-sm">
         A confirmation email has been sent to <strong>${guardian.email || 'your email'}</strong>
       </p>
+      <p class="text-muted text-sm" style="margin-top:0.4rem;">
+        <i class="bi bi-info-circle"></i> Don't see it? Check your <strong>spam or junk folder</strong> and mark it as "Not Spam."
+      </p>
 
       <!-- Summary -->
       <div class="confirmation-summary">

@@ -234,27 +234,6 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="section" style="background:var(--bg-card);">
-      <div class="container">
-        <h2 class="section-title">What Families Are Saying</h2>
-        <div class="grid-3">
-          <div class="testimonial">
-            <p>"After just two months with Jasmine, our son went from barely stringing words together to telling us full stories. The difference is incredible."</p>
-            <div class="testimonial-author">— Marcus T., Parent</div>
-          </div>
-          <div class="testimonial">
-            <p>"The summer camp was the best decision we made for our daughter. She made friends, built confidence, and her speech improved dramatically."</p>
-            <div class="testimonial-author">— Danielle R., Parent</div>
-          </div>
-          <div class="testimonial">
-            <p>"Jasmine has a gift for connecting with kids. My shy son was relaxed and engaged from day one. We can't recommend her enough."</p>
-            <div class="testimonial-author">— Kevin &amp; Tanya M., Parents</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- CTA -->
     <section class="cta-section">
       <h2>Ready to Get Started?</h2>
