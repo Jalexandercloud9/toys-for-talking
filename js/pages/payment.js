@@ -159,8 +159,8 @@ function renderPayment() {
 
           <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1.25rem;">
             ${isCamp
-              ? 'You\'ll be taken to Stripe\'s secure checkout. Full refunds available up to 7 days before camp starts.'
-              : 'After payment, Jasmine will call you to confirm your evaluation time and location in the DFW area.'}
+              ? 'You\'ll be taken to Stripe\'s secure checkout. <a href="#/refund-policy" style="color:var(--primary);">View refund policy.</a>'
+              : 'After payment, Jasmine will call you to confirm your evaluation time and location in the DFW area. <a href="#/refund-policy" style="color:var(--primary);">View refund policy.</a>'}
           </p>
 
           <a href="${stripeUrl}" class="btn btn-blue btn-lg" style="width:100%;justify-content:center;text-decoration:none;">
@@ -179,7 +179,7 @@ function renderPayment() {
             </div>
             ${isCamp ? `
               <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
-                <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> Full refund if cancelled 7+ days before camp
+                <i class="bi bi-check2" style="color:var(--success);flex-shrink:0;"></i> <a href="#/refund-policy" style="color:var(--text-muted);text-decoration:underline;">Full refund if cancelled 7+ days before camp</a>
               </div>
             ` : `
               <div style="font-size:0.8rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:flex-start;">
