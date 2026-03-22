@@ -25,7 +25,7 @@ function renderHome() {
       <div class="container">
         <h2 class="section-title">Why Families Choose Toys for Talking</h2>
         <p class="section-subtitle">
-          Jasmine doesn't just work with your child — she equips you with the
+          We don't just work with your child — we equip you with the
           strategies and confidence to support your child's communication every day.
         </p>
         <div class="grid-3">
@@ -67,7 +67,7 @@ function renderHome() {
     <section class="section" style="background:var(--bg-card);">
       <div class="container">
         <h2 class="section-title">How We Can Support Your Family</h2>
-        <p class="section-subtitle">I offer two different ways to support your child's communication, depending on your needs.</p>
+        <p class="section-subtitle">We offer two different ways to support your child's communication, depending on your needs.</p>
 
         <div class="grid-2" style="margin-top:2rem;gap:1.5rem;">
           <!-- Evaluation Card -->
