@@ -181,7 +181,7 @@ function renderChildBlock(child, index) {
     <div class="child-block" id="child-block-${index}">
       <div class="child-block-header">
         <div class="child-block-title">Child ${index + 1}</div>
-        ${index > 0 ? `<button class="btn-remove-child" onclick="removeChild(${index})"><i class="bi bi-x-lg"></i> Remove</button>` : ''}
+        ${index > 0 ? `<button class="btn-remove-child" onclick="removeCampChild(${index})"><i class="bi bi-x-lg"></i> Remove</button>` : ''}
       </div>
       <div class="form-row">
         <div class="form-group">
@@ -380,7 +380,7 @@ function addChild() {
   validateCampChildrenForm();
 }
 
-function removeChild(index) {
+function removeCampChild(index) {
   saveCurrentChildren();
   window.AppState.children.splice(index, 1);
   document.getElementById('children-list').innerHTML =
