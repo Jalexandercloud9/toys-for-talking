@@ -7,7 +7,7 @@
 
 // --- EmailJS — customer confirmation email ---
 const EMAILJS_PUBLIC_KEY = 'muew2ffrIQXKrYByd';
-const EMAILJS_SERVICE_ID = 'service_zw47q51';
+const EMAILJS_SERVICE_ID = 'service_8c48a0k';
 const TEMPLATE_CUSTOMER  = 'template_a0azha7';
 
 // --- Zapier — booking log to Google Sheets ---
