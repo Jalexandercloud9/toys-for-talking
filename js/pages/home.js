@@ -1,9 +1,14 @@
 function renderHome() {
   return `
     <section class="hero">
-      <div class="hero-content">
+      <div class="hero-top">
         <div class="hero-badge">Little Lamps Speech Camp 2026 — Now Open</div>
         <h1>Every Child Deserves to Be Heard</h1>
+      </div>
+      <div class="hero-image-row">
+        <img src="assets/images/kidsplaying.png" class="hero-kids-img" alt="Children playing with toys" />
+      </div>
+      <div class="hero-bottom">
         <p>
           Jasmine Alexander, Speech-Language Pathologist, coaches parents with
           the play-based strategies and professional guidance they need to
@@ -13,7 +18,7 @@ function renderHome() {
           <a href="#/book-camp" class="btn btn-primary btn-lg">
             <i class="bi bi-tent"></i> Book Speech Camp
           </a>
-          <a href="#/book-evaluation" class="btn btn-outline btn-lg">
+          <a href="#/book-evaluation" class="btn btn-blue btn-lg">
             <i class="bi bi-clipboard-check"></i> Schedule an Evaluation
           </a>
         </div>

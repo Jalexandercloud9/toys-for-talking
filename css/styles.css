@@ -188,39 +188,77 @@ a:hover { color: var(--primary-dark); }
 
 /* ===================== HERO ===================== */
 .hero {
-  background: var(--primary);
-  background-image: url('../assets/images/kidsplaying.png');
-  background-size: cover;
-  background-position: center;
-  padding: 5rem 1.5rem 4rem;
+  background-color: #FAF6F0;
   text-align: center;
-  position: relative;
   overflow: hidden;
 }
-.hero::before {
+.hero-top {
+  padding: 3rem 1.5rem 0;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-image-row {
+  position: relative;
+  max-width: 560px;
+  margin: -0.4rem auto -1.5rem;
+  line-height: 0;
+}
+.hero-image-row::before,
+.hero-image-row::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: rgba(180, 70, 50, 0.72);
+  left: 0;
+  right: 0;
+  height: 30px;
+  z-index: 1;
+  pointer-events: none;
 }
-.hero-content { max-width: 680px; margin: 0 auto; position: relative; }
+.hero-image-row::before {
+  top: 0;
+  background: linear-gradient(to bottom, #FAF6F0 0%, transparent 100%);
+}
+.hero-image-row::after {
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to top, #FAF6F0 0%, transparent 100%);
+}
+.hero-kids-img {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.hero-bottom {
+  padding: 0.5rem 1.5rem 3.5rem;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(to bottom, #FAF6F0 80%, transparent);
+}
 .hero-badge {
   display: inline-block;
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.35);
-  color: white;
+  background: rgba(217,107,85,0.15);
+  border: 1px solid rgba(217,107,85,0.40);
+  color: var(--primary);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.35rem 1rem;
   border-radius: 50px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   font-family: 'Inter', sans-serif;
 }
-.hero h1 { color: white; margin-bottom: 1.25rem; }
-.hero p { color: rgba(255,255,255,0.88); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.hero h1 { color: var(--text); margin-bottom: 0; }
+.hero p { color: var(--text-light); font-size: 1.1rem; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
 .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.hero-buttons .btn-primary { border-color: var(--primary); }
+@media (max-width: 700px) {
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .hero-buttons .btn { width: 100%; max-width: 320px; justify-content: center; }
+}
 
 /* ===================== BUTTONS ===================== */
 .btn {
