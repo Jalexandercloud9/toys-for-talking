@@ -228,7 +228,7 @@ async function launchStripeCheckout(btnId) {
   });
 
   try {
-    const res  = await fetch('/.netlify/functions/create-checkout', {
+    const res  = await fetch('https://toysfortalkingslp.com/.netlify/functions/create-checkout', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({ campId, numKids }),
