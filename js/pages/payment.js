@@ -23,17 +23,13 @@ function renderPayment() {
   const totalPrice = isCamp ? campPrice : evalPrice;
   const guardian  = state.guardian || {};
 
-  // Pre-build the Stripe URL and save state NOW so the Pay button
-  // can be a plain <a href> — most reliable cross-browser navigation
   if (!state.confirmationId) {
     state.confirmationId = 'TFT-' + Math.random().toString(36).substr(2, 8).toUpperCase();
   }
-  state.paymentConfirmed = false; // true only after Stripe returns
-  let stripeUrl = isCamp && state.selectedCamp && state.selectedCamp.stripeLink
-    ? state.selectedCamp.stripeLink
-    : window.EVAL_STRIPE_LINK;
-  if (numKids > 1) stripeUrl += '?prefilled_quantity=' + numKids;
+  state.paymentConfirmed = false;
   try { localStorage.setItem('tft_booking', JSON.stringify(state)); } catch(e) {}
+
+  const _checkoutCampId = isCamp && state.selectedCamp ? state.selectedCamp.id : 'evaluation';
 
   const priorTherapyLabel = v =>
     v === 'no'          ? 'No prior therapy'           :
@@ -163,9 +159,9 @@ function renderPayment() {
               : 'After payment, Jasmine will call you to confirm your evaluation time and location in the DFW area. <a href="#/refund-policy" style="color:var(--primary);">View refund policy.</a>'}
           </p>
 
-          <a href="${stripeUrl}" class="btn btn-blue btn-lg" style="width:100%;justify-content:center;text-decoration:none;">
+          <button id="pay-btn-main" class="btn btn-blue btn-lg" style="width:100%;justify-content:center;" onclick="launchStripeCheckout('pay-btn-main')">
             <i class="bi bi-lock"></i> Pay $${totalPrice.toLocaleString()} with Stripe
-          </a>
+          </button>
 
           <div class="secure-badge" style="margin-top:1rem;">
             <i class="bi bi-shield-check"></i> Secured by <strong style="margin-left:4px;">Stripe</strong>
@@ -208,12 +204,49 @@ function renderPayment() {
         <span class="shelf-label">Total</span>
         <span class="shelf-amount">$${totalPrice.toLocaleString()}</span>
       </div>
-      <a href="${stripeUrl}" class="btn btn-blue btn-lg" style="text-decoration:none;">
+      <button id="pay-btn-shelf" class="btn btn-blue btn-lg" onclick="launchStripeCheckout('pay-btn-shelf')">
         <i class="bi bi-lock"></i> Pay with Stripe
-      </a>
+      </button>
     </div>
     ` : ''}
   `;
+}
+
+// -----------------------------------------------
+// Stripe Checkout — server-side quantity locking
+// -----------------------------------------------
+async function launchStripeCheckout(btnId) {
+  const state   = window.AppState;
+  const isCamp  = state.bookingType === 'camp';
+  const campId  = isCamp && state.selectedCamp ? state.selectedCamp.id : 'evaluation';
+  const numKids = state.children.length || 1;
+
+  // Disable both buttons while processing
+  ['pay-btn-main', 'pay-btn-shelf'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.disabled = true; el.innerHTML = '<i class="bi bi-hourglass-split"></i> Redirecting…'; }
+  });
+
+  try {
+    const res  = await fetch('/.netlify/functions/create-checkout', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ campId, numKids }),
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'No URL returned');
+    }
+  } catch (err) {
+    console.error('Checkout error:', err);
+    ['pay-btn-main', 'pay-btn-shelf'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.disabled = false; el.innerHTML = '<i class="bi bi-lock"></i> Pay with Stripe'; }
+    });
+    alert('Something went wrong. Please try again or contact us at (214) 395-0109.');
+  }
 }
 
 // -----------------------------------------------
