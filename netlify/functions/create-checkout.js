@@ -1,9 +1,7 @@
 // Netlify serverless function — creates a Stripe Checkout Session
 // with a server-side locked quantity so parents cannot change it.
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
-// Prices per child (in cents). Must match Stripe product prices.
+// Prices per child (in cents).
 const PRICES = {
   'llsc-june-inperson': { amount: 19900, name: 'Little Lamps Speech Camp — June (In-Person)' },
   'llsc-july-inperson': { amount: 19900, name: 'Little Lamps Speech Camp — July (In-Person)' },
@@ -13,12 +11,19 @@ const PRICES = {
 };
 
 exports.handler = async (event) => {
+  console.log('create-checkout called, method:', event.httpMethod);
+
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
   try {
+    // Initialise Stripe inside the handler so any key error is caught and logged
+    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    console.log('Stripe key present:', !!process.env.STRIPE_SECRET_KEY);
+
     const { campId, numKids } = JSON.parse(event.body);
+    console.log('campId:', campId, 'numKids:', numKids);
 
     const product = PRICES[campId];
     if (!product) {
