@@ -77,7 +77,7 @@ function renderPrivacyPolicy() {
           <div>
             <h4 style="margin-bottom:0.4rem;">Your Rights</h4>
             <p style="font-size:0.9rem;color:var(--text-light);line-height:1.7;margin:0;">
-              You may request to view, update, or delete your personal information at any time by contacting us at <a href="mailto:toysfortalking@gmail.com" style="color:var(--primary);">toysfortalking@gmail.com</a>.
+              You may request to view, update, or delete your personal information at any time by contacting us at <a href="mailto:info@toysfortalkingslp.com" style="color:var(--primary);">info@toysfortalkingslp.com</a>.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ function renderPrivacyPolicy() {
               If you have any questions about this Privacy Policy, please contact us:<br>
               <strong>Jasmine Alexander, CCC-SLP</strong><br>
               J.Alexander Communication &amp; Education PLC<br>
-              <a href="mailto:toysfortalking@gmail.com" style="color:var(--primary);">toysfortalking@gmail.com</a> &nbsp;·&nbsp;
+              <a href="mailto:info@toysfortalkingslp.com" style="color:var(--primary);">info@toysfortalkingslp.com</a> &nbsp;·&nbsp;
               <a href="tel:+12143950109" style="color:var(--primary);">(214) 395-0109</a>
             </p>
           </div>

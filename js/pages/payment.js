@@ -189,7 +189,7 @@ function renderPayment() {
           <div class="alert alert-info" style="font-size:0.8rem;padding:0.75rem;overflow-wrap:break-word;word-break:break-word;">
             <div style="display:flex;gap:0.5rem;align-items:flex-start;flex-wrap:wrap;">
               <i class="bi bi-telephone" style="flex-shrink:0;"></i>
-              <span>Questions? Call <strong>(214) 395-0109</strong> or email <strong>toysfortalking@gmail.com</strong></span>
+              <span>Questions? Call <strong>(214) 395-0109</strong> or email <strong>info@toysfortalkingslp.com</strong></span>
             </div>
           </div>
         </div>

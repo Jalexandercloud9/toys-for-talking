@@ -26,7 +26,7 @@ function renderConfirmation() {
   if (isCamp && camp) {
     const isVirtualCamp = camp.id.includes('virtual');
     eventTitle       = `Toys for Talking: ${camp.name}`;
-    eventDescription = `${camp.name} for ${children.map(c => c.firstName).join(', ')}.\n\nLocation: ${camp.location}\nTime: ${camp.time}\n\nQuestions? toysfortalking@gmail.com or (214) 395-0109`;
+    eventDescription = `${camp.name} for ${children.map(c => c.firstName).join(', ')}.\n\nLocation: ${camp.location}\nTime: ${camp.time}\n\nQuestions? info@toysfortalkingslp.com or (214) 395-0109`;
     eventLocation    = camp.location;
 
     if (!isVirtualCamp) {

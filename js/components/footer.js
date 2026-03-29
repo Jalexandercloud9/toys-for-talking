@@ -48,7 +48,7 @@ function renderFooter() {
         <div>
           <h4>Contact</h4>
           <ul>
-            <li><a href="mailto:toysfortalking@gmail.com">toysfortalking@gmail.com</a></li>
+            <li><a href="mailto:info@toysfortalkingslp.com">info@toysfortalkingslp.com</a></li>
             <li><a href="tel:+12143950109">(214) 395-0109</a></li>
           </ul>
         </div>

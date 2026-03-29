@@ -262,7 +262,7 @@ function renderCampSelector() {
     </div>
     <button class="btn btn-blue" style="width:100%;margin-top:1.25rem;justify-content:center;"
       onclick="proceedToPayment('camp')">
-      Pay $${total} with Stripe <i class="bi bi-arrow-right"></i>
+      Continue to Payment <i class="bi bi-arrow-right"></i>
     </button>
     <div style="margin-top:1rem;font-size:0.78rem;color:var(--text-muted);line-height:1.5;">
       ${selected.id.includes('virtual')
@@ -321,7 +321,7 @@ function renderCampSelector() {
         <span class="shelf-amount">${selected ? `$${total}` : '—'}</span>
       </div>
       <button id="camp-shelf-btn" class="btn btn-blue" onclick="proceedToPayment('camp')" ${selected ? '' : 'disabled'}>
-        ${selected ? `Pay $${total}` : 'Select a camp'} <i class="bi bi-arrow-right"></i>
+        ${selected ? 'Continue to Payment' : 'Select a camp'} <i class="bi bi-arrow-right"></i>
       </button>
     </div>
   `;
