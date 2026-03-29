@@ -6,7 +6,7 @@ function renderBookCamp() {
   return `
     <div class="page-header">
       <h1>Book Little Lamps Speech Camp</h1>
-      <p>Register your child (ages 0–4) for an in-person or virtual Sunday speech camp.</p>
+      <p>Register your child (ages 1–4) for an in-person or virtual Sunday speech camp.</p>
     </div>
     <div class="booking-container ${campStep === 3 ? 'booking-wide' : ''}" id="camp-booking-root">
       ${renderCampStep(campStep)}
@@ -193,7 +193,10 @@ function renderChildBlock(child, index) {
           <label>Age <span class="required">*</span></label>
           <input class="form-control" id="child-${index}-age" type="text"
             inputmode="numeric" pattern="[0-9]*"
-            placeholder="e.g. 2" value="${child.age || ''}" oninput="validateCampChildrenForm()">
+            placeholder="e.g. 2" value="${child.age || ''}"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'');validateCampChildrenForm();"
+            onkeypress="return /[0-9]/.test(event.key)">
+          <div class="field-error" id="child-${index}-age-error" style="display:none;color:var(--error);font-size:0.8rem;margin-top:0.25rem;"></div>
         </div>
       </div>
       <div class="form-group">
@@ -401,9 +404,19 @@ function saveChildrenAndNext() {
   const errorEl = document.getElementById('children-error');
   for (let i = 0; i < window.AppState.children.length; i++) {
     const c = window.AppState.children[i];
+    // Clear individual age error first
+    const ageErr = document.getElementById(`child-${i}-age-error`);
+    if (ageErr) ageErr.style.display = 'none';
     if (!c.firstName || !c.age || !c.reason) {
       errorEl.style.display = 'flex';
       errorEl.textContent = `Please complete all fields for Child ${i + 1}.`;
+      return;
+    }
+    const age = parseInt(c.age, 10);
+    if (isNaN(age) || age < 1 || age > 4) {
+      if (ageErr) { ageErr.textContent = 'Age must be between 1 and 4.'; ageErr.style.display = 'block'; }
+      errorEl.style.display = 'flex';
+      errorEl.textContent = `Child ${i + 1}: age must be between 1 and 4.`;
       return;
     }
   }

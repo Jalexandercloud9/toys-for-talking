@@ -84,7 +84,10 @@ function renderEvalChildBlock(child, index) {
           <label>Child's Age <span class="required">*</span></label>
           <input class="form-control" id="eval-child-${index}-age" type="text"
             inputmode="numeric" pattern="[0-9]*"
-            placeholder="e.g. 4" value="${child.age || ''}" oninput="validateEvalChildrenForm()">
+            placeholder="e.g. 4" value="${child.age || ''}"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'');validateEvalChildrenForm();"
+            onkeypress="return /[0-9]/.test(event.key)">
+          <div class="field-error" id="eval-child-${index}-age-error" style="display:none;color:var(--error);font-size:0.8rem;margin-top:0.25rem;"></div>
         </div>
       </div>
 
@@ -168,9 +171,18 @@ function saveEvalChildren() {
   const errorEl = document.getElementById('eval-child-error');
   for (let i = 0; i < window.AppState.children.length; i++) {
     const c = window.AppState.children[i];
+    const ageErr = document.getElementById(`eval-child-${i}-age-error`);
+    if (ageErr) ageErr.style.display = 'none';
     if (!c.firstName || !c.age || !c.reason) {
       errorEl.style.display = 'flex';
       errorEl.textContent = `Please complete all required fields for Child ${i + 1}.`;
+      return;
+    }
+    const age = parseInt(c.age, 10);
+    if (isNaN(age) || age < 0 || age > 17) {
+      if (ageErr) { ageErr.textContent = 'Age must be between 0 and 17.'; ageErr.style.display = 'block'; }
+      errorEl.style.display = 'flex';
+      errorEl.textContent = `Child ${i + 1}: age must be between 0 and 17.`;
       return;
     }
   }
