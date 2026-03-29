@@ -1,9 +1,5 @@
 function renderAbout() {
   return `
-    <div class="page-header about-header-logo">
-      <img src="assets/images/logo.png" alt="Toys for Talking — Jasmine Alexander, M.A., CCC-SLP" class="site-logo-hero" />
-    </div>
-
     <section class="section" style="padding-top:2rem;">
       <div class="container">
         <div class="about-bio-section">
