@@ -9,10 +9,7 @@ function renderAbout() {
         <div class="about-bio-section">
           <!-- Photo floated left -->
           <div class="about-photo-float">
-            <div class="about-photo-placeholder" id="about-photo-container">
-              <div class="photo-icon"><i class="bi bi-person-circle"></i></div>
-              <span>Photo coming soon</span>
-            </div>
+            <img src="assets/images/Jasmine_toys.jpeg" alt="Jasmine Alexander, M.A., CCC-SLP" style="width:100%;border-radius:var(--radius);display:block;" />
           </div>
 
           <p style="margin-bottom:1rem;font-size:1.05rem;line-height:1.8;">
