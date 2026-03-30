@@ -725,6 +725,7 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
 .payment-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; }
 @media (max-width: 768px) {
   .payment-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .booking-container.booking-wide { padding-left: 1.5rem; padding-right: 1.5rem; }
   /* Only add bottom clearance when a fixed shelf is actually visible */
   body:has(.pay-shelf) #page-content,
   body:has(.camp-shelf) #page-content { padding-bottom: 90px; }
@@ -846,7 +847,7 @@ select.form-control { appearance: none; cursor: pointer; background-image: url("
 .summary-row { display: flex; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; font-family: 'Inter', sans-serif; }
 .summary-row:last-child { border-bottom: none; }
 .summary-label { font-weight: 600; color: var(--text); min-width: 130px; }
-.summary-value { color: var(--text-light); flex: 1; }
+.summary-value { color: var(--text-light); flex: 1; word-break: break-word; overflow-wrap: break-word; }
 .calendar-buttons { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
 .cal-btn {
   display: flex;

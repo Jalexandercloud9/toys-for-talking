@@ -11,7 +11,7 @@ function renderHome() {
       <div class="hero-bottom">
         <p>
           Jasmine Alexander, Speech-Language Pathologist, coaches parents with
-          the play-based strategies and professional guidance they need to
+          play-based strategies and professional guidance they need to
           support their child's speech and language development at home.
         </p>
         <div class="hero-buttons">
@@ -96,7 +96,7 @@ function renderHome() {
             <p style="margin-bottom:1rem;">A parent coaching camp — Jasmine teaches you the play-based language strategies you can use at home every day. You leave each session with real tools, not just observations.</p>
             <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Parents learn strategies they can use immediately</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Ages 0–4 · No prior diagnosis required</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Ages 1–4 · No prior diagnosis required</li>
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person (Dallas) or virtual for any family</li>
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Small groups · Sundays · $99–$199</li>
             </ul>
@@ -122,7 +122,7 @@ function renderHome() {
     <section class="section" style="background:var(--bg);">
       <div class="container">
         <h2 class="section-title">Little Lamps Speech Camp 2026</h2>
-        <p class="section-subtitle">Play-based Sunday programs for children ages 0–4. Choose in-person or virtual — two cohorts available for each.</p>
+        <p class="section-subtitle">Play-based Sunday programs for children ages 1–4. Choose in-person or virtual — two cohorts available for each.</p>
         <div class="grid-2">
 
           <!-- IN-PERSON CARD -->
@@ -133,7 +133,7 @@ function renderHome() {
               <div>
                 <div class="card-icon"><i class="bi ${camp.icon}"></i></div>
                 <h3>${camp.name}</h3>
-                <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem;">In-Person · Ages 0–4 · Dallas, TX</p>
+                <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem;">In-Person · Ages 1–4 · Dallas, TX</p>
                 <p style="font-size:0.875rem;margin-bottom:0.75rem;">${camp.description}</p>
 
                 <!-- Cohort dates -->
@@ -188,7 +188,7 @@ function renderHome() {
               <div>
                 <div class="card-icon"><i class="bi ${camp.icon}"></i></div>
                 <h3>${camp.name}</h3>
-                <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem;">Virtual · Ages 0–4 · Anywhere</p>
+                <p style="font-size:0.8rem;color:var(--primary);font-weight:600;margin-bottom:0.5rem;">Virtual · Ages 1–4 · Anywhere</p>
                 <p style="font-size:0.875rem;margin-bottom:0.75rem;">${camp.description}</p>
 
                 <!-- Cohort dates -->
