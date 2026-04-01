@@ -8,7 +8,7 @@ function renderPrivacyPolicy() {
       <div class="card" style="margin-bottom:1.5rem;">
 
         <p style="font-size:0.9rem;color:var(--text-light);line-height:1.7;margin-bottom:1.5rem;">
-          Toys for Talking / J.Alexander Communication &amp; Education PLC ("we," "us," or "our") is committed to protecting your privacy. This policy explains what information we collect when you use our website, how we use it, and how it is protected.
+          Toys for Talking / J.Alexander Communication &amp; Education PLLC ("we," "us," or "our") is committed to protecting your privacy. This policy explains what information we collect when you use our website, how we use it, and how it is protected.
         </p>
 
         <div class="divider"></div>
@@ -86,7 +86,7 @@ function renderPrivacyPolicy() {
             <p style="font-size:0.9rem;color:var(--text-light);line-height:1.7;margin:0;">
               If you have any questions about this Privacy Policy, please contact us:<br>
               <strong>Jasmine Alexander, CCC-SLP</strong><br>
-              J.Alexander Communication &amp; Education PLC<br>
+              J.Alexander Communication &amp; Education PLLC<br>
               <a href="mailto:info@toysfortalkingslp.com" style="color:var(--primary);">info@toysfortalkingslp.com</a> &nbsp;·&nbsp;
               <a href="tel:+12143950109" style="color:var(--primary);">(214) 395-0109</a>
             </p>

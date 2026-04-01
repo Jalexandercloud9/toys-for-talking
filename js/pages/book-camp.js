@@ -90,12 +90,6 @@ function renderGuardianForm(context) {
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Street Address</label>
-        <input class="form-control" id="g-address" type="text" placeholder="123 Main St"
-          value="${g.address || ''}">
-      </div>
-
       <div class="form-row">
         <div class="form-group">
           <label>City</label>
@@ -103,13 +97,9 @@ function renderGuardianForm(context) {
             value="${g.city || ''}">
         </div>
         <div class="form-group">
-          <label>State / ZIP</label>
-          <div style="display:flex;gap:0.5rem;">
-            <input class="form-control" id="g-state" type="text" placeholder="TX" maxlength="2" style="width:80px;flex-shrink:0;"
-              value="${g.state || ''}">
-            <input class="form-control" id="g-zip" type="text" placeholder="ZIP"
-              value="${g.zip || ''}">
-          </div>
+          <label>State</label>
+          <input class="form-control" id="g-state" type="text" placeholder="TX" maxlength="2"
+            value="${g.state || ''}">
         </div>
       </div>
 
@@ -200,10 +190,13 @@ function renderChildBlock(child, index) {
         </div>
       </div>
       <div class="form-group">
-        <label>Why do you believe your child may benefit from speech therapy? <span class="required">*</span></label>
-        <textarea class="form-control" id="child-${index}-reason"
-          placeholder="Please share any concerns, observations, or background about your child's speech and language development. This helps us prepare the best experience for them."
-          rows="4" oninput="validateCampChildrenForm()">${child.reason || ''}</textarea>
+        <label>How many words does your child use consistently? <span class="required">*</span></label>
+        <input class="form-control" id="child-${index}-reason" type="text"
+          inputmode="numeric" pattern="[0-9]*"
+          placeholder="e.g. 10"
+          value="${child.reason || ''}"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');validateCampChildrenForm();"
+          onkeypress="return /[0-9]/.test(event.key)">
       </div>
     </div>
   `;
@@ -336,10 +329,8 @@ function saveGuardianAndNext(context) {
     email:     document.getElementById('g-email')?.value.trim(),
     phone:     document.getElementById('g-phone')?.value.trim(),
     relationship: document.getElementById('g-relationship')?.value,
-    address:   document.getElementById('g-address')?.value.trim(),
     city:      document.getElementById('g-city')?.value.trim(),
     state:     document.getElementById('g-state')?.value.trim(),
-    zip:       document.getElementById('g-zip')?.value.trim(),
   };
 
   const errorEl = document.getElementById('guardian-error');

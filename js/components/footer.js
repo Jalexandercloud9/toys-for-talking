@@ -54,7 +54,7 @@ function renderFooter() {
         </div>
       </div>
       <div class="footer-bottom">
-        <span>J.Alexander Communication &amp; Education PLC · Jasmine Alexander, CCC-SLP</span>
+        <span>J.Alexander Communication &amp; Education PLLC · Jasmine Alexander, CCC-SLP</span>
         <span style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
           <a href="#/privacy-policy" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Privacy Policy</a>
           <a href="#/refund-policy" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Refund Policy</a>

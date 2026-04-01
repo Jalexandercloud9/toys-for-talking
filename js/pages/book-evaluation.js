@@ -29,7 +29,7 @@ function renderEvalStep(step) {
 function renderEvalChildrenForm() {
   const children = window.AppState.children.length > 0
     ? window.AppState.children
-    : [{ firstName: '', age: '', language: 'english', reason: '', priorTherapy: '', notes: '' }];
+    : [{ firstName: '', age: '', language: 'english', reason: '', twoWords: '', priorTherapy: '', notes: '' }];
   if (window.AppState.children.length === 0) window.AppState.children = children;
 
   const phone = window.AppState.guardian && window.AppState.guardian.phone
@@ -101,9 +101,23 @@ function renderEvalChildBlock(child, index) {
       </div>
 
       <div class="form-group">
-        <label>What are your primary concerns about this child's speech or language? <span class="required">*</span></label>
-        <textarea class="form-control" id="eval-child-${index}-reason" rows="4"
-          placeholder="Describe any observations — e.g. limited vocabulary, unclear speech, difficulty following directions, stuttering, late talker, etc." oninput="validateEvalChildrenForm()">${child.reason || ''}</textarea>
+        <label>How many words does your child use consistently? <span class="required">*</span></label>
+        <input class="form-control" id="eval-child-${index}-reason" type="text"
+          inputmode="numeric" pattern="[0-9]*"
+          placeholder="e.g. 10"
+          value="${child.reason || ''}"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');validateEvalChildrenForm();"
+          onkeypress="return /[0-9]/.test(event.key)">
+      </div>
+
+      <div class="form-group">
+        <label>Does your child put 2–3 words together, such as "want cookie" or "I want that"?</label>
+        <select class="form-control" id="eval-child-${index}-two-words">
+          <option value="">Select…</option>
+          <option value="yes" ${child.twoWords === 'yes' ? 'selected' : ''}>Yes</option>
+          <option value="no" ${child.twoWords === 'no' ? 'selected' : ''}>No</option>
+          <option value="sometimes" ${child.twoWords === 'sometimes' ? 'selected' : ''}>Sometimes</option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -145,6 +159,7 @@ function saveCurrentEvalChildren() {
     age:          document.getElementById(`eval-child-${i}-age`)?.value || '',
     language:     document.getElementById(`eval-child-${i}-language`)?.value || 'english',
     reason:       document.getElementById(`eval-child-${i}-reason`)?.value.trim() || '',
+    twoWords:     document.getElementById(`eval-child-${i}-two-words`)?.value || '',
     priorTherapy: document.getElementById(`eval-child-${i}-prior`)?.value || '',
     notes:        document.getElementById(`eval-child-${i}-notes`)?.value.trim() || '',
   }));
@@ -152,7 +167,7 @@ function saveCurrentEvalChildren() {
 
 function addEvalChild() {
   saveCurrentEvalChildren();
-  window.AppState.children.push({ firstName: '', age: '', language: 'english', reason: '', priorTherapy: '', notes: '' });
+  window.AppState.children.push({ firstName: '', age: '', language: 'english', reason: '', twoWords: '', priorTherapy: '', notes: '' });
   document.getElementById('eval-children-list').innerHTML =
     window.AppState.children.map((c, i) => renderEvalChildBlock(c, i)).join('');
   validateEvalChildrenForm();
