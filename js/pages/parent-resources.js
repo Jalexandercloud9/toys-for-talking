@@ -12,29 +12,25 @@ function renderParentResources() {
 
     <div class="booking-container">
 
-      <p style="text-align:center;color:var(--text-light);font-size:0.95rem;margin-bottom:1.25rem;">
-        Fill out the form below to unlock your free resources instantly.
-      </p>
-
-      <!-- Resource Cards -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;">
-
-        <div class="card" style="border-top:4px solid var(--primary);opacity:0.85;">
-          <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--primary);margin-bottom:0.5rem;">What you'll receive</div>
-          <h3 style="font-size:1.1rem;margin-bottom:0.5rem;color:var(--text);">Talking Steps Guide</h3>
-          <p style="font-size:0.875rem;color:var(--text-light);line-height:1.6;">
-            Every child reaches communication milestones at their own pace — but how do you know if your child is on track? This free guide walks you through the key early talking stages and gives you simple, everyday techniques to gently encourage each next step. Plus, learn which common habits may be slowing things down — and what to do instead.
-          </p>
+      <!-- Resource Preview Card -->
+      <div class="card" style="border-top:4px solid var(--primary);margin-bottom:2rem;">
+        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--primary);margin-bottom:0.75rem;">What you'll receive</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+            <i class="bi bi-file-earmark-text" style="color:var(--primary);font-size:1.1rem;flex-shrink:0;margin-top:2px;"></i>
+            <div>
+              <strong style="font-size:0.9rem;">Talking Steps Guide</strong>
+              <p style="font-size:0.82rem;color:var(--text-light);margin:0.2rem 0 0;">Learn the key milestones and simple techniques to encourage your child's communication at every stage.</p>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--border);padding-top:0.75rem;display:flex;gap:0.75rem;align-items:flex-start;">
+            <i class="bi bi-play-circle" style="color:var(--primary);font-size:1.1rem;flex-shrink:0;margin-top:2px;"></i>
+            <div>
+              <strong style="font-size:0.9rem;">FREE 5-Minute Speech Boost</strong>
+              <p style="font-size:0.82rem;color:var(--text-light);margin:0.2rem 0 0;">3 simple strategies you can use during everyday moments to boost communication — no experience needed.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="card" style="border-top:4px solid var(--accent,#6C9E8E);opacity:0.85;">
-          <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent,#6C9E8E);margin-bottom:0.5rem;">What you'll receive</div>
-          <h3 style="font-size:1.1rem;margin-bottom:0.5rem;color:var(--text);">FREE 5-Minute Speech Boost</h3>
-          <p style="font-size:0.875rem;color:var(--text-light);line-height:1.6;">
-            You don't need hours of practice to make a difference. This free mini-course reveals 3 simple strategies you can use during everyday moments — meals, playtime, bath time — to boost your child's communication in just 5 minutes a day. No special equipment, no therapy degree required.
-          </p>
-        </div>
-
       </div>
 
       <!-- Sign-up Form -->
