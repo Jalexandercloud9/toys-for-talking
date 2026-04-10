@@ -85,6 +85,7 @@ function renderAbout() {
             <div class="card-icon" style="justify-content:center;"><i class="bi bi-journal-bookmark"></i></div>
             <h4>Parent Resources</h4>
             <p style="font-size:0.9rem;">Explore resources designed to help parents turn everyday play into communication opportunities.</p>
+            <a href="#/parent-resources" class="btn btn-blue" style="margin-top:0.75rem;font-size:0.85rem;">View Resources</a>
           </div>
           <div class="card" style="text-align:center;">
             <div class="card-icon" style="justify-content:center;"><i class="bi bi-sun"></i></div>
