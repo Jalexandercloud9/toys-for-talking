@@ -1,3 +1,8 @@
+const SPEECH_BOOST_VIDEO = 'SfW9xy4Fal8';
+const GUIDE_URL = 'assets/docs/talking-steps-guide.pdf';
+const GUIDE_FULL_URL = 'https://toysfortalkingslp.com/assets/docs/talking-steps-guide.pdf';
+const SPEECH_BOOST_VIDEO_URL = 'https://www.youtube.com/watch?v=' + SPEECH_BOOST_VIDEO;
+
 function renderParentResources() {
   return `
     <div class="page-header">
@@ -26,7 +31,7 @@ function renderParentResources() {
             You don't need hours of practice to make a difference. This free mini-course reveals 3 simple strategies you can use during everyday moments — meals, playtime, bath time — to boost your child's communication in just 5 minutes a day. No special equipment, no therapy degree required.
           </p>
           <div style="margin-top:1rem;font-size:0.8rem;color:var(--accent,#6C9E8E);font-weight:600;">
-            <i class="bi bi-envelope"></i> Delivered to Your Inbox
+            <i class="bi bi-play-circle"></i> Watch Instantly + Sent to Your Inbox
           </div>
         </div>
 
@@ -36,7 +41,7 @@ function renderParentResources() {
       <div class="card" id="resources-form-card">
         <h3 style="margin-bottom:0.25rem;font-size:1.15rem;">Get Your Free Resources</h3>
         <p style="color:var(--text-light);font-size:0.875rem;margin-bottom:1.5rem;">
-          Select what you'd like below and we'll send it right over.
+          Select what you'd like below. Everything will be available instantly on this page and also emailed to you so you can save it for later.
         </p>
 
         <div class="form-group">
@@ -60,7 +65,7 @@ function renderParentResources() {
             </label>
             <label style="display:flex;align-items:flex-start;gap:0.75rem;cursor:pointer;font-size:0.9rem;color:var(--text-light);">
               <input type="checkbox" id="res-course" style="margin-top:2px;flex-shrink:0;width:18px;height:18px;cursor:pointer;" onchange="validateResourcesForm()">
-              <span><strong style="color:var(--text);">FREE 5-Minute Speech Boost Course</strong> — 3 strategies sent to your inbox</span>
+              <span><strong style="color:var(--text);">FREE 5-Minute Speech Boost Course</strong> — watch the session instantly</span>
             </label>
           </div>
           <div id="res-check-error" style="display:none;color:var(--error);font-size:0.8rem;margin-top:0.5rem;">
@@ -75,29 +80,59 @@ function renderParentResources() {
         <div id="res-error" class="alert alert-error" style="display:none;margin-bottom:1rem;"></div>
 
         <button id="res-submit-btn" class="btn btn-blue" style="width:100%;" onclick="submitResourcesForm()" disabled>
-          Send My Free Resources <i class="bi bi-arrow-right"></i>
+          Get My Free Resources <i class="bi bi-arrow-right"></i>
         </button>
       </div>
 
       <!-- Success State -->
       <div id="resources-success" style="display:none;">
-        <div class="card" style="text-align:center;padding:3rem 2rem;">
-          <div style="width:64px;height:64px;background:var(--success);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
-            <i class="bi bi-check-lg" style="font-size:2rem;color:white;"></i>
-          </div>
 
-          <h2 style="margin-bottom:0.5rem;">You're all set!</h2>
-          <p style="color:var(--text-light);margin-bottom:2rem;">
-            Check your inbox — your resources are on the way. If you don't see them, check your spam folder and mark us as "Not Spam."
-          </p>
-          <div id="guide-download-btn" style="display:none;margin-bottom:1rem;">
-            <a href="assets/docs/talking-steps-guide.pdf" download="Talking-Steps-Guide.pdf"
-              class="btn btn-blue" style="width:100%;max-width:340px;">
-              <i class="bi bi-download"></i> Download Your Talking Steps Guide
+        <!-- Confirmation banner -->
+        <div class="alert alert-success" style="margin-bottom:1.5rem;display:flex;gap:0.75rem;align-items:flex-start;">
+          <i class="bi bi-check-circle" style="font-size:1.25rem;flex-shrink:0;margin-top:1px;"></i>
+          <div>
+            <strong>You're all set!</strong> Your resources are also on their way to your inbox.
+            If you don't see the email, check your spam folder and mark it as "Not Spam."
+          </div>
+        </div>
+
+        <!-- PDF Download -->
+        <div id="guide-download-section" style="display:none;margin-bottom:1.5rem;">
+          <div class="card">
+            <h3 style="font-size:1.05rem;margin-bottom:0.5rem;">Talking Steps Guide</h3>
+            <p style="font-size:0.875rem;color:var(--text-light);margin-bottom:1.25rem;">
+              Your guide is ready. Click below to download your PDF.
+            </p>
+            <a href="${GUIDE_URL}" download="Talking-Steps-Guide.pdf" class="btn btn-blue">
+              <i class="bi bi-download"></i> Download Talking Steps Guide
             </a>
           </div>
+        </div>
+
+        <!-- Video -->
+        <div id="video-section" style="display:none;margin-bottom:1.5rem;">
+          <div class="card">
+            <h3 style="font-size:1.05rem;margin-bottom:0.5rem;">FREE 5-Minute Speech Boost</h3>
+            <p style="font-size:0.875rem;color:var(--text-light);margin-bottom:1.25rem;">
+              Watch Jasmine's free session below and start using these strategies today.
+            </p>
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);">
+              <iframe
+                src="https://www.youtube.com/embed/${SPEECH_BOOST_VIDEO}?rel=0"
+                title="FREE 5-Minute Speech Boost Session"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:var(--radius);">
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:1rem;">
           <a href="#/" class="btn btn-ghost">Back to Home</a>
         </div>
+
       </div>
 
     </div>
@@ -105,11 +140,11 @@ function renderParentResources() {
 }
 
 function validateResourcesForm() {
-  const name    = document.getElementById('res-name')?.value.trim();
-  const email   = document.getElementById('res-email')?.value.trim();
-  const guide   = document.getElementById('res-guide')?.checked;
-  const course  = document.getElementById('res-course')?.checked;
-  const btn     = document.getElementById('res-submit-btn');
+  const name     = document.getElementById('res-name')?.value.trim();
+  const email    = document.getElementById('res-email')?.value.trim();
+  const guide    = document.getElementById('res-guide')?.checked;
+  const course   = document.getElementById('res-course')?.checked;
+  const btn      = document.getElementById('res-submit-btn');
   const checkErr = document.getElementById('res-check-error');
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -120,10 +155,10 @@ function validateResourcesForm() {
 }
 
 async function submitResourcesForm() {
-  const btn     = document.getElementById('res-submit-btn');
-  const errEl   = document.getElementById('res-error');
-  const name    = document.getElementById('res-name').value.trim();
-  const email   = document.getElementById('res-email').value.trim();
+  const btn         = document.getElementById('res-submit-btn');
+  const errEl       = document.getElementById('res-error');
+  const name        = document.getElementById('res-name').value.trim();
+  const email       = document.getElementById('res-email').value.trim();
   const wantsGuide  = document.getElementById('res-guide').checked;
   const wantsCourse = document.getElementById('res-course').checked;
 
@@ -132,24 +167,30 @@ async function submitResourcesForm() {
   errEl.style.display = 'none';
 
   const resourceList = [
-    wantsGuide  ? 'Talking Steps Guide (PDF)'       : null,
+    wantsGuide  ? 'Talking Steps Guide (PDF)'        : null,
     wantsCourse ? 'FREE 5-Minute Speech Boost Course' : null,
   ].filter(Boolean).join(', ');
 
+  // Build email content listing what they're receiving
+  const emailLines = [];
+  if (wantsGuide)  emailLines.push('Talking Steps Guide (PDF): ' + GUIDE_FULL_URL);
+  if (wantsCourse) emailLines.push('FREE 5-Minute Speech Boost Session: ' + SPEECH_BOOST_VIDEO_URL);
+
   try {
-    // Notify Jasmine of new lead via EmailJS
     await emailjs.send(EMAILJS_SERVICE_ID, 'template_resources', {
-      parent_name:   name,
-      parent_email:  email,
-      resources:     resourceList,
-      reply_to:      email,
+      parent_name:    name,
+      parent_email:   email,
+      resources:      resourceList,
+      resource_links: emailLines.join('\n\n'),
+      guide_url:      wantsGuide  ? GUIDE_FULL_URL          : '',
+      video_url:      wantsCourse ? SPEECH_BOOST_VIDEO_URL  : '',
+      reply_to:       email,
     }, EMAILJS_PUBLIC_KEY);
   } catch (e) {
-    console.warn('[TFT] EmailJS resources notification failed:', e);
-    // Don't block the user — still show success
+    console.warn('[TFT] EmailJS resources send failed:', e);
   }
 
-  // Log to Zapier if webhook configured
+  // Log to Zapier
   try {
     if (ZAPIER_WEBHOOK_URL) {
       fetch(ZAPIER_WEBHOOK_URL, {
@@ -157,8 +198,7 @@ async function submitResourcesForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           type: 'parent_resource_signup',
-          name,
-          email,
+          name, email,
           resources: resourceList,
           timestamp: new Date().toISOString(),
         }),
@@ -166,15 +206,11 @@ async function submitResourcesForm() {
     }
   } catch(e) {}
 
-  // Show success
+  // Hide form, show success
   document.getElementById('resources-form-card').style.display = 'none';
-  const successEl = document.getElementById('resources-success');
-  successEl.style.display = 'block';
-
-  // Show immediate PDF download if they selected the guide
-  if (wantsGuide) {
-    document.getElementById('guide-download-btn').style.display = 'block';
-  }
+  document.getElementById('resources-success').style.display = 'block';
+  if (wantsGuide)  document.getElementById('guide-download-section').style.display = 'block';
+  if (wantsCourse) document.getElementById('video-section').style.display = 'block';
 
   window.scrollToTop();
 }
