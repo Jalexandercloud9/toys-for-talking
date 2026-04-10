@@ -6,9 +6,10 @@
 // =====================================================
 
 // --- EmailJS — customer confirmation email ---
-const EMAILJS_PUBLIC_KEY = 'muew2ffrIQXKrYByd';
-const EMAILJS_SERVICE_ID = 'service_8c48a0k';
-const TEMPLATE_CUSTOMER  = 'template_a0azha7';
+const EMAILJS_PUBLIC_KEY    = 'muew2ffrIQXKrYByd';
+const EMAILJS_SERVICE_ID    = 'service_8c48a0k';   // SMTP — booking confirmations
+const EMAILJS_GMAIL_SERVICE = 'service_zw47q51';   // Gmail — resource emails
+const TEMPLATE_CUSTOMER     = 'template_a0azha7';
 
 // --- Zapier — booking log to Google Sheets ---
 const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/26882497/up5tq8t/';
@@ -186,7 +187,7 @@ function sendResourceEmail(name, email, wantsGuide, wantsCourse) {
 
   emailjs.init(EMAILJS_PUBLIC_KEY);
 
-  emailjs.send(EMAILJS_SERVICE_ID, 'template_resources', {
+  emailjs.send(EMAILJS_GMAIL_SERVICE, 'template_resources', {
     parent_name:    name,
     parent_email:   email,
     resources:      resourceList,
