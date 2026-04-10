@@ -219,9 +219,9 @@ function logResourceSignupToZapier(name, email, resources) {
   };
 
   fetch(ZAPIER_RESOURCES_WEBHOOK_URL, {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify(payload),
+    method: 'POST',
+    mode:   'no-cors',
+    body:   new URLSearchParams(payload),
   })
     .then(() => console.info('[TFT] Resource signup logged to Zapier.'))
     .catch(err => console.warn('[TFT] Zapier resource log error:', err));
