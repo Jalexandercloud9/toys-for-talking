@@ -61,10 +61,8 @@ function sendBookingEmails(state) {
       : `Jasmine will contact you shortly at ${guardian.phone || 'the number you provided'} to confirm the location and time for your child\'s evaluation in the DFW area. Please bring any notes or relevant information about your child\'s speech and language history to your appointment.`
   };
 
-  emailjs.init(EMAILJS_PUBLIC_KEY);
-
   if (guardian.email) {
-    emailjs.send(EMAILJS_SERVICE_ID, TEMPLATE_CUSTOMER, customerParams)
+    emailjs.send(EMAILJS_SERVICE_ID, TEMPLATE_CUSTOMER, customerParams, { publicKey: EMAILJS_PUBLIC_KEY })
       .then(() => console.info('[TFT] Customer confirmation email sent.'))
       .catch(err => console.warn('[TFT] Customer email error:', err));
   }
@@ -185,8 +183,6 @@ function sendResourceEmail(name, email, wantsGuide, wantsCourse) {
     wantsCourse ? 'FREE 5-Minute Speech Boost Session: ' + SPEECH_BOOST_VIDEO_URL : null,
   ].filter(Boolean).join('\n\n');
 
-  emailjs.init(EMAILJS_PUBLIC_KEY);
-
   emailjs.send(EMAILJS_GMAIL_SERVICE, 'template_hfnfbqb', {
     parent_name:    name,
     parent_email:   email,
@@ -194,8 +190,7 @@ function sendResourceEmail(name, email, wantsGuide, wantsCourse) {
     resource_links: resourceLinks,
     guide_url:      wantsGuide  ? GUIDE_FULL_URL         : '',
     video_url:      wantsCourse ? SPEECH_BOOST_VIDEO_URL : '',
-    reply_to:       email,
-  })
+  }, { publicKey: EMAILJS_PUBLIC_KEY })
     .then(() => console.info('[TFT] Resource email sent.'))
     .catch(err => console.warn('[TFT] Resource email error:', err));
 }
