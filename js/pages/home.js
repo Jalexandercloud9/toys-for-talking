@@ -68,56 +68,6 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- How We Can Support Your Family -->
-    <section class="section" style="background:var(--bg-card);">
-      <div class="container">
-        <h2 class="section-title">How We Can Support Your Family</h2>
-        <p class="section-subtitle">We offer two different ways to support your child's communication, depending on your needs.</p>
-
-        <div class="grid-2" style="margin-top:2rem;gap:1.5rem;">
-          <!-- Evaluation Card -->
-          <div class="card" style="border-top:4px solid var(--primary);">
-            <h3>Speech &amp; Language Evaluations</h3>
-            <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">DFW Area · Under 18 · English &amp; Spanish</p>
-            <p style="margin-bottom:1rem;">A professional, 1-hour clinical assessment to determine whether your child has a speech or language delay or disorder, and what support they need. $149.</p>
-            <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Comprehensive diagnostic evaluation</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Available in English and Spanish</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Only 1 hour of your time</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person in the DFW metroplex</li>
-            </ul>
-            <a href="#/book-evaluation" class="btn btn-blue">Schedule an Evaluation</a>
-          </div>
-
-          <!-- Camp Card -->
-          <div class="card" style="border-top:4px solid var(--primary);">
-            <h3>Little Lamps Speech Camp</h3>
-            <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Dallas In-Person &amp; Virtual</p>
-            <p style="margin-bottom:1rem;">A parent coaching camp — Jasmine teaches you the play-based language strategies you can use at home every day. You leave each session with real tools, not just observations.</p>
-            <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Parents learn strategies they can use immediately</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Ages 1–4 · No prior diagnosis required</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person (Dallas) or virtual for any family</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Small groups · Sundays · $99–$199</li>
-            </ul>
-            <a href="#/book-camp" class="btn btn-blue">Book Speech Camp</a>
-          </div>
-        </div>
-
-        <!-- Decision Box -->
-        <div style="margin-top:2rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;border-left:4px solid var(--primary);">
-          <h4 style="margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
-            <i class="bi bi-lightbulb" style="color:var(--primary);"></i> Not sure which option is right for you?
-          </h4>
-          <p style="margin-bottom:0;">
-            If you want to know <strong>exactly where your child stands</strong> and live in the DFW area, start with a professional evaluation — you'll leave with a clear picture and practical next steps.
-            If you're ready to <strong>learn hands-on strategies</strong> you can use today to support your child's communication through play,
-            Little Lamps Speech Camp is for you — open to families everywhere.
-          </p>
-        </div>
-      </div>
-    </section>
-
     <!-- Summer Camps Preview -->
     <section class="section" style="background:var(--bg);">
       <div class="container">
@@ -235,6 +185,56 @@ function renderHome() {
             </div>`;
           })()}
 
+        </div>
+      </div>
+    </section>
+
+    <!-- How We Can Support Your Family -->
+    <section class="section" style="background:var(--bg-card);">
+      <div class="container">
+        <h2 class="section-title">How We Can Support Your Family</h2>
+        <p class="section-subtitle">We offer two different ways to support your child's communication, depending on your needs.</p>
+
+        <div class="grid-2" style="margin-top:2rem;gap:1.5rem;">
+          <!-- Evaluation Card -->
+          <div class="card" style="border-top:4px solid var(--primary);">
+            <h3>Speech &amp; Language Evaluations</h3>
+            <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">DFW Area · Under 18 · English &amp; Spanish</p>
+            <p style="margin-bottom:1rem;">A professional, 1-hour clinical assessment to determine whether your child has a speech or language delay or disorder, and what support they need. $149.</p>
+            <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Comprehensive diagnostic evaluation</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Available in English and Spanish</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Only 1 hour of your time</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person in the DFW metroplex</li>
+            </ul>
+            <a href="#/book-evaluation" class="btn btn-blue">Schedule an Evaluation</a>
+          </div>
+
+          <!-- Camp Card -->
+          <div class="card" style="border-top:4px solid var(--primary);">
+            <h3>Little Lamps Speech Camp</h3>
+            <p style="font-size:0.9rem;color:var(--text-muted);font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Dallas In-Person &amp; Virtual</p>
+            <p style="margin-bottom:1rem;">A parent coaching camp — Jasmine teaches you the play-based language strategies you can use at home every day. You leave each session with real tools, not just observations.</p>
+            <ul style="list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Parents learn strategies they can use immediately</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Ages 1–4 · No prior diagnosis required</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> In-person (Dallas) or virtual for any family</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;"><i class="bi bi-check2-circle" style="color:var(--success);flex-shrink:0;"></i> Small groups · Sundays · $99–$199</li>
+            </ul>
+            <a href="#/book-camp" class="btn btn-blue">Book Speech Camp</a>
+          </div>
+        </div>
+
+        <!-- Decision Box -->
+        <div style="margin-top:2rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;border-left:4px solid var(--primary);">
+          <h4 style="margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
+            <i class="bi bi-lightbulb" style="color:var(--primary);"></i> Not sure which option is right for you?
+          </h4>
+          <p style="margin-bottom:0;">
+            If you want to know <strong>exactly where your child stands</strong> and live in the DFW area, start with a professional evaluation — you'll leave with a clear picture and practical next steps.
+            If you're ready to <strong>learn hands-on strategies</strong> you can use today to support your child's communication through play,
+            Little Lamps Speech Camp is for you — open to families everywhere.
+          </p>
         </div>
       </div>
     </section>
