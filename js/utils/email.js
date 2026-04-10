@@ -183,9 +183,9 @@ function sendResourceEmail(name, email, wantsGuide, wantsCourse) {
     wantsCourse ? 'FREE 5-Minute Speech Boost Session: ' + SPEECH_BOOST_VIDEO_URL : null,
   ].filter(Boolean).join('\n\n');
 
-  emailjs.send(EMAILJS_GMAIL_SERVICE, 'template_hfnfbqb', {
+  emailjs.send(EMAILJS_SERVICE_ID, 'template_hfnfbqb', {
     parent_name:    name,
-    parent_email:   email,
+    email:          email,
     resources:      resourceList,
     resource_links: resourceLinks,
     guide_url:      wantsGuide  ? GUIDE_FULL_URL         : '',
