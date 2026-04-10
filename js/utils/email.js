@@ -187,7 +187,7 @@ function sendResourceEmail(name, email, wantsGuide, wantsCourse) {
 
   emailjs.init(EMAILJS_PUBLIC_KEY);
 
-  emailjs.send(EMAILJS_GMAIL_SERVICE, 'template_resources', {
+  emailjs.send(EMAILJS_GMAIL_SERVICE, 'template_hfnfbqb', {
     parent_name:    name,
     parent_email:   email,
     resources:      resourceList,
