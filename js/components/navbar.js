@@ -3,6 +3,7 @@ function renderNavbar() {
   const links = [
     { href: '#/', label: 'Home' },
     { href: '#/about', label: 'About Jasmine' },
+    { href: '#/parent-resources', label: 'Free Resources' },
     { href: '#/book-evaluation', label: 'Book Evaluation' },
   ];
 

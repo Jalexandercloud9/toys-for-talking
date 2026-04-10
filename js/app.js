@@ -76,6 +76,10 @@ function renderPage() {
       contentEl.innerHTML = renderPrivacyPolicy();
       break;
 
+    case '#/parent-resources':
+      contentEl.innerHTML = renderParentResources();
+      break;
+
     default:
       contentEl.innerHTML = `
         <div class="booking-container" style="text-align:center;padding:5rem 1.5rem;">
