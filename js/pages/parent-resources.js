@@ -11,7 +11,6 @@ function renderParentResources() {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;">
 
         <div class="card" style="border-top:4px solid var(--primary);">
-          <div style="font-size:2rem;margin-bottom:0.75rem;">📖</div>
           <h3 style="font-size:1.1rem;margin-bottom:0.5rem;color:var(--text);">Talking Steps Guide</h3>
           <p style="font-size:0.875rem;color:var(--text-light);line-height:1.6;">
             Every child reaches communication milestones at their own pace — but how do you know if your child is on track? This free guide walks you through the key early talking stages and gives you simple, everyday techniques to gently encourage each next step. Plus, learn which common habits may be slowing things down — and what to do instead.
@@ -22,7 +21,6 @@ function renderParentResources() {
         </div>
 
         <div class="card" style="border-top:4px solid var(--accent,#6C9E8E);">
-          <div style="font-size:2rem;margin-bottom:0.75rem;">⏱️</div>
           <h3 style="font-size:1.1rem;margin-bottom:0.5rem;color:var(--text);">FREE 5-Minute Speech Boost</h3>
           <p style="font-size:0.875rem;color:var(--text-light);line-height:1.6;">
             You don't need hours of practice to make a difference. This free mini-course reveals 3 simple strategies you can use during everyday moments — meals, playtime, bath time — to boost your child's communication in just 5 minutes a day. No special equipment, no therapy degree required.
@@ -87,6 +85,7 @@ function renderParentResources() {
           <div style="width:64px;height:64px;background:var(--success);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
             <i class="bi bi-check-lg" style="font-size:2rem;color:white;"></i>
           </div>
+
           <h2 style="margin-bottom:0.5rem;">You're all set!</h2>
           <p style="color:var(--text-light);margin-bottom:2rem;">
             Check your inbox — your resources are on the way. If you don't see them, check your spam folder and mark us as "Not Spam."
