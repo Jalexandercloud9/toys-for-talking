@@ -13,6 +13,9 @@ const TEMPLATE_CUSTOMER  = 'template_a0azha7';
 // --- Zapier — booking log to Google Sheets ---
 const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/26882497/up5tq8t/';
 
+// --- Zapier — parent resource signup log (separate Google Sheet) ---
+const ZAPIER_RESOURCES_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/26882497/u7ksr13/';
+
 let _emailSent   = false;
 let _zapierSent  = false;
 
@@ -150,5 +153,81 @@ function logBookingToZapier(state) {
   _zapierSent = true;
 }
 
-window.sendBookingEmails   = sendBookingEmails;
-window.logBookingToZapier  = logBookingToZapier;
+// -----------------------------------------------
+// Parent Resource Email (via EmailJS)
+// -----------------------------------------------
+// EmailJS template: template_resources
+// Required template variables:
+//   {{parent_name}}    — parent's name
+//   {{parent_email}}   — parent's email (set as "To" field)
+//   {{resources}}      — comma-separated list of selected resources
+//   {{guide_url}}      — PDF download URL (empty string if not selected)
+//   {{video_url}}      — YouTube video URL (empty string if not selected)
+//   {{resource_links}} — formatted list of URLs (for plain-text fallback)
+// -----------------------------------------------
+function sendResourceEmail(name, email, wantsGuide, wantsCourse) {
+  if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+    console.info('[TFT] EmailJS not configured — skipping resource email.');
+    return;
+  }
+
+  const GUIDE_FULL_URL          = 'https://toysfortalkingslp.com/assets/docs/talking-steps-guide.pdf';
+  const SPEECH_BOOST_VIDEO_URL  = 'https://www.youtube.com/watch?v=SfW9xy4Fal8';
+
+  const resourceList = [
+    wantsGuide  ? 'Talking Steps Guide (PDF)'        : null,
+    wantsCourse ? 'FREE 5-Minute Speech Boost Course' : null,
+  ].filter(Boolean).join(', ');
+
+  const resourceLinks = [
+    wantsGuide  ? 'Talking Steps Guide (PDF): '        + GUIDE_FULL_URL         : null,
+    wantsCourse ? 'FREE 5-Minute Speech Boost Session: ' + SPEECH_BOOST_VIDEO_URL : null,
+  ].filter(Boolean).join('\n\n');
+
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+
+  emailjs.send(EMAILJS_SERVICE_ID, 'template_resources', {
+    parent_name:    name,
+    parent_email:   email,
+    resources:      resourceList,
+    resource_links: resourceLinks,
+    guide_url:      wantsGuide  ? GUIDE_FULL_URL         : '',
+    video_url:      wantsCourse ? SPEECH_BOOST_VIDEO_URL : '',
+    reply_to:       email,
+  })
+    .then(() => console.info('[TFT] Resource email sent.'))
+    .catch(err => console.warn('[TFT] Resource email error:', err));
+}
+
+// -----------------------------------------------
+// Resource Signup Log to Google Sheets (via Zapier)
+// -----------------------------------------------
+// Uses the same Zapier webhook as bookings.
+// In Zapier, filter by "type = parent_resource_signup"
+// to route these rows to a separate Google Sheet tab.
+// -----------------------------------------------
+function logResourceSignupToZapier(name, email, resources) {
+  if (!ZAPIER_RESOURCES_WEBHOOK_URL) return;
+
+  const payload = {
+    type:      'parent_resource_signup',
+    date:      new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    time:      new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    name,
+    email,
+    resources,
+  };
+
+  fetch(ZAPIER_RESOURCES_WEBHOOK_URL, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload),
+  })
+    .then(() => console.info('[TFT] Resource signup logged to Zapier.'))
+    .catch(err => console.warn('[TFT] Zapier resource log error:', err));
+}
+
+window.sendBookingEmails          = sendBookingEmails;
+window.logBookingToZapier         = logBookingToZapier;
+window.sendResourceEmail          = sendResourceEmail;
+window.logResourceSignupToZapier  = logResourceSignupToZapier;

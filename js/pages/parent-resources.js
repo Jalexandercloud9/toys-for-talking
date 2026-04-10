@@ -1,7 +1,5 @@
 const SPEECH_BOOST_VIDEO = 'SfW9xy4Fal8';
 const GUIDE_URL = 'assets/docs/talking-steps-guide.pdf';
-const GUIDE_FULL_URL = 'https://toysfortalkingslp.com/assets/docs/talking-steps-guide.pdf';
-const SPEECH_BOOST_VIDEO_URL = 'https://www.youtube.com/watch?v=' + SPEECH_BOOST_VIDEO;
 
 function renderParentResources() {
   return `
@@ -167,40 +165,9 @@ async function submitResourcesForm() {
     wantsCourse ? 'FREE 5-Minute Speech Boost Course' : null,
   ].filter(Boolean).join(', ');
 
-  // Build email content listing what they're receiving
-  const emailLines = [];
-  if (wantsGuide)  emailLines.push('Talking Steps Guide (PDF): ' + GUIDE_FULL_URL);
-  if (wantsCourse) emailLines.push('FREE 5-Minute Speech Boost Session: ' + SPEECH_BOOST_VIDEO_URL);
-
-  try {
-    await emailjs.send(EMAILJS_SERVICE_ID, 'template_resources', {
-      parent_name:    name,
-      parent_email:   email,
-      resources:      resourceList,
-      resource_links: emailLines.join('\n\n'),
-      guide_url:      wantsGuide  ? GUIDE_FULL_URL          : '',
-      video_url:      wantsCourse ? SPEECH_BOOST_VIDEO_URL  : '',
-      reply_to:       email,
-    }, EMAILJS_PUBLIC_KEY);
-  } catch (e) {
-    console.warn('[TFT] EmailJS resources send failed:', e);
-  }
-
-  // Log to Zapier
-  try {
-    if (ZAPIER_WEBHOOK_URL) {
-      fetch(ZAPIER_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'parent_resource_signup',
-          name, email,
-          resources: resourceList,
-          timestamp: new Date().toISOString(),
-        }),
-      });
-    }
-  } catch(e) {}
+  // Send confirmation email and log signup to Zapier (via email.js)
+  if (window.sendResourceEmail)         window.sendResourceEmail(name, email, wantsGuide, wantsCourse);
+  if (window.logResourceSignupToZapier) window.logResourceSignupToZapier(name, email, resourceList);
 
   // Hide form, show success
   document.getElementById('resources-form-card').style.display = 'none';
