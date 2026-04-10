@@ -25,9 +25,6 @@ function renderParentResources() {
           <p style="font-size:0.875rem;color:var(--text-light);line-height:1.6;">
             Every child reaches communication milestones at their own pace — but how do you know if your child is on track? This free guide walks you through the key early talking stages and gives you simple, everyday techniques to gently encourage each next step. Plus, learn which common habits may be slowing things down — and what to do instead.
           </p>
-          <div style="margin-top:1rem;font-size:0.8rem;color:var(--text-light);font-weight:600;border-top:1px solid var(--border);padding-top:0.75rem;">
-            <i class="bi bi-lock" style="color:var(--primary);"></i> Unlocked after form submission
-          </div>
         </div>
 
         <div class="card" style="border-top:4px solid var(--accent,#6C9E8E);opacity:0.85;">
