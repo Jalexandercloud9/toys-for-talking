@@ -34,7 +34,6 @@ function renderParentResources() {
             You don't need hours of practice to make a difference. This free mini-course reveals 3 simple strategies you can use during everyday moments — meals, playtime, bath time — to boost your child's communication in just 5 minutes a day. No special equipment, no therapy degree required.
           </p>
           <div style="margin-top:1rem;font-size:0.8rem;color:var(--text-light);font-weight:600;border-top:1px solid var(--border);padding-top:0.75rem;">
-            <i class="bi bi-lock" style="color:var(--accent,#6C9E8E);"></i> Unlocked after form submission
           </div>
         </div>
 
