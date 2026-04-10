@@ -6,7 +6,7 @@ const SPEECH_BOOST_VIDEO_URL = 'https://www.youtube.com/watch?v=' + SPEECH_BOOST
 function renderParentResources() {
   return `
     <div class="page-header">
-      <h1><i class="bi bi-gift"></i> Free Parent Resources</h1>
+      <h1><i class="bi bi-gift"></i> Parent Resources</h1>
       <p>Tools and strategies to help your child find their voice — delivered straight to your inbox.</p>
     </div>
 
