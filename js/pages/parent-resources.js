@@ -12,26 +12,32 @@ function renderParentResources() {
 
     <div class="booking-container">
 
+      <p style="text-align:center;color:var(--text-light);font-size:0.95rem;margin-bottom:1.25rem;">
+        Fill out the form below to unlock your free resources instantly.
+      </p>
+
       <!-- Resource Cards -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;">
 
-        <div class="card" style="border-top:4px solid var(--primary);">
+        <div class="card" style="border-top:4px solid var(--primary);opacity:0.85;">
+          <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--primary);margin-bottom:0.5rem;">What you'll receive</div>
           <h3 style="font-size:1.1rem;margin-bottom:0.5rem;color:var(--text);">Talking Steps Guide</h3>
           <p style="font-size:0.875rem;color:var(--text-light);line-height:1.6;">
             Every child reaches communication milestones at their own pace — but how do you know if your child is on track? This free guide walks you through the key early talking stages and gives you simple, everyday techniques to gently encourage each next step. Plus, learn which common habits may be slowing things down — and what to do instead.
           </p>
-          <div style="margin-top:1rem;font-size:0.8rem;color:var(--primary);font-weight:600;">
-            <i class="bi bi-download"></i> Instant PDF Download
+          <div style="margin-top:1rem;font-size:0.8rem;color:var(--text-light);font-weight:600;border-top:1px solid var(--border);padding-top:0.75rem;">
+            <i class="bi bi-lock" style="color:var(--primary);"></i> Unlocked after form submission
           </div>
         </div>
 
-        <div class="card" style="border-top:4px solid var(--accent,#6C9E8E);">
+        <div class="card" style="border-top:4px solid var(--accent,#6C9E8E);opacity:0.85;">
+          <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent,#6C9E8E);margin-bottom:0.5rem;">What you'll receive</div>
           <h3 style="font-size:1.1rem;margin-bottom:0.5rem;color:var(--text);">FREE 5-Minute Speech Boost</h3>
           <p style="font-size:0.875rem;color:var(--text-light);line-height:1.6;">
             You don't need hours of practice to make a difference. This free mini-course reveals 3 simple strategies you can use during everyday moments — meals, playtime, bath time — to boost your child's communication in just 5 minutes a day. No special equipment, no therapy degree required.
           </p>
-          <div style="margin-top:1rem;font-size:0.8rem;color:var(--accent,#6C9E8E);font-weight:600;">
-            <i class="bi bi-play-circle"></i> Watch Instantly + Sent to Your Inbox
+          <div style="margin-top:1rem;font-size:0.8rem;color:var(--text-light);font-weight:600;border-top:1px solid var(--border);padding-top:0.75rem;">
+            <i class="bi bi-lock" style="color:var(--accent,#6C9E8E);"></i> Unlocked after form submission
           </div>
         </div>
 
