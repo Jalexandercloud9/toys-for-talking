@@ -873,7 +873,8 @@
         <div style="position:relative; width:100%; max-width:360px; border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(44,36,24,0.12);">
           <iframe
             id="camp-video"
-            src="https://www.youtube.com/embed/c3Zi7BT3b8I?enablejsapi=1&mute=1&autoplay=0&playsinline=1"
+            src=""
+            data-src="https://www.youtube.com/embed/c3Zi7BT3b8I?enablejsapi=1&mute=1&autoplay=1&playsinline=1&loop=1&playlist=c3Zi7BT3b8I"
             title="Jasmine Alexander Speech Tips"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -893,17 +894,16 @@
     // Autoplay muted when video scrolls into view
     (function() {
       var video = document.getElementById('camp-video');
-      var hint  = document.getElementById('unmute-hint');
       var played = false;
 
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting && !played) {
             played = true;
-            video.src += '&autoplay=1';
+            video.src = video.getAttribute('data-src');
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.4 });
 
       observer.observe(video);
     })();
