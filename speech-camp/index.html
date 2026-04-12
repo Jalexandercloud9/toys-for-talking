@@ -257,12 +257,14 @@
     .what-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 12px;
       margin-top: 36px;
+      width: 100%;
+      overflow: hidden;
     }
 
     @media (min-width: 700px) {
-      .what-grid { grid-template-columns: repeat(4, 1fr); }
+      .what-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
     }
 
     .what-card {
