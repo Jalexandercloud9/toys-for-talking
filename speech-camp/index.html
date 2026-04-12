@@ -76,7 +76,7 @@
 
     /* ── URGENCY BANNER ── */
     .urgency-banner {
-      background: var(--primary);
+      background: #2a3d4f;
       color: #fff;
       text-align: center;
       padding: 10px 20px;
@@ -209,6 +209,17 @@
       padding: 16px 44px;
     }
 
+    /* Hero CTA sits on blue — use white button instead */
+    .hero .btn-primary.large {
+      background: #fff;
+      color: #3B5068;
+    }
+
+    .hero .btn-primary.large:hover {
+      background: #f0f4f6;
+      color: #2a3d4f;
+    }
+
     .btn-outline {
       display: inline-block;
       background: transparent;
@@ -256,15 +267,15 @@
     /* ── WHAT IS IT ── */
     .what-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-top: 36px;
       width: 100%;
-      overflow: hidden;
+      box-sizing: border-box;
     }
 
     @media (min-width: 700px) {
-      .what-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+      .what-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
     }
 
     .what-card {
@@ -669,7 +680,7 @@
       </p>
       <div class="what-grid">
         <div class="what-card">
-          <div class="what-icon"><i class="bi bi-controller"></i></div>
+          <div class="what-icon"><i class="bi bi-balloon-heart"></i></div>
           <h4>Play-Based Learning</h4>
           <p>Strategies embedded in everyday play — no flashcards or drills.</p>
         </div>
