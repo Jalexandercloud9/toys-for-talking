@@ -16,18 +16,19 @@
 
   <style>
     :root {
-      --primary: #D96B55;
-      --primary-dark: #BE5540;
+      --primary: #7A94CB;
+      --primary-dark: #5B79B5;
+      --primary-light: #D2DCEF;
       --accent: #E8A87C;
       --bg: #FAF6F0;
       --bg-card: #FFFCF9;
-      --text: #2C2418;
+      --text: #1A2550;
       --text-light: #6B5040;
       --text-muted: #9B8070;
       --border: #EAD8CC;
       --success: #5C9E6E;
-      --shadow-sm: 0 2px 8px rgba(44,36,24,0.08);
-      --shadow-md: 0 4px 20px rgba(44,36,24,0.12);
+      --shadow-sm: 0 2px 8px rgba(26,37,80,0.08);
+      --shadow-md: 0 4px 20px rgba(26,37,80,0.12);
       --radius: 12px;
     }
 
@@ -41,11 +42,18 @@
       line-height: 1.6;
     }
 
-    h1, h2, h3 {
+    h1, h2 {
       font-family: 'Playfair Display', Georgia, serif;
       font-weight: 700;
       line-height: 1.25;
-      color: var(--text);
+      color: #1A2550;
+    }
+
+    h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #364880;
     }
 
     p { color: var(--text-light); }
@@ -101,7 +109,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at top, rgba(217,107,85,0.25) 0%, transparent 70%);
+      background: radial-gradient(ellipse at top, rgba(122,148,203,0.25) 0%, transparent 70%);
     }
 
     .hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
@@ -296,7 +304,7 @@
     .what-icon {
       width: 40px;
       height: 40px;
-      background: rgba(217,107,85,0.1);
+      background: rgba(122,148,203,0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -398,8 +406,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(217,107,85,0.08);
-      border: 1px solid rgba(217,107,85,0.25);
+      background: rgba(122,148,203,0.08);
+      border: 1px solid rgba(122,148,203,0.25);
       color: var(--primary-dark);
       font-size: 0.8rem;
       font-weight: 600;
@@ -501,7 +509,7 @@
       width: 56px;
       height: 56px;
       min-width: 56px;
-      background: rgba(217,107,85,0.2);
+      background: rgba(122,148,203,0.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
