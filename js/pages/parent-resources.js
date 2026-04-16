@@ -5,7 +5,7 @@ function renderParentResources() {
   return `
     <div class="page-header">
       <h1><i class="bi bi-gift"></i> Parent Resources</h1>
-      <p>Tools and strategies to help your child find their voice — delivered straight to your inbox.</p>
+      <p>Tools and strategies to help your child find their voice.</p>
     </div>
 
     <div class="booking-container">
@@ -85,8 +85,7 @@ function renderParentResources() {
         <div class="alert alert-success" style="margin-bottom:1.5rem;display:flex;gap:0.75rem;align-items:flex-start;">
           <i class="bi bi-check-circle" style="font-size:1.25rem;flex-shrink:0;margin-top:1px;"></i>
           <div>
-            <strong>You're all set!</strong> Your resources are also on their way to your inbox.
-            If you don't see the email, check your spam folder and mark it as "Not Spam."
+            <strong>You're all set!</strong> Your resources are ready below.
           </div>
         </div>
 
@@ -165,8 +164,7 @@ async function submitResourcesForm() {
     wantsCourse ? 'FREE 5-Minute Speech Boost Course' : null,
   ].filter(Boolean).join(', ');
 
-  // Send confirmation email and log signup to Zapier (via email.js)
-  if (window.sendResourceEmail)         window.sendResourceEmail(name, email, wantsGuide, wantsCourse);
+  // Log signup to Zapier
   if (window.logResourceSignupToZapier) window.logResourceSignupToZapier(name, email, resourceList);
 
   // Hide form, show success
