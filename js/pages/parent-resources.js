@@ -35,7 +35,7 @@ function renderParentResources() {
       <div class="card" id="resources-form-card">
         <h3 style="margin-bottom:0.25rem;font-size:1.15rem;">Get Your Free Resources</h3>
         <p style="color:var(--text-light);font-size:0.875rem;margin-bottom:1.5rem;">
-          Select what you'd like below. Everything will be available instantly on this page and also emailed to you so you can save it for later.
+          Select what you'd like below. Everything will be available instantly on this page.
         </p>
 
         <div class="form-group">
