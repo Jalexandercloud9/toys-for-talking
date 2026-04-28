@@ -208,10 +208,9 @@ function renderCampSelector() {
   const numKids = children.length;
   const total = selected ? selected.price * numKids : 0;
 
-  const campCards = window.CAMPS.map(camp => `
-    <div class="card camp-card ${selected && selected.id === camp.id ? 'selected' : ''} ${camp.soldOut ? 'sold-out' : ''}"
-         ${camp.soldOut ? 'aria-disabled="true"' : `onclick="selectCamp('${camp.id}')"`}
-         style="${camp.soldOut ? 'opacity:0.55;cursor:not-allowed;' : ''}">
+  const campCards = window.CAMPS.filter(camp => !camp.soldOut).map(camp => `
+    <div class="card camp-card ${selected && selected.id === camp.id ? 'selected' : ''}"
+         onclick="selectCamp('${camp.id}')">
       <div style="display:flex;align-items:flex-start;gap:1.25rem;">
         <div class="card-icon" style="flex-shrink:0;margin-bottom:0;"><i class="bi ${camp.icon}"></i></div>
         <div style="flex:1;">
@@ -219,9 +218,7 @@ function renderCampSelector() {
             <div>
               <h3 style="margin-bottom:0.2rem;">${camp.name}</h3>
               <p style="font-size:0.8rem;color:var(--primary);font-weight:600;">${camp.subtitle}</p>
-              ${camp.soldOut
-                ? `<span class="badge" style="background:rgba(0,0,0,0.08);color:var(--text-muted);margin-top:0.4rem;"><i class="bi bi-x-circle"></i> Full — Registration Closed</span>`
-                : `<div class="selected-badge"><i class="bi bi-check2"></i> Selected</div>`}
+              <div class="selected-badge"><i class="bi bi-check2"></i> Selected</div>
             </div>
             <div style="text-align:right;flex-shrink:0;">
               <div class="camp-price">$${camp.price}</div>
