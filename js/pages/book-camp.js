@@ -208,7 +208,7 @@ function renderCampSelector() {
   const numKids = children.length;
   const total = selected ? selected.price * numKids : 0;
 
-  const campCards = window.CAMPS.map(camp => `
+  const campCards = window.CAMPS.filter(camp => !camp.soldOut).map(camp => `
     <div class="card camp-card ${selected && selected.id === camp.id ? 'selected' : ''}"
          onclick="selectCamp('${camp.id}')">
       <div style="display:flex;align-items:flex-start;gap:1.25rem;">
@@ -417,7 +417,9 @@ function saveChildrenAndNext() {
 }
 
 function selectCamp(campId) {
-  window.AppState.selectedCamp = window.CAMPS.find(c => c.id === campId);
+  const camp = window.CAMPS.find(c => c.id === campId);
+  if (!camp || camp.soldOut) return;
+  window.AppState.selectedCamp = camp;
   refreshCampStep3();
 }
 

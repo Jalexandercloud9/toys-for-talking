@@ -72,7 +72,7 @@ function renderHome() {
     <section class="section" style="background:var(--bg);">
       <div class="container">
         <h2 class="section-title">Little Lamps Speech Camp 2026</h2>
-        <p class="section-subtitle">Play-based Sunday programs for children ages 1–4. Choose in-person or virtual — two cohorts available for each.</p>
+        <p class="section-subtitle">Play-based Sunday programs for children ages 1–4. Choose in-person or virtual.</p>
         <div class="grid-2">
 
           <!-- IN-PERSON CARD -->
@@ -87,15 +87,14 @@ function renderHome() {
                 <p style="font-size:0.875rem;margin-bottom:0.75rem;">${camp.description}</p>
 
                 <!-- Cohort dates -->
-                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.5rem;">Two Cohorts Available</div>
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.5rem;">Cohort Availability</div>
                 <div style="display:flex;flex-direction:column;gap:0.4rem;margin-bottom:0.75rem;">
-                  <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;">
-                    <span class="badge badge-blue" style="flex-shrink:0;">June</span>
-                    <span style="color:var(--text-light);">June 7 – June 28 &nbsp;·&nbsp; Sundays 4:00 PM or 4:45 PM</span>
-                  </div>
                   <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;">
                     <span class="badge badge-blue" style="flex-shrink:0;">July</span>
                     <span style="color:var(--text-light);">July 12 – Aug 2 &nbsp;·&nbsp; Sundays 4:00 PM or 4:45 PM</span>
+                  </div>
+                  <div style="font-size:0.78rem;color:var(--text-muted);font-style:italic;">
+                    <i class="bi bi-info-circle"></i> The June in-person cohort is full.
                   </div>
                 </div>
 
