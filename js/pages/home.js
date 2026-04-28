@@ -87,11 +87,11 @@ function renderHome() {
                 <p style="font-size:0.875rem;margin-bottom:0.75rem;">${camp.description}</p>
 
                 <!-- Cohort dates -->
-                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.5rem;">Two Cohorts Available</div>
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:0.5rem;">Cohort Availability</div>
                 <div style="display:flex;flex-direction:column;gap:0.4rem;margin-bottom:0.75rem;">
-                  <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;">
-                    <span class="badge badge-blue" style="flex-shrink:0;">June</span>
-                    <span style="color:var(--text-light);">June 7 – June 28 &nbsp;·&nbsp; Sundays 4:00 PM or 4:45 PM</span>
+                  <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;opacity:0.6;">
+                    <span class="badge" style="flex-shrink:0;background:rgba(0,0,0,0.08);color:var(--text-muted);">June · Full</span>
+                    <span style="color:var(--text-muted);text-decoration:line-through;">June 7 – June 28 &nbsp;·&nbsp; Sundays 4:00 PM or 4:45 PM</span>
                   </div>
                   <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;">
                     <span class="badge badge-blue" style="flex-shrink:0;">July</span>

@@ -16,7 +16,8 @@ const CAMPS = [
     location: 'The Little Gym · 820 S MacArthur Blvd #100, Coppell, TX 75019',
     price: 199,
     spots: 12,
-    spotsLeft: 8,
+    spotsLeft: 0,
+    soldOut: true,
     icon: 'bi-sun',
     tags: ['Ages 1–4', 'In-Person'],
     highlights: [
